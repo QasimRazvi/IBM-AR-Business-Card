@@ -23,17 +23,42 @@ function newSession() {
         console.log(res);
         // console.log(typeof res);
         resolve(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
       });
   });
 }
 
+function messageStateful(sessionId, inputText) {
+  return new Promise((resolve, reject) => {
+    assistant
+      .message({
+        assistantId: process.env.WATSON_ASSISTANT_ID, 
+        input: inputText,
+        sessionId: sessionId,
+      })
+      .then((res) => {
+        console.log(res);
+        resolve(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
+}
 
 router.get("/", async function (req, res, next) {
-  res.json(await newSession())
+  res.json(await newSession());
 });
 
-router.post("/", function (req, res, next) {
-  res.send("POST request at Watson");
+router.post("/message", async function (req, res, next) {
+  console.log(req.body);
+  botResponse = await messageStateful(req.body.sessionId, req.body.message);
+  console.log(botResponse.result.output.generic);
+  res.json(botResponse.result.output);
 });
 
 module.exports = router;
