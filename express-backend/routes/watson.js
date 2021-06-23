@@ -58,6 +58,7 @@ function messageStateful(sessionId, inputText) {
   });
 }
 
+// Function help handle messages, errors and renewing session if expired
 async function msgHandler(sessionId, inputText) {
   try {
     var botResponse = await messageStateful(sessionId, inputText);
@@ -97,6 +98,64 @@ async function msgHandler(sessionId, inputText) {
     // console.log("STATUS TEXT = ", botResponse.statusText);
     // console.log("BODY ERROR = ", JSON.parse(err.body).error);
   }
+}
+
+// Speech to text and text to Speech via Watson
+
+// Setup
+const fs = require("fs");
+const TextToSpeechV1 = require("ibm-watson/text-to-speech/v1");
+const SpeechToTextV1 = require("ibm-watson/speech-to-text/v1");
+
+// Text to Speech processor (TTS)
+const textToSpeech = new TextToSpeechV1({
+  authenticator: new IamAuthenticator({
+    apikey: process.env.WATSON_TTS_API_KEY,
+  }),
+  serviceUrl: process.env.WATSON_TTS_URL,
+});
+
+function tts(inputText, voice = "en-US_MichaelV3Voice") {
+  let params = { text: inputText, voice: voice, accept: "audio/wav" };
+  return textToSpeech
+    .synthesize(params)
+    .then((response) => {
+      const audio = response.result;
+      return textToSpeech.repairWavHeaderStream(audio);
+    })
+    .then((repairedFile) => {
+      fs.writeFileSync("audio.wav", repairedFile); // TODO - change file location/naming to handle higher load
+      console.log("audio.wav written with a corrected wav header");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // TODO - using websockets may allow for streaming
+}
+
+// Speech to Text processor (STT)
+const speechToText = new SpeechToTextV1({
+  authenticator: new IamAuthenticator({
+    apikey: process.env.WATSON_STT_API_KEY,
+  }),
+  serviceUrl: process.env.WATSON_STT_URL,
+});
+
+function sts(audiofile) {
+  let params = {
+    audio: fs.createReadStream("./hello_world.wav"),
+    contentType: "audio/l16; rate=44100",
+  }; // TODO - file location + contenttype (may need to be calculated)
+  return speechToText
+    .recognize(params)
+    .then((response) => {
+      console.log(JSON.stringify(response.result));
+      return response.result;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // TODO - using websockets may allow for streaming
 }
 
 router.get("/", async function (req, res, next) {
