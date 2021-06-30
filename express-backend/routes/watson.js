@@ -14,89 +14,78 @@ const assistant = new AssistantV2({
   version: process.env.API_VERSION,
 });
 
-//  TODO - SESSION AND MSG CODE NEEDS REFACTORING TO BETTER ACCOMODATE MORE ERROR HANDLING ACCORDING TO HOW ERRORS ARE RETURNED VIA API.
-function newSession() {
-  return new Promise((resolve, reject) => {
-    assistant
-      .createSession({
-        assistantId: process.env.WATSON_ASSISTANT_ID,
-      })
-      .then((res) => {
-        // console.log(res);
-        resolve(res.result);
-      })
-      .catch((err) => {
-        console.log("ERROR OCCURED!");
-        // console.log(err);
-        reject(err);
-      });
-  }).catch((err) => {
-    console.log(err.statusText);
-    return err.statusText;
-  });
+async function newSession() {
+  let result = assistant
+    .createSession({
+      assistantId: process.env.WATSON_ASSISTANT_ID,
+    })
+    .then((res) => {
+      console.log(res);
+      return res.result; //if session_id key returned then success
+    })
+    .catch((err) => {
+      console.log("ERROR OCCURRED WHILE INITIALISING SESSION: ", err);
+      return err;
+    });
+  return result;
 }
 
-function messageStateful(sessionId, inputText) {
-  return new Promise((resolve, reject) => {
-    assistant
-      .message({
-        assistantId: process.env.WATSON_ASSISTANT_ID,
-        input: { text: inputText },
-        sessionId: sessionId,
-      })
-      .then((res) => {
-        console.log(res);
-        resolve(res);
-      })
-      .catch((err) => {
-        // console.log(err);
-        reject(err);
-      });
-  }).catch((err) => {
-    console.log(err);
-    return err;
-  });
+async function messageStateful(sessionId, inputText) {
+  let result = assistant
+    .message({
+      assistantId: process.env.WATSON_ASSISTANT_ID,
+      input: { text: inputText },
+      sessionId: sessionId,
+    })
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.log("ERROR OCCURRED WHILE RETRIEVING MESSAGE RESPONSE: ", err);
+      return err;
+    });
+  return result;
 }
 
 // Function help handle messages, errors and renewing session if expired
 async function msgHandler(sessionId, inputText) {
   try {
-    var botResponse = await messageStateful(sessionId, inputText);
-    console.log("FIRST TRY = ", botResponse);
-    console.log(JSON.stringify(botResponse.result, null, 2));
-    if (botResponse.statusText == "OK") {
-      return botResponse.result;
-    }
-
-    if (
+    let botResponse = await messageStateful(sessionId, inputText);
+    console.log(botResponse.result);
+    if (botResponse["result"]) {
+      // result has been returned successfully
+      return { ...botResponse.result, session_id: sessionId };
+    } else if (
+      // If session expired
       botResponse.statusText == "Not Found" &&
       JSON.parse(botResponse.body).error == "Invalid Session"
     ) {
-      console.log("REINITIALISING SESION");
-      // if invalid session try reinitialising session
-      try {
-        var newSessionId = await newSession();
-        var botResponse = await messageStateful(
-          newSessionId.session_id,
-          inputText
-        );
-        console.log(botResponse);
+      console.log("REINITIALISING SESSION");
+      let newSessionId = await newSession();
+      let botResponse = await messageStateful(
+        newSessionId.session_id,
+        inputText
+      );
+      if (newSessionId["session_id"] && botResponse["result"]) {
+        //result and session both successfully returned
         // return new session id to client if it has been updated.
         return { ...botResponse.result, session_id: newSessionId.session_id };
-      } catch (err) {
-        console.log("error occured reinitlialising session. Failed.");
-        console.log(err);
-        return err.body;
+      } else {
+        // something failed - return error msg and code from body
+        return newSessionId["session_id"]
+          ? newSessionId.body
+          : botResponse.body;
       }
     } else {
-      console.log("DIDNT MATCH ON INVALID SESSION. OTHER ERROR OCCURED");
-      console.log(botResponse.body);
+      // other errors not session
+      console.log("ANOTHER ERROR OCCURRED"); // will also catch missing params etc
+      return botResponse.body
+        ? botResponse.body
+        : { error: botResponse.message };
     }
   } catch (err) {
-    console.log("ERROR OCCURED WHILE RETRIEVING MESSAGE RESPONSE");
-    // // return err;
-    // console.log("STATUS TEXT = ", botResponse.statusText);
-    // console.log("BODY ERROR = ", JSON.parse(err.body).error);
+    return { error: err };
   }
 }
 
@@ -164,7 +153,12 @@ router.get("/", async function (req, res, next) {
 
 router.post("/message", async function (req, res, next) {
   console.log(req.body);
-  var botResponse = await msgHandler(req.body.sessionId, req.body.message); //await messageStateful(req.body.sessionId, req.body.message);
+  // if session null, assume first contact - initialise session + pass it back
+  var session =
+    req.body.session_id == null
+      ? await newSession()
+      : req.body;
+  var botResponse = await msgHandler(session.session_id, req.body.message); //await messageStateful(req.body.sessionId, req.body.message);
   res.json(await botResponse); //.result.output);
 });
 
