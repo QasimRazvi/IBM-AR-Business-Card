@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import ChatMicInput from "../components/chatbot/chatInput";
 import { Audio } from "expo-av";
 
-import { speechToText } from "../utils/server/watson.utils";
+import { speechToText, getSttToken } from "../utils/server/watson.utils";
 
 const ChatBotScreen = ({ navigation }) => {
   //   const [recording, setRecording] = useState(false);
@@ -32,7 +32,7 @@ const ChatBotScreen = ({ navigation }) => {
         // need to configure custom formats as android default m4a not compatible with watson API
         {
           android: {
-            extension: ".m4a",
+            extension: ".wav",
             outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
             audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
             sampleRate: 44100,
@@ -40,7 +40,7 @@ const ChatBotScreen = ({ navigation }) => {
             bitRate: 128000,
           },
           ios: {
-            extension: ".m4a",
+            extension: ".wav",
             outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC,
             audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_HIGH,
             sampleRate: 44100,
@@ -69,8 +69,9 @@ const ChatBotScreen = ({ navigation }) => {
     const uri = recording.getURI();
     console.log("Recording stopped and stored at", uri);
     // TODO - send recording to watson, trigger STT
-    playSound(uri);
+    // playSound(uri);
     speechToText(uri);
+    // getSttToken().then((res) => console.log(res));
   }
 
   const [sound, setSound] = React.useState();

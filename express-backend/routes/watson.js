@@ -134,7 +134,7 @@ function stt(audiofile) {
   console.log(audiofile);
   let params = {
     audio: fs.createReadStream(audiofile),
-    contentType: "audio/l16; rate=44100",
+    contentType: "audio/wav",
   }; // TODO - file location + contenttype (may need to be calculated)
   // console.log(params.audio);
   return speechToText
@@ -208,7 +208,7 @@ var storage = multer.diskStorage({
         Math.round(Math.random() * 1e9) +
         "-" +
         Date.now() +
-        ".m4a"
+        ".wav"
     );
   },
 });
@@ -235,8 +235,8 @@ router.post(
     // get saved file .m4a - convert to linear16 pcm compatible with STT
     saveLoc = "./storage/" + "testing" + ".wav";
 
-    // linear16(req.file.path, './output.wav').then((outPath) => stt(outPath));
-    // await stt("./output.wav");
+    linear16(req.file.path, './output.wav').then((outPath) => stt(outPath));
+    // await stt('./storage/soundBlob603013032-1625227670995.wav');
 
     // (async () => {
     //   const outPath = await linear16(req.file.path, "./output.wav");
@@ -251,48 +251,49 @@ router.post(
 
 module.exports = router;
 
-// const ffmpeg = require('fluent-ffmpeg');
-// const ffmpeg_static = require('ffmpeg-static');
+const ffmpeg = require("fluent-ffmpeg");
+const ffmpeg_static = require("ffmpeg-static");
 // const mime = require('mime');
 // const fs = require('fs');
 
-// async function linear16(filePathIn, filePathOut) {
-
-//     if (('object' === typeof filePathIn) && !filePathOut) {
-//         const {inPath, outPath} = filePathIn;
-//         filePathIn = inPath;
-//         filePathOut = outPath;
-//     }
-
-//     if (!filePathIn || !filePathOut) {
-//         throw new Error('You must specify a path for both input and output files.');
-//     }
-//     if (!fs.existsSync(filePathIn)) {
-//         throw new Error('Input file must exist.');
-//     }
-//     if (mime.getType(filePathIn).indexOf('audio') <= -1) {
-//         throw new Error('File must have audio mime.');
-//     }
-
-//     return new Promise((resolve, reject) => {
-//         try {
-//             ffmpeg()
-//                 .setFfmpegPath(ffmpeg_static.path)
-//                 .input(filePathIn)
-//                 .outputOptions([
-//                     // '-f s16le',
-//                     // '-acodec pcm_s16le',
-//                     // '-vn',
-//                     // '-ac 1',
-//                     // '-ar 16k',
-//                     // '-map_metadata -1'
-//                 ])
-//                 .save(filePathOut)
-//                 .on('end', () => resolve(filePathOut));
-
-//         } catch (e) {
-//             reject(e);
-//         }
-//     });
-
+// convert = function (fileIn, fileOut) {
+//   ffmpeg().setFfmpegPath(ffmpeg_static.path).input()
 // }
+
+async function linear16(filePathIn, filePathOut) {
+  if ("object" === typeof filePathIn && !filePathOut) {
+    const { inPath, outPath } = filePathIn;
+    filePathIn = inPath;
+    filePathOut = outPath;
+  }
+  console.log(filePathIn);
+  if (!filePathIn || !filePathOut) {
+    throw new Error("You must specify a path for both input and output files.");
+  }
+  if (!fs.existsSync(filePathIn)) {
+    throw new Error("Input file must exist.");
+  }
+  // if (mime.getType(filePathIn).indexOf("audio") <= -1) {
+  //   throw new Error("File must have audio mime.");
+  // }
+
+  return new Promise((resolve, reject) => {
+    try {
+      ffmpeg()
+        .setFfmpegPath(ffmpeg_static.path)
+        .input(filePathIn)
+        .outputOptions([
+          // '-f s16le',
+          "-acodec pcm_s16le",
+          // // '-vn',
+          // '-ac 1',
+          // '-ar 16k',
+          // '-map_metadata -1'
+        ])
+        .save(filePathOut)
+        .on("end", () => resolve(filePathOut));
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
