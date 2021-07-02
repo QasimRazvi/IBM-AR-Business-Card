@@ -186,20 +186,11 @@ router.post("/message", async function (req, res, next) {
 // upload - receieves recorded audio for speech to text processing, returns text
 var multer = require("multer");
 var path = require("path");
-// var upload = multer({ storage: storage });
-// console.log(__dirname);
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "../storage");
-//   },
-//   filename: function (req, file, cb) {
-//     const suff = Date.now() + Math.round(Math.random() * 1e9);
-//     cb(null, file.fieldname + suff + ".mp3");
-//   },
-// });
+
+// setup storage to tmp folder, ready for further processing
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "storage");
+    cb(null, "storage/tmp");
   },
   filename: function (req, file, cb) {
     cb(
@@ -214,47 +205,44 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage });
-// var upload = multer();
-// var linear16 = require("linear16");
-
-// console.log(linear16);
 
 router.post(
   "/upload",
   upload.single("soundBlob"),
   async function (req, res, next) {
-    // console.log(__dirname);
     console.log("UPLOAD TRIGGERED");
     console.log(req.file);
-    // console.log(await req.file.path);
-    uploadLoc = "./storage/" + req.file.originalname;
-    // // console.log(req.body);
-    // console.log(req.file.buffer);
-    // fs.writeFileSync(uploadLoc, Buffer.from(new Uint8Array(req.file.buffer)));
-
-    // get saved file .m4a - convert to linear16 pcm compatible with STT
-    saveLoc = "./storage/" + "testing" + ".wav";
-
-    linear16(req.file.path, './output.wav').then((outPath) => stt(outPath));
-    // await stt('./storage/soundBlob603013032-1625227670995.wav');
-
-    // (async () => {
-    //   const outPath = await linear16(req.file.path, "./output.wav");
-    //   console.log(outPath); // Returns the output path, ex: ./output.wav
-    // })();
-    // await stt("./output.wav");
-
-    // await stt(Buffer.from(new Uint8Array(req.file.buffer)));
-    res.sendStatus(200);
+    // get saved file .wav - convert to linear16 pcm compatible with STT
+    saveLoc = "./storage/" + req.file.filename;
+    const response = linear16(req.file.path, saveLoc).then((outPath) =>
+      stt(outPath)
+    );
+    res.json(await response);
+    console.log("response = ", await response);
+    deleteFile([req.file.path, saveLoc]); // remove files from storage
   }
 );
+
+// asynchronous deletion of file via filesystem
+function deleteFile(filePaths) {
+  try {
+    for (let i = 0; i < filePaths.length; i++) {
+      fs.unlink(filePaths[i], (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 module.exports = router;
 
 const ffmpeg = require("fluent-ffmpeg");
 const ffmpeg_static = require("ffmpeg-static");
-// const mime = require('mime');
-// const fs = require('fs');
+const mime = require("mime");
 
 // convert = function (fileIn, fileOut) {
 //   ffmpeg().setFfmpegPath(ffmpeg_static.path).input()
@@ -273,9 +261,9 @@ async function linear16(filePathIn, filePathOut) {
   if (!fs.existsSync(filePathIn)) {
     throw new Error("Input file must exist.");
   }
-  // if (mime.getType(filePathIn).indexOf("audio") <= -1) {
-  //   throw new Error("File must have audio mime.");
-  // }
+  if (mime.getType(filePathIn).indexOf("audio") <= -1) {
+    throw new Error("File must have audio mime.");
+  }
 
   return new Promise((resolve, reject) => {
     try {

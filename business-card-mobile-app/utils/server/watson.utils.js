@@ -26,39 +26,12 @@ export const speechToText = (fileuri) => {
       "Content-Type": "multipart/form-data",
     },
     body: formdata,
-  });
+  })
+    .then((res) => res.json());
+    // .then((data) => console.log(data));
 };
 
 export const getSttToken = () => {
   let url = watsonConfig.baseUrl + "stt-token";
   return fetch(url).then((res) => res.json());
 };
-
-//  NEED TO USE SPECIaL PACKAGES 
-
-
-
-
-// export const speechToTextClient = (serviceCredentials, audio) => {
-//   const speechToText = new SpeechToTextV1({
-//     authenticator: new BearerTokenAuthenticator({
-//       bearerToken: serviceCredentials.accessToken,
-//     }),
-//     url: serviceCredentials.url,
-//     version: "2020-09-24",
-//     // add version to dotenv file in React Native to allow obvious changes later?
-//   });
-//   let params = {
-//     audio: audio,
-//     contentType: 'audio/l16; rate=44100',
-//   };
-//   return speechToText
-//     .recognize(params)
-//     .then((response) => {
-//       console.log(JSON.stringify(response.result));
-//       return response.result;
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
-// import Chat from "../components/chatbot/chat";
+import ChatListView from "../components/chatbot/chat";
 import ChatMicInput from "../components/chatbot/chatInput";
 import { Audio } from "expo-av";
 
@@ -10,6 +10,7 @@ import { speechToText, getSttToken } from "../utils/server/watson.utils";
 const ChatBotScreen = ({ navigation }) => {
   //   const [recording, setRecording] = useState(false);
   const [recording, setRecording] = React.useState();
+  const [chatHistory, setChatHistory] = React.useState([]);
   //   const startRecording = () => {
   //     toggleRecord();
   //   };
@@ -63,15 +64,25 @@ const ChatBotScreen = ({ navigation }) => {
 
   async function stopRecording() {
     console.log("Stopping recording..");
-    console.log(recording);
     setRecording(undefined);
     await recording.stopAndUnloadAsync();
     const uri = recording.getURI();
     console.log("Recording stopped and stored at", uri);
-    // TODO - send recording to watson, trigger STT
-    // playSound(uri);
-    speechToText(uri);
-    // getSttToken().then((res) => console.log(res));
+    // Send recording to watson, trigger STT
+
+    const sentText = await speechToText(uri);
+    console.log(sentText);
+    setChatHistory([
+      ...chatHistory,
+      {
+        id: chatHistory.length + 1,
+        sent: 1,
+        text: sentText.results[0].alternatives[0].transcript,
+        // confidence:
+      },
+    ]);
+
+    console.log(chatHistory);
   }
 
   const [sound, setSound] = React.useState();
@@ -95,12 +106,16 @@ const ChatBotScreen = ({ navigation }) => {
   }, [sound]);
 
   return (
-    <View style={styles.micView}>
-      <ChatMicInput
-        onPress={!recording ? startRecording : stopRecording}
-        recording={recording}
-      />
-      {/* <Chat /> */}
+    <View style={styles.container}>
+      <ChatListView chatArray={chatHistory} />
+
+      <View style={styles.micView}>
+        <ChatMicInput
+          onPress={!recording ? startRecording : stopRecording}
+          recording={recording}
+        />
+        {/* <Chat /> */}
+      </View>
     </View>
   );
 };
@@ -111,7 +126,9 @@ const styles = StyleSheet.create({
     bottom: 20,
     left: 10,
     right: 10,
+    zIndex: 2,
   },
+  container: { flex: 1, backgroundColor: "white" },
 });
 
 export default ChatBotScreen;
