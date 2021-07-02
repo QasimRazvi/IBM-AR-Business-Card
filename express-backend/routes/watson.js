@@ -130,11 +130,13 @@ const speechToText = new SpeechToTextV1({
   serviceUrl: process.env.WATSON_STT_URL,
 });
 
-function sts(audiofile) {
+function stt(audiofile) {
+  console.log(audiofile);
   let params = {
-    audio: fs.createReadStream("./hello_world.wav"),
+    audio: fs.createReadStream(audiofile),
     contentType: "audio/l16; rate=44100",
   }; // TODO - file location + contenttype (may need to be calculated)
+  // console.log(params.audio);
   return speechToText
     .recognize(params)
     .then((response) => {
@@ -147,19 +149,132 @@ function sts(audiofile) {
   // TODO - using websockets may allow for streaming
 }
 
+// base url get snew session
 router.get("/", async function (req, res, next) {
   res.json(await newSession());
 });
 
+// message takes text input returns text response
 router.post("/message", async function (req, res, next) {
   console.log(req.body);
   // if session null, assume first contact - initialise session + pass it back
-  var session =
-    req.body.session_id == null
-      ? await newSession()
-      : req.body;
+  var session = req.body.session_id == null ? await newSession() : req.body;
   var botResponse = await msgHandler(session.session_id, req.body.message); //await messageStateful(req.body.sessionId, req.body.message);
   res.json(await botResponse); //.result.output);
 });
 
+// upload - receieves recorded audio for speech to text processing, returns text
+var multer = require("multer");
+var path = require("path");
+// var upload = multer({ storage: storage });
+// console.log(__dirname);
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "../storage");
+//   },
+//   filename: function (req, file, cb) {
+//     const suff = Date.now() + Math.round(Math.random() * 1e9);
+//     cb(null, file.fieldname + suff + ".mp3");
+//   },
+// });
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "storage");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname +
+        Math.round(Math.random() * 1e9) +
+        "-" +
+        Date.now() +
+        ".m4a"
+    );
+  },
+});
+
+var upload = multer({ storage: storage });
+// var upload = multer();
+// var linear16 = require("linear16");
+
+console.log(linear16);
+
+router.post(
+  "/upload",
+  upload.single("soundBlob"),
+  async function (req, res, next) {
+    // console.log(__dirname);
+    console.log("UPLOAD TRIGGERED");
+    console.log(req.file);
+    // console.log(await req.file.path);
+    uploadLoc = "./storage/" + req.file.originalname;
+    // // console.log(req.body);
+    // console.log(req.file.buffer);
+    // fs.writeFileSync(uploadLoc, Buffer.from(new Uint8Array(req.file.buffer)));
+
+    // get saved file .m4a - convert to linear16 pcm compatible with STT
+    saveLoc = "./storage/" + "testing" + ".wav";
+
+    // linear16(req.file.path, './output.wav').then((outPath) => stt(outPath));
+    // await stt("./output.wav");
+
+    (async () => {
+      const outPath = await linear16(req.file.path, "./output.wav");
+      console.log(outPath); // Returns the output path, ex: ./output.wav
+    })();
+    await stt("./output.wav");
+
+    // await stt(Buffer.from(new Uint8Array(req.file.buffer)));
+    res.sendStatus(200);
+  }
+);
+
 module.exports = router;
+
+
+
+const ffmpeg = require('fluent-ffmpeg');
+const ffmpeg_static = require('ffmpeg-static');
+const mime = require('mime');
+// const fs = require('fs');
+
+async function linear16(filePathIn, filePathOut) {
+
+    if (('object' === typeof filePathIn) && !filePathOut) {
+        const {inPath, outPath} = filePathIn;
+        filePathIn = inPath;
+        filePathOut = outPath;
+    }
+
+    if (!filePathIn || !filePathOut) {
+        throw new Error('You must specify a path for both input and output files.');
+    }
+    if (!fs.existsSync(filePathIn)) {
+        throw new Error('Input file must exist.');
+    }
+    if (mime.getType(filePathIn).indexOf('audio') <= -1) {
+        throw new Error('File must have audio mime.');
+    }
+
+    return new Promise((resolve, reject) => {
+        try {
+            ffmpeg()
+                .setFfmpegPath(ffmpeg_static.path)
+                .input(filePathIn)
+                .outputOptions([
+                    // '-f s16le',
+                    // '-acodec pcm_s16le',
+                    // '-vn',
+                    // '-ac 1',
+                    // '-ar 16k',
+                    // '-map_metadata -1'
+                ])
+                .save(filePathOut)
+                .on('end', () => resolve(filePathOut));
+
+        } catch (e) {
+            reject(e);
+        }
+    });
+
+}
