@@ -149,6 +149,26 @@ function stt(audiofile) {
   // TODO - using websockets may allow for streaming
 }
 
+// Speech to Text v2
+// Should stream from the client, backend to provide bearerToken to authorise access and protect API secrets
+console.log(speechToText.tokenManager);
+const { IamTokenManager } = require("ibm-watson/auth");
+
+const SpeechTextAuthenticator = new IamTokenManager({
+  apikey: process.env.WATSON_STT_API_KEY,
+});
+
+router.get("/stt-token", function (req, res) {
+  return SpeechTextAuthenticator.requestToken()
+    .then(({ result }) => {
+      res.json({
+        accessToken: result.access_token,
+        url: process.env.WATSON_STT_URL,
+      });
+    })
+    .catch(console.error);
+});
+
 // base url get snew session
 router.get("/", async function (req, res, next) {
   res.json(await newSession());
@@ -197,7 +217,7 @@ var upload = multer({ storage: storage });
 // var upload = multer();
 // var linear16 = require("linear16");
 
-console.log(linear16);
+// console.log(linear16);
 
 router.post(
   "/upload",
@@ -218,11 +238,11 @@ router.post(
     // linear16(req.file.path, './output.wav').then((outPath) => stt(outPath));
     // await stt("./output.wav");
 
-    (async () => {
-      const outPath = await linear16(req.file.path, "./output.wav");
-      console.log(outPath); // Returns the output path, ex: ./output.wav
-    })();
-    await stt("./output.wav");
+    // (async () => {
+    //   const outPath = await linear16(req.file.path, "./output.wav");
+    //   console.log(outPath); // Returns the output path, ex: ./output.wav
+    // })();
+    // await stt("./output.wav");
 
     // await stt(Buffer.from(new Uint8Array(req.file.buffer)));
     res.sendStatus(200);
@@ -231,50 +251,48 @@ router.post(
 
 module.exports = router;
 
-
-
-const ffmpeg = require('fluent-ffmpeg');
-const ffmpeg_static = require('ffmpeg-static');
-const mime = require('mime');
+// const ffmpeg = require('fluent-ffmpeg');
+// const ffmpeg_static = require('ffmpeg-static');
+// const mime = require('mime');
 // const fs = require('fs');
 
-async function linear16(filePathIn, filePathOut) {
+// async function linear16(filePathIn, filePathOut) {
 
-    if (('object' === typeof filePathIn) && !filePathOut) {
-        const {inPath, outPath} = filePathIn;
-        filePathIn = inPath;
-        filePathOut = outPath;
-    }
+//     if (('object' === typeof filePathIn) && !filePathOut) {
+//         const {inPath, outPath} = filePathIn;
+//         filePathIn = inPath;
+//         filePathOut = outPath;
+//     }
 
-    if (!filePathIn || !filePathOut) {
-        throw new Error('You must specify a path for both input and output files.');
-    }
-    if (!fs.existsSync(filePathIn)) {
-        throw new Error('Input file must exist.');
-    }
-    if (mime.getType(filePathIn).indexOf('audio') <= -1) {
-        throw new Error('File must have audio mime.');
-    }
+//     if (!filePathIn || !filePathOut) {
+//         throw new Error('You must specify a path for both input and output files.');
+//     }
+//     if (!fs.existsSync(filePathIn)) {
+//         throw new Error('Input file must exist.');
+//     }
+//     if (mime.getType(filePathIn).indexOf('audio') <= -1) {
+//         throw new Error('File must have audio mime.');
+//     }
 
-    return new Promise((resolve, reject) => {
-        try {
-            ffmpeg()
-                .setFfmpegPath(ffmpeg_static.path)
-                .input(filePathIn)
-                .outputOptions([
-                    // '-f s16le',
-                    // '-acodec pcm_s16le',
-                    // '-vn',
-                    // '-ac 1',
-                    // '-ar 16k',
-                    // '-map_metadata -1'
-                ])
-                .save(filePathOut)
-                .on('end', () => resolve(filePathOut));
+//     return new Promise((resolve, reject) => {
+//         try {
+//             ffmpeg()
+//                 .setFfmpegPath(ffmpeg_static.path)
+//                 .input(filePathIn)
+//                 .outputOptions([
+//                     // '-f s16le',
+//                     // '-acodec pcm_s16le',
+//                     // '-vn',
+//                     // '-ac 1',
+//                     // '-ar 16k',
+//                     // '-map_metadata -1'
+//                 ])
+//                 .save(filePathOut)
+//                 .on('end', () => resolve(filePathOut));
 
-        } catch (e) {
-            reject(e);
-        }
-    });
+//         } catch (e) {
+//             reject(e);
+//         }
+//     });
 
-}
+// }
