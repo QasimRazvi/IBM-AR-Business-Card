@@ -5,19 +5,14 @@ import ChatListView from "../components/chatbot/chat";
 import ChatMicInput from "../components/chatbot/chatInput";
 import { Audio } from "expo-av";
 
-import { speechToText, getSttToken } from "../utils/server/watson.utils";
+import { speechToText, textToAssistant } from "../utils/server/watson.utils";
 
 const ChatBotScreen = ({ navigation }) => {
-  //   const [recording, setRecording] = useState(false);
   const [recording, setRecording] = React.useState();
   const [chatHistory, setChatHistory] = React.useState([]);
-  //   const startRecording = () => {
-  //     toggleRecord();
-  //   };
-  //   const stopRecording = () => {
-  //     toggleRecord();
-  //     console.log("RECORDING STOPPED!!");
-  //   };
+
+  // Watson assistant session state tracking - initially empty string
+  const [watsonSessionId, setWatsonSessionId] = React.useState("");
 
   async function startRecording() {
     try {
@@ -72,17 +67,58 @@ const ChatBotScreen = ({ navigation }) => {
 
     const sentText = await speechToText(uri);
     console.log(sentText);
+    // TODO - change into handler to handle if results[0] - empty array
     setChatHistory([
       ...chatHistory,
       {
-        id: chatHistory.length + 1,
+        // id: (chatHistory.length + 1).toString(),
         sent: 1,
         text: sentText.results[0].alternatives[0].transcript,
         // confidence:
       },
     ]);
 
-    console.log(chatHistory);
+    // send text to assistant and handle Watson response, update chat history
+    const watsonResult = await textToAssistant(
+      sentText.results[0].alternatives[0].transcript,
+      watsonSessionId
+    );
+
+    const chatResponse = watsonTextResponseHandler(watsonResult);
+
+    setChatHistory((prevState) => {
+      return [...prevState, ...chatResponse];
+    });
+
+    // console.log(WatsonResult);
+    console.log("SESION ID = ", watsonSessionId);
+
+    // some check for return values, errors?
+    // check if session needs updating
+    // for each itme in array, get value for text and add to new chat object
+    function watsonTextResponseHandler(res) {
+      console.log("res = ", res);
+      console.log("RES OUT GEN = ", res.output.generic[0].text);
+      let watsonReply = [];
+      for (let i = 0; i < res.output.generic.length; i++) {
+        watsonReply.push({
+          // id: (chatHistory.length + 1 + i).toString(),
+          sent: 0,
+          text: res.output.generic[i].text,
+        });
+      }
+      console.log("WATSON REPLY =", watsonReply);
+      return watsonReply;
+    }
+
+    // console.log(watsonReply);
+    // setChatHistory([...chatHistory, ...watsonReply]);
+
+    if (watsonResult.output.session_id != watsonSessionId) {
+      setWatsonSessionId(watsonResult.session_id);
+    }
+
+    // console.log(chatHistory);
   }
 
   const [sound, setSound] = React.useState();
@@ -104,6 +140,8 @@ const ChatBotScreen = ({ navigation }) => {
         }
       : undefined;
   }, [sound]);
+
+  // TODO - ON component mount should initialise session with Watson!
 
   return (
     <View style={styles.container}>
