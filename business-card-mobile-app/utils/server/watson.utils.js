@@ -31,10 +31,14 @@ export const speechToText = async (fileuri) => {
   // .then((data) => console.log(data));
 };
 
-// export const textToSpeech = async ()
+export const textToSpeech = async (audioUri) => {};
 
 // Send Transcibed audio message recorded from mic to backed for Watson Assistant
-export const textToAssistant = async (messageText, sessionId = null) => {
+export const textToAssistant = async (
+  messageText,
+  sessionId = null,
+  tts = false
+) => {
   // console.log("SESSION ID = ", sessionId);
   // console.log(sessionId == null);
   // console.log(sessionId == "");
@@ -52,7 +56,9 @@ export const textToAssistant = async (messageText, sessionId = null) => {
   }
   console.log("ASSISTANT CALLED");
   console.log("ASSISTANT PARAMS = ", params);
-  let url = watsonConfig.baseUrl + "message";
+  let url = tts
+    ? watsonConfig.baseUrl + "message-text-tts-response" // if tts = true, we retrieve speech file urls.
+    : watsonConfig.baseUrl + "message";
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -61,7 +67,7 @@ export const textToAssistant = async (messageText, sessionId = null) => {
     body: JSON.stringify(params),
   });
   return await res.json();
-    // .then((data) => console.log(data));
+  // .then((data) => console.log(data));
 };
 
 // if bearer token are necessary to communicate with Watson from client directly.

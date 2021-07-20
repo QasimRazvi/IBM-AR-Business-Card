@@ -116,15 +116,15 @@ function tts(inputText, voice = "en-US_MichaelV3Voice") {
     .then((repairedFile) => {
       // set storage location filename - removing spaces + commas etc
       const filename = inputText
-        .substring(0, 13)
+        .substring(0, 15)
         .replace(/[\s,']/g, "_")
         .toLowerCase();
-      const storageLocation =
-        "storage/tts_responses/" + filename + "_" + voice + ".wav";
+      const uri = speech_responses / +filename + "_" + voice + ".wav";
+      const storageLocation = "public/" + uri;
       fs.writeFileSync(storageLocation, repairedFile); // TODO - change file location/naming to handle higher load
       console.log("audio.wav written with a corrected wav header");
       // return saved file location
-      return storageLocation;
+      return uri;
     })
     .catch((err) => {
       console.log(err);
@@ -217,6 +217,8 @@ router.post("/message-text-tts-response", async function (req, res, next) {
   // return text via Json + speech files to serve
   res.json(await botResponse); //.result.output);
 });
+
+// send requested speech file to client
 
 // upload - receieves recorded audio for speech to text processing, returns text
 var multer = require("multer");
