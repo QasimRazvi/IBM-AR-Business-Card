@@ -31,6 +31,8 @@ export const speechToText = async (fileuri) => {
   // .then((data) => console.log(data));
 };
 
+// export const textToSpeech = async ()
+
 // Send Transcibed audio message recorded from mic to backed for Watson Assistant
 export const textToAssistant = async (messageText, sessionId = null) => {
   // console.log("SESSION ID = ", sessionId);

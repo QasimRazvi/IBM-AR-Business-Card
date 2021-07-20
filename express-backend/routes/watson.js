@@ -110,16 +110,26 @@ function tts(inputText, voice = "en-US_MichaelV3Voice") {
     .synthesize(params)
     .then((response) => {
       const audio = response.result;
+      // console.log(audio);
       return textToSpeech.repairWavHeaderStream(audio);
     })
     .then((repairedFile) => {
-      fs.writeFileSync("audio.wav", repairedFile); // TODO - change file location/naming to handle higher load
+      // set storage location filename - removing spaces + commas etc
+      const filename = inputText
+        .substring(0, 13)
+        .replace(/[\s,']/g, "_")
+        .toLowerCase();
+      const storageLocation =
+        "storage/tts_responses/" + filename + "_" + voice + ".wav";
+      fs.writeFileSync(storageLocation, repairedFile); // TODO - change file location/naming to handle higher load
       console.log("audio.wav written with a corrected wav header");
+      // return saved file location
+      return storageLocation;
     })
     .catch((err) => {
       console.log(err);
     });
-  // TODO - using websockets may allow for streaming
+  // TODO - using websockets may allow for streaming in future?
 }
 
 // Speech to Text processor (STT)
@@ -180,6 +190,31 @@ router.post("/message", async function (req, res, next) {
   // if session null, assume first contact - initialise session + pass it back
   var session = req.body.session_id == null ? await newSession() : req.body;
   var botResponse = await msgHandler(session.session_id, req.body.message); //await messageStateful(req.body.sessionId, req.body.message);
+  res.json(await botResponse); //.result.output);
+});
+
+// takes message, returns response text + speech url
+router.post("/message-text-tts-response", async function (req, res, next) {
+  console.log(req.body);
+
+  // convert text to speech and stream it back
+  // if session null, assume first contact - initialise session + pass it back
+  var session = req.body.session_id == null ? await newSession() : req.body;
+  var botResponse = await msgHandler(session.session_id, req.body.message) //await messageStateful(req.body.sessionId, req.body.message);
+    .then((output) => getSpeechFromWatsonResponse(output));
+  // function gets speech from text response for each response (loop)
+  async function getSpeechFromWatsonResponse(watsonResponse) {
+    const speech = [];
+    for (let i = 0; i < watsonResponse.output.generic.length; i++) {
+      console.log(watsonResponse.output.generic[i].text);
+      let tmpSpeech = tts(watsonResponse.output.generic[i].text);
+      speech.push(tmpSpeech);
+    }
+    // wait for all speech array promises to be fulfilled before return
+    return { ...watsonResponse, speech_urls: await Promise.all(speech) };
+  }
+
+  // return text via Json + speech files to serve
   res.json(await botResponse); //.result.output);
 });
 
