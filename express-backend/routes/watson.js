@@ -119,7 +119,7 @@ function tts(inputText, voice = "en-US_MichaelV3Voice") {
         .substring(0, 15)
         .replace(/[\s,']/g, "_")
         .toLowerCase();
-      const uri = speech_responses / +filename + "_" + voice + ".wav";
+      const uri = "speech_responses/" + filename + "_" + voice + ".wav";
       const storageLocation = "public/" + uri;
       fs.writeFileSync(storageLocation, repairedFile); // TODO - change file location/naming to handle higher load
       console.log("audio.wav written with a corrected wav header");
