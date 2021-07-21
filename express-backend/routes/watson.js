@@ -213,9 +213,10 @@ router.post("/message-text-tts-response", async function (req, res, next) {
       speech.push(tmpSpeech);
     }
     // Join sentences - add full stops + regex to reformat if necessary (remove extra full stops)
+    // More efficient TTS since only one text/audio file sent/recieved
     var speech = [tts((speech.join(". ").replace(/\.+\s\.+\s|\.\.\s/g, ". ")))];
     console.log(speech);
-    // wait for all speech array promises to be fulfilled before return
+    // wait for all speech array promises to be fulfilled before return (if multiple)
     return { ...watsonResponse, speech_urls: await Promise.all(speech) };
   }
 
