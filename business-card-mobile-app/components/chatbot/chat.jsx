@@ -8,7 +8,7 @@ import { StyleSheet, Text, View, Button, FlatList } from "react-native";
 // Chat bubble component
 // hold text, styling + sent, receieved
 const ChatBubble = (props) => {
-  console.log(props);
+  // console.log(props);
   if (props.sent) {
     return (
       <View style={styles.bubbleSent}>
@@ -32,7 +32,7 @@ const ChatBubble = (props) => {
 // Receieve data key value object array {id: , text: }
 
 const ChatListView = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <FlatList
       data={props.chatArray}

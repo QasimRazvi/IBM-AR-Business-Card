@@ -121,7 +121,7 @@ function tts(inputText, voice = "en-US_MichaelV3Voice") {
         .toLowerCase();
       const uri = "speech_responses/" + filename + "_" + voice + ".wav";
       const storageLocation = "public/" + uri;
-      fs.writeFileSync(storageLocation, repairedFile); // TODO - change file location/naming to handle higher load
+      fs.writeFileSync(storageLocation, repairedFile); // write file
       console.log("audio.wav written with a corrected wav header");
       // return saved file location
       return uri;
@@ -204,12 +204,17 @@ router.post("/message-text-tts-response", async function (req, res, next) {
     .then((output) => getSpeechFromWatsonResponse(output));
   // function gets speech from text response for each response (loop)
   async function getSpeechFromWatsonResponse(watsonResponse) {
-    const speech = [];
+    var speech = [];
     for (let i = 0; i < watsonResponse.output.generic.length; i++) {
-      console.log(watsonResponse.output.generic[i].text);
-      let tmpSpeech = tts(watsonResponse.output.generic[i].text);
+      // console.log(watsonResponse.output.generic[i].text);
+      // let tmpSpeech = tts(watsonResponse.output.generic[i].text);
+      // speech.push(tmpSpeech);
+      let tmpSpeech = watsonResponse.output.generic[i].text;
       speech.push(tmpSpeech);
     }
+    // Join sentences - add full stops + regex to reformat if necessary (remove extra full stops)
+    var speech = [tts((speech.join(". ").replace(/\.+\s\.+\s|\.\.\s/g, ". ")))];
+    console.log(speech);
     // wait for all speech array promises to be fulfilled before return
     return { ...watsonResponse, speech_urls: await Promise.all(speech) };
   }

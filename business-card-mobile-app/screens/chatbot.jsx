@@ -5,7 +5,11 @@ import ChatListView from "../components/chatbot/chat";
 import ChatMicInput from "../components/chatbot/chatInput";
 import { Audio } from "expo-av";
 
-import { speechToText, textToAssistant } from "../utils/server/watson.utils";
+import {
+  speechToText,
+  textToAssistant,
+  getTextToSpeechUri,
+} from "../utils/server/watson.utils";
 
 const ChatBotScreen = ({ navigation }) => {
   const [recording, setRecording] = React.useState();
@@ -57,7 +61,7 @@ const ChatBotScreen = ({ navigation }) => {
     }
   }
 
-  async function stopRecording() {
+  async function stopRecording(speech = true) {
     console.log("Stopping recording..");
     setRecording(undefined);
     await recording.stopAndUnloadAsync();
@@ -66,7 +70,7 @@ const ChatBotScreen = ({ navigation }) => {
     // Send recording to watson, trigger STT
 
     const sentText = await speechToText(uri);
-    console.log(sentText);
+    // console.log(sentText);
     // TODO - change into handler to handle if results[0] - empty array
     setChatHistory([
       ...chatHistory,
@@ -81,7 +85,8 @@ const ChatBotScreen = ({ navigation }) => {
     // send text to assistant and handle Watson response, update chat history
     const watsonResult = await textToAssistant(
       sentText.results[0].alternatives[0].transcript,
-      watsonSessionId
+      watsonSessionId,
+      speech
     );
 
     const chatResponse = watsonTextResponseHandler(watsonResult);
@@ -91,14 +96,14 @@ const ChatBotScreen = ({ navigation }) => {
     });
 
     // console.log(WatsonResult);
-    console.log("SESION ID = ", watsonSessionId);
+    // console.log("SESION ID = ", watsonSessionId);
 
     // some check for return values, errors?
     // check if session needs updating
     // for each itme in array, get value for text and add to new chat object
     function watsonTextResponseHandler(res) {
-      console.log("res = ", res);
-      console.log("RES OUT GEN = ", res.output.generic[0].text);
+      // console.log("res = ", res);
+      // console.log("RES OUT GEN = ", res.output.generic[0].text);
       let watsonReply = [];
       for (let i = 0; i < res.output.generic.length; i++) {
         watsonReply.push({
@@ -107,26 +112,47 @@ const ChatBotScreen = ({ navigation }) => {
           text: res.output.generic[i].text,
         });
       }
-      console.log("WATSON REPLY =", watsonReply);
+      // console.log("WATSON REPLY =", watsonReply);
       return watsonReply;
     }
-
-    // console.log(watsonReply);
-    // setChatHistory([...chatHistory, ...watsonReply]);
 
     if (watsonResult.output.session_id != watsonSessionId) {
       setWatsonSessionId(watsonResult.session_id);
     }
 
+    //  Play sound
+    // get audio array uris
+    const audio = watsonResult.speech_urls.map((uri) =>
+      getTextToSpeechUri(uri)
+    );
+
+    const playSpeech = async (audioUriArray) => {
+      for (let i = 0; i < audioUriArray.length; i++) {
+        playSound(audioUriArray[i]);
+      }
+    };
+
+    playSpeech(audio);
+
     // console.log(chatHistory);
   }
 
+  // _onPlaybackStatusUpdate = (playback) => {
+  //   if (playback.didJustFinish) {
+  //     console.log("I FINISHED");
+  //   }
+  // };
+
   const [sound, setSound] = React.useState();
 
-  async function playSound(uri) {
+  async function playSound(uri, playbackUpdate = null) {
     console.log("Loading Sound");
-    const { sound } = await Audio.Sound.createAsync({ uri: uri });
+    const { sound } = await Audio.Sound.createAsync({
+      uri: uri,
+    });
     setSound(sound);
+
+    // playbackObject.setOnPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
 
     console.log("Playing Sound");
     await sound.playAsync();

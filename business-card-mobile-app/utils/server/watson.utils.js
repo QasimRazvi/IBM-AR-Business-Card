@@ -5,7 +5,8 @@
 
 // configure params for the express server
 const watsonConfig = {
-  baseUrl: "http://192.168.0.61:3001/watson/",
+  watsonUrl: "http://192.168.0.61:3001/watson/",
+  baseUrl: "http://192.168.0.61:3001/",
   //   exp://192.168.0.61:19000
 };
 
@@ -17,8 +18,8 @@ export const speechToText = async (fileuri) => {
     type: `audio/wav`,
     name: "recording.wav",
   });
-  console.log(formdata);
-  let url = watsonConfig.baseUrl + "upload";
+  // console.log(formdata);
+  let url = watsonConfig.watsonUrl + "upload";
   console.log("URL = ", url);
   const res = await fetch(url, {
     method: "POST",
@@ -31,20 +32,18 @@ export const speechToText = async (fileuri) => {
   // .then((data) => console.log(data));
 };
 
-export const textToSpeech = async (audioUri) => {};
+export const getTextToSpeechUri = (audioUri) => {
+  return watsonConfig.baseUrl + audioUri;
+};
 
 // Send Transcibed audio message recorded from mic to backed for Watson Assistant
 export const textToAssistant = async (
   messageText,
   sessionId = null,
-  tts = false
+  tts = false // text to speech
 ) => {
-  // console.log("SESSION ID = ", sessionId);
-  // console.log(sessionId == null);
-  // console.log(sessionId == "");
   // if session id not provided or sessionId is , only send message, backend API will create a session and return it to us.
   if (sessionId == null || sessionId == "") {
-    console.log("INSIDE THE IFF!!!");
     var params = {
       message: messageText,
     };
@@ -54,11 +53,11 @@ export const textToAssistant = async (
       session_id: sessionId,
     };
   }
-  console.log("ASSISTANT CALLED");
-  console.log("ASSISTANT PARAMS = ", params);
+  // console.log("ASSISTANT CALLED");
+  // console.log("ASSISTANT PARAMS = ", params);
   let url = tts
-    ? watsonConfig.baseUrl + "message-text-tts-response" // if tts = true, we retrieve speech file urls.
-    : watsonConfig.baseUrl + "message";
+    ? watsonConfig.watsonUrl + "message-text-tts-response" // if tts = true, we retrieve speech file urls.
+    : watsonConfig.watsonUrl + "message";
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -72,6 +71,6 @@ export const textToAssistant = async (
 
 // if bearer token are necessary to communicate with Watson from client directly.
 export const getSttToken = () => {
-  let url = watsonConfig.baseUrl + "stt-token";
+  let url = watsonConfig.watsonUrl + "stt-token";
   return fetch(url).then((res) => res.json());
 };
