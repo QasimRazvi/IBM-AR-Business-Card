@@ -4,11 +4,11 @@
     "slug": "business-card-mobile-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app-icon-IBM-reverse-AR-square.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-IBM-AR-BC.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
