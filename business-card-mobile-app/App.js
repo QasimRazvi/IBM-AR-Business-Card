@@ -10,6 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 // Screens
 import HomeScreen from "./screens/homescreen";
 import ChatBotScreen from "./screens/chatbot";
+import ARUnityScreen from "./screens/augmented-reality";
 
 const Stack = createStackNavigator();
 
@@ -45,9 +46,9 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="Screen2"
-          component={Screen2}
-          options={{ title: "WELCOME TO SCREEN2!" }}
+          name="ARUnity"
+          component={ARUnityScreen}
+          options={{ title: "AR Business Card" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

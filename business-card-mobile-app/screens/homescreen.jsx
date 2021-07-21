@@ -13,16 +13,13 @@ const HomeScreen = ({ navigation }) => {
         />
         <Button
           title="FULL AR EXPERIENCE"
-          // onPress={() =>
-          //   navigation.navigate("AR", {
-          //   })
-          // }
+          onPress={() =>
+            navigation.navigate("ARUnity", {
+            })
+          }
         />
       </View>
-      <Text style={{ color: "#fff" }}>
-        Notice that the status bar has light text!
-      </Text>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
     </View>
   );
 };
