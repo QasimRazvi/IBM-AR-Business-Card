@@ -16,3 +16,6 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# saved speech response files
+public/speech_responses
