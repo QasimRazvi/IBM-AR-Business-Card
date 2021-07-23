@@ -192,7 +192,8 @@ const styles = StyleSheet.create({
     right: 10,
     zIndex: 2,
   },
-  container: { flex: 1, backgroundColor: "white" },
+  container: { flex: 1}//, backgroundColor: "white" },
+  // augReality: { flex: 1, },
 });
 
 export default ChatBotScreen;

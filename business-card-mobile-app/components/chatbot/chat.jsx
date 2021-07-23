@@ -32,6 +32,7 @@ const ChatBubble = (props) => {
 // Receieve data key value object array {id: , text: }
 
 const ChatListView = (props) => {
+
   // console.log(props);
   return (
     <FlatList
@@ -40,6 +41,8 @@ const ChatListView = (props) => {
         <ChatBubble sent={item.sent} text={item.text} />
       )}
       keyExtractor={(item, index) => index.toString()}
+      // onContentSizeChange={onContentSizeChange}
+      // ref={refHandler}
     ></FlatList>
   );
 };

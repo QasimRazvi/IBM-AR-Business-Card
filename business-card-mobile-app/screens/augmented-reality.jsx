@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Camera } from "expo-camera";
+import { LinearGradient } from "expo-linear-gradient";
 import UnityView from "@asmadsen/react-native-unity-view";
+
+import ChatBotScreen from "./chatbot";
 
 const ARUnityScreen = ({ navigation }) => {
   const [camPermission, setCamPermission] = useState(null);
@@ -47,8 +50,22 @@ const ARUnityScreen = ({ navigation }) => {
       <UnityView
         style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
       />
+      <View style={{ height: "30%", marginTop: "auto" }}>
+        <LinearGradient
+          colors={["#FFFFFF00", "#FFFFFF"]}
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 0,
+            height: "100%",
+          }}
+        >
+          <ChatBotScreen ar={true} />
+        </LinearGradient>
+      </View>
 
-      <StatusBar style="dark" />
+      {/* <StatusBar style="dark" /> */}
     </View>
   );
 };
