@@ -1,0 +1,2 @@
+/business-card-mobile-app/ios/UnityExport/Frameworks/com.ptc.vuforia.engine/Vuforia/Plugins/iOS/Vuforia.framework/Vuforia filter=lfs diff=lfs merge=lfs -text
+*.a filter=lfs diff=lfs merge=lfs -text
