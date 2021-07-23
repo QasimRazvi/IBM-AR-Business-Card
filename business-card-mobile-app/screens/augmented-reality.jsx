@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Camera } from "expo-camera";
+import UnityView from "@asmadsen/react-native-unity-view";
 
 const ARUnityScreen = ({ navigation }) => {
   const [camPermission, setCamPermission] = useState(null);
@@ -42,7 +43,10 @@ const ARUnityScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={{ padding: 10 }}>Welcome to the AR Experience.</Text>
-      <Camera style={{ flex: 1 }} type={Camera.Constants.Type.back}></Camera>
+      {/* <Camera style={{ flex: 1 }} type={Camera.Constants.Type.back}></Camera> */}
+      <UnityView
+        style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
+      />
 
       <StatusBar style="dark" />
     </View>
