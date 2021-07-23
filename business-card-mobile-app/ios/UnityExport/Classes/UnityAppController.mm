@@ -42,10 +42,10 @@
 
 // we assume that app delegate is never changed and we can cache it, instead of re-query UIApplication every time
 UnityAppController* _UnityAppController = nil;
-UnityAppController* GetAppController()
-{
-    return _UnityAppController;
-}
+// UnityAppController* GetAppController()
+// {
+//     return _UnityAppController;
+
 
 // we keep old bools around to support "old" code that might have used them
 bool _ios81orNewer = false, _ios82orNewer = false, _ios83orNewer = false, _ios90orNewer = false, _ios91orNewer = false;
@@ -90,7 +90,7 @@ NSInteger _forceInterfaceOrientationMask = 0;
 @synthesize mainDisplay             = _mainDisplay;
 @synthesize renderDelegate          = _renderDelegate;
 @synthesize quitHandler             = _quitHandler;
-
+@synthesize unityMessageHandler     = _unityMessageHandler;
 #if UNITY_SUPPORT_ROTATION
 @synthesize interfaceOrientation    = _curOrientation;
 #endif
@@ -144,6 +144,8 @@ NSInteger _forceInterfaceOrientationMask = 0;
     [audioSession setActive: YES error: nil];
     [audioSession addObserver: self forKeyPath: @"outputVolume" options: 0 context: nil];
     UnityUpdateMuteState([audioSession outputVolume] < 0.01f ? 1 : 0);
+    // Modified by https://github.com/asmadsen/react-native-unity-view
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"UnityReady" object:self];
 }
 
 extern "C" void UnityDestroyDisplayLink()
@@ -473,6 +475,26 @@ extern "C" void UnityCleanupTrampoline()
     AppController_SendNotificationWithArg(kUnityHandleEventsForBackgroundURLSession, arg);
 }
 
+
+// Added by https://github.com/asmadsen/react-native-unity-view
+static UnityAppController *unityAppController = nil;
+
++ (UnityAppController*)GetAppController
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        unityAppController = [[self alloc] init];
+    });
+    return unityAppController;
+}
+
+// Added by https://github.com/asmadsen/react-native-unity-view
+extern "C" void onUnityMessage(const char* message)
+{
+    if (GetAppController().unityMessageHandler) {
+        GetAppController().unityMessageHandler(message);
+    }
+}
 @end
 
 

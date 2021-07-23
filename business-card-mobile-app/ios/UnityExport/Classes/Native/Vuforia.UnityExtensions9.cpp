@@ -479,7 +479,7 @@ struct IEnumerable_1_t5981B00A8E31B2294B731B3E4DB9267A7A951C0C;
 // System.Collections.Generic.IEnumerable`1<System.Boolean>
 struct IEnumerable_1_t51B54B93BD475F8D9ED818D47FE45848A7C5F090;
 // System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.Object,System.Object>>
-struct IEnumerable_1_t0036188122873DBF8A366CEEA05356DF89F85D20;
+struct IEnumerable_1_t00C11E28587644E33CB7F154833508D63BFAC5B2;
 // System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<Vuforia.SimulatedObject,Vuforia.TrackableBehaviour>>
 struct IEnumerable_1_t999F6D2C0D8557BD665243DBE6640E7268924D58;
 // System.Collections.Generic.IEnumerable`1<System.Int32>
@@ -1327,7 +1327,7 @@ IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_Empty_TisVuMarkBehaviour_t3313B0
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_Last_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_mC386D80819532B509E682CAE9EB259C3A352598F_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_OrderBy_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_mC0E6A475F5A4C9FD34147C078695491DB5726FB0_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_Select_TisAMigratableVideoBackgroundConfigProperty_t1AC3D66B2CD66FE32A02698A8F36738FC6B89C65_TisBoolean_tB53F6830F670160873277339AA58F15CAED4399C_mC94E7A4164CD9258E0EA7C3285C8FDD1E5EB5211_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m663B4FDC578DB8136925CB1EBF9C023380CAEAD2_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m2CB574F2239B41D82097F9C4FE26621F4C69DE4C_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_ToList_TisVuMarkBehaviour_t3313B0FDC425C763B9FF22F5249204E90C08125D_mB340DA7EFA2E4F113BEF03A6D9887C9031B22B37_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_Where_TisKeyValuePair_2_tA0739D8785DB3AB3057F55844943FADEF7766941_mACD1E28F194E29C741D6EC394696221423A077CB_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerator_Dispose_m031480C5EDB1ADBE0F955787A00508BAC34192D5_RuntimeMethod_var;
@@ -17681,7 +17681,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m8D92DEF48BC9E8FC0233
 // System.Void System.Collections.Generic.List`1<System.Object>::Clear()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_Clear_mC5CFC6C9F3007FC24FE020198265D4B5B0659FFC_gshared (List_1_t05CC3C859AB5E6024394EF9A42E3E696628CA02D * __this, const RuntimeMethod* method);
 // !!0[] System.Linq.Enumerable::ToArray<System.Int32>(System.Collections.Generic.IEnumerable`1<!!0>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m663B4FDC578DB8136925CB1EBF9C023380CAEAD2_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m2CB574F2239B41D82097F9C4FE26621F4C69DE4C_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
 // System.Boolean System.Collections.Generic.Dictionary`2<System.Int32,System.Object>::Remove(!0)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_Remove_m2204D6D532702FD13AB2A9AD8DB538E4E8FB1913_gshared (Dictionary_2_t03608389BB57475AA3F4B2B79D176A27807BC884 * __this, int32_t ___key0, const RuntimeMethod* method);
 // System.Boolean System.Collections.Generic.HashSet`1<System.Int32>::Contains(!0)
@@ -17691,7 +17691,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Remove_m908B647BB9F807676DACE34E3
 // !!0 UnityEngine.Object::Instantiate<System.Object>(!!0)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject * Object_Instantiate_TisRuntimeObject_mFBEB99FAFA7C81868D18C2A17C94AF512CD872EC_gshared (RuntimeObject * ___original0, const RuntimeMethod* method);
 // System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<System.Object>(System.Collections.Generic.IEnumerable`1<!!0>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR List_1_t05CC3C859AB5E6024394EF9A42E3E696628CA02D * Enumerable_ToList_TisRuntimeObject_mB1685447626095E135D3DC76A9DAA32B14AC7AD2_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR List_1_t05CC3C859AB5E6024394EF9A42E3E696628CA02D * Enumerable_ToList_TisRuntimeObject_m4E22BE033B818CC1081A3C0D02E9D139A4DABFD3_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
 // System.Void System.Action`1<UnityEngine.Vector3>::.ctor(System.Object,System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_mF9BC2429497D6B6AF643DA63AEC8D177B55AB63A_gshared (Action_1_tAD812511B85F09421833F23EF82E8D3E7FD29566 * __this, RuntimeObject * ___object0, intptr_t ___method1, const RuntimeMethod* method);
 // System.Void Vuforia.DelegateHelper::InvokeWithExceptionHandling<System.Boolean>(System.Action`1<T>,T)
@@ -19133,9 +19133,9 @@ inline void List_1_RemoveAt_m13908547DBF032813C4AB35600BEC9A0A912B041 (List_1_t5
 	((  void (*) (List_1_t53C84787D3F379B3741D62436B9373CFE3315990 *, int32_t, const RuntimeMethod*))List_1_RemoveAt_m3CAF82E0FF61CD84E251E0F7231BBB867C9755C2_gshared)(__this, ___index0, method);
 }
 // !!0[] System.Linq.Enumerable::ToArray<System.Int32>(System.Collections.Generic.IEnumerable`1<!!0>)
-inline Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m663B4FDC578DB8136925CB1EBF9C023380CAEAD2 (RuntimeObject* ___source0, const RuntimeMethod* method)
+inline Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m2CB574F2239B41D82097F9C4FE26621F4C69DE4C (RuntimeObject* ___source0, const RuntimeMethod* method)
 {
-	return ((  Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m663B4FDC578DB8136925CB1EBF9C023380CAEAD2_gshared)(___source0, method);
+	return ((  Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m2CB574F2239B41D82097F9C4FE26621F4C69DE4C_gshared)(___source0, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<Vuforia.VuMarkBehaviour>>::Remove(!0)
 inline bool Dictionary_2_Remove_mA0191F27A069AE40716BFEB1E2D9FAA73C169344 (Dictionary_2_tD91F79645899EA697238804B10C52BA1F6B34C7B * __this, int32_t ___key0, const RuntimeMethod* method)
@@ -19220,7 +19220,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VuMarkBehaviour_RegisterVuMarkTarget_mE9
 // System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<Vuforia.VuMarkBehaviour>(System.Collections.Generic.IEnumerable`1<!!0>)
 inline List_1_t53C84787D3F379B3741D62436B9373CFE3315990 * Enumerable_ToList_TisVuMarkBehaviour_t3313B0FDC425C763B9FF22F5249204E90C08125D_mB340DA7EFA2E4F113BEF03A6D9887C9031B22B37 (RuntimeObject* ___source0, const RuntimeMethod* method)
 {
-	return ((  List_1_t53C84787D3F379B3741D62436B9373CFE3315990 * (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToList_TisRuntimeObject_mB1685447626095E135D3DC76A9DAA32B14AC7AD2_gshared)(___source0, method);
+	return ((  List_1_t53C84787D3F379B3741D62436B9373CFE3315990 * (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToList_TisRuntimeObject_m4E22BE033B818CC1081A3C0D02E9D139A4DABFD3_gshared)(___source0, method);
 }
 // System.Void Vuforia.VuMarkManager::MarkBehaviourUntracked(Vuforia.VuMarkBehaviour)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VuMarkManager_MarkBehaviourUntracked_mCEF7882A9702ADB514E6CE5B3BE836EA4D2B6B4B (VuMarkManager_tDF0BC4DB9260576C476810EA43FEE64F32527CEA * __this, VuMarkBehaviour_t3313B0FDC425C763B9FF22F5249204E90C08125D * ___behaviour0, const RuntimeMethod* method);
@@ -33576,7 +33576,7 @@ IL_005d:
 		Dictionary_2_tD91F79645899EA697238804B10C52BA1F6B34C7B * L_15 = __this->get_mBehaviours_0();
 		NullCheck(L_15);
 		KeyCollection_tEF5FFBDFF4F19E64ACD6BBA18F0BA4CBCFB47C70 * L_16 = Dictionary_2_get_Keys_m9CCD3BBFA923D5731A85150E2E9FA7BDBDBFA695(L_15, /*hidden argument*/Dictionary_2_get_Keys_m9CCD3BBFA923D5731A85150E2E9FA7BDBDBFA695_RuntimeMethod_var);
-		Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* L_17 = Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m663B4FDC578DB8136925CB1EBF9C023380CAEAD2(L_16, /*hidden argument*/Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m663B4FDC578DB8136925CB1EBF9C023380CAEAD2_RuntimeMethod_var);
+		Int32U5BU5D_t2B9E4FDDDB9F0A00EC0AC631BA2DA915EB1ECF83* L_17 = Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m2CB574F2239B41D82097F9C4FE26621F4C69DE4C(L_16, /*hidden argument*/Enumerable_ToArray_TisInt32_t585191389E07734F19F3156FF88FB3EF4800D102_m2CB574F2239B41D82097F9C4FE26621F4C69DE4C_RuntimeMethod_var);
 		V_3 = L_17;
 		V_4 = 0;
 		goto IL_00a1;

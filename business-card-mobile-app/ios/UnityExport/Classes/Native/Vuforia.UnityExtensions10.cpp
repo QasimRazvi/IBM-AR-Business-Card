@@ -12223,7 +12223,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool LinkedList_1_Contains_m24EBC18284C6C9F50
 // System.Collections.Generic.LinkedListNode`1<!0> System.Collections.Generic.LinkedList`1<Vuforia.VuforiaManager/TrackableIdPair>::AddLast(!0)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR LinkedListNode_1_tF10F05E2B8EE79D6798FD210BC9D6E62E1FE96F7 * LinkedList_1_AddLast_m86D793DB9CB0377396D1143465C31CD7267E4D13_gshared (LinkedList_1_t02319D17D2F441ACECE89ECFBDE097E1A2829ED0 * __this, TrackableIdPair_t7370DB250F46230B08747158EE9BE9549D8E70AF  ___value0, const RuntimeMethod* method);
 // System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<System.Object>(System.Collections.Generic.IEnumerable`1<!!0>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR List_1_t05CC3C859AB5E6024394EF9A42E3E696628CA02D * Enumerable_ToList_TisRuntimeObject_mB1685447626095E135D3DC76A9DAA32B14AC7AD2_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR List_1_t05CC3C859AB5E6024394EF9A42E3E696628CA02D * Enumerable_ToList_TisRuntimeObject_m4E22BE033B818CC1081A3C0D02E9D139A4DABFD3_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
 // System.Void System.Collections.Generic.List`1<System.Int32>::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_mA7F9F92F641CEECFD9D8CFDC667568A05FFD27B4_gshared (List_1_tE1526161A558A17A39A8B69D8EEF3801393B6226 * __this, const RuntimeMethod* method);
 // !0 System.Collections.Generic.List`1<System.Object>::get_Item(System.Int32)
@@ -12283,7 +12283,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m94D0DAE031619503CDA6
 // System.Collections.Generic.IEnumerable`1<!!0> System.Linq.Enumerable::Where<System.Object>(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,System.Boolean>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Enumerable_Where_TisRuntimeObject_m77C4748BC22520E365AB1F6A46B2C8A8BF525492_gshared (RuntimeObject* ___source0, Func_2_t7EE965B791A606D187CCB69569A433D4CBB36879 * ___predicate1, const RuntimeMethod* method);
 // System.Int32 System.Linq.Enumerable::Count<System.Object>(System.Collections.Generic.IEnumerable`1<!!0>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Enumerable_Count_TisRuntimeObject_m04F5F12F45CFB264371515214C9F2104340CA871_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Enumerable_Count_TisRuntimeObject_m36D2609007B6BE5DD2AFA294C26741E5E36F1EFE_gshared (RuntimeObject* ___source0, const RuntimeMethod* method);
 // !2 System.Func`3<System.Object,Vuforia.WebCamProfile/ProfileData,System.Object>::Invoke(!0,!1)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject * Func_3_Invoke_mEA14D2CEBE92DA958A276AD57A9473B294A2581C_gshared (Func_3_t917A2379D2AB00A2FC1140F2353B6B8823CF6165 * __this, RuntimeObject * ___arg10, ProfileData_tDD58D66EB33579FEA6AE2378DAB61BBF53265F67  ___arg21, const RuntimeMethod* method);
 // System.Void System.Func`3<System.Object,Vuforia.WebCamProfile/ProfileData,System.Object>::.ctor(System.Object,System.IntPtr)
@@ -12789,7 +12789,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* VuMarkManager_GetActiveBehavio
 // System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<Vuforia.VuMarkBehaviour>(System.Collections.Generic.IEnumerable`1<!!0>)
 inline List_1_t53C84787D3F379B3741D62436B9373CFE3315990 * Enumerable_ToList_TisVuMarkBehaviour_t3313B0FDC425C763B9FF22F5249204E90C08125D_mB340DA7EFA2E4F113BEF03A6D9887C9031B22B37 (RuntimeObject* ___source0, const RuntimeMethod* method)
 {
-	return ((  List_1_t53C84787D3F379B3741D62436B9373CFE3315990 * (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToList_TisRuntimeObject_mB1685447626095E135D3DC76A9DAA32B14AC7AD2_gshared)(___source0, method);
+	return ((  List_1_t53C84787D3F379B3741D62436B9373CFE3315990 * (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToList_TisRuntimeObject_m4E22BE033B818CC1081A3C0D02E9D139A4DABFD3_gshared)(___source0, method);
 }
 // System.Void System.Collections.Generic.List`1<System.Int32>::.ctor()
 inline void List_1__ctor_mA7F9F92F641CEECFD9D8CFDC667568A05FFD27B4 (List_1_tE1526161A558A17A39A8B69D8EEF3801393B6226 * __this, const RuntimeMethod* method)
@@ -13623,7 +13623,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Single_IsNaN_m1ACB82FA5DC805F0F5015A1DA6
 // System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<Vuforia.DataSet>(System.Collections.Generic.IEnumerable`1<!!0>)
 inline List_1_t6D705EF83FAD15122163275744EC868FD75312E2 * Enumerable_ToList_TisDataSet_tFDC542F6E1684F27266D7B4C1220552B3A12CE62_mC7FEFC91EDDFF35356244E9AB15B58C3728377B5 (RuntimeObject* ___source0, const RuntimeMethod* method)
 {
-	return ((  List_1_t6D705EF83FAD15122163275744EC868FD75312E2 * (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToList_TisRuntimeObject_mB1685447626095E135D3DC76A9DAA32B14AC7AD2_gshared)(___source0, method);
+	return ((  List_1_t6D705EF83FAD15122163275744EC868FD75312E2 * (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_ToList_TisRuntimeObject_m4E22BE033B818CC1081A3C0D02E9D139A4DABFD3_gshared)(___source0, method);
 }
 // System.Collections.Generic.List`1/Enumerator<!0> System.Collections.Generic.List`1<Vuforia.DataSet>::GetEnumerator()
 inline Enumerator_t22E0BA1303768C3A52B6F2E329FF710E2FA540BE  List_1_GetEnumerator_m80B9028BC28A8CC8770BC2927D53175430848477 (List_1_t6D705EF83FAD15122163275744EC868FD75312E2 * __this, const RuntimeMethod* method)
@@ -13739,7 +13739,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* TargetFinder_GetObjectTargets_
 // System.Int32 System.Linq.Enumerable::Count<Vuforia.ObjectTarget>(System.Collections.Generic.IEnumerable`1<!!0>)
 inline int32_t Enumerable_Count_TisObjectTarget_tA2DDA06E23D91B941443E85B2005E46C43FC113E_mDBF13246C913DE66020B2B55E4F814526304D0CB (RuntimeObject* ___source0, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_Count_TisRuntimeObject_m04F5F12F45CFB264371515214C9F2104340CA871_gshared)(___source0, method);
+	return ((  int32_t (*) (RuntimeObject*, const RuntimeMethod*))Enumerable_Count_TisRuntimeObject_m36D2609007B6BE5DD2AFA294C26741E5E36F1EFE_gshared)(___source0, method);
 }
 // System.Boolean Vuforia.CameraDevice::IsDirty()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CameraDevice_IsDirty_mADC0D4D6FBF057823440A5FD3D09EEF2C26D7AD5 (CameraDevice_t098C456C087197033D879741A522E83142F4CEF4 * __this, const RuntimeMethod* method);
