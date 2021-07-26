@@ -20,8 +20,7 @@ const ChatBotScreen = ({ navigation }) => {
 
   async function startRecording() {
     try {
-      console.log("Requesting permissions..");
-      await Audio.requestPermissionsAsync();
+      // await Audio.requestPermissionsAsync();
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: true,
         playsInSilentModeIOS: true,

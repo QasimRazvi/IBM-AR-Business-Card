@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ActivityIndicator,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
@@ -20,16 +26,10 @@ const ARUnityScreen = ({ navigation }) => {
 
   if (camPermission == null) {
     return (
-      <Text
-        style={{
-          textAlign: "center",
-          paddingTop: 20,
-          padding: 5,
-          fontWeight: "bold",
-        }}
-      >
-        Attempting to request Camera permissions.
-      </Text>
+      <View style={styles.loading}>
+        {/* // Loading animation */}
+        <ActivityIndicator size="large" color="#001d6c" />
+      </View>
     );
   }
   if (camPermission == false) {
@@ -45,8 +45,7 @@ const ARUnityScreen = ({ navigation }) => {
   // If permissions granted return experience
   return (
     <View style={styles.container}>
-      <Text style={{ padding: 10 }}>Welcome to the AR Experience.</Text>
-      {/* <Camera style={{ flex: 1 }} type={Camera.Constants.Type.back}></Camera> */}
+      <StatusBar hidden />
       <UnityView
         style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
       />
@@ -61,7 +60,7 @@ const ARUnityScreen = ({ navigation }) => {
             height: "100%",
           }}
         > */}
-          <ChatBotScreen/>
+        <ChatBotScreen />
         {/* </LinearGradient> */}
       </View>
 
@@ -76,6 +75,11 @@ const styles = StyleSheet.create({
     // backgroundColor: "#fff",
     // alignItems: "center",
     // justifyContent: "center",
+  },
+  loading: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
   },
 });
 
