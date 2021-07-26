@@ -51,7 +51,7 @@ const ARUnityScreen = ({ navigation }) => {
         style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
       />
       <View style={{ height: "30%", marginTop: "auto" }}>
-        <LinearGradient
+        {/* <LinearGradient
           colors={["#FFFFFF00", "#FFFFFF"]}
           style={{
             position: "absolute",
@@ -60,9 +60,9 @@ const ARUnityScreen = ({ navigation }) => {
             top: 0,
             height: "100%",
           }}
-        >
-          <ChatBotScreen ar={true} />
-        </LinearGradient>
+        > */}
+          <ChatBotScreen/>
+        {/* </LinearGradient> */}
       </View>
 
       {/* <StatusBar style="dark" /> */}
