@@ -41,7 +41,7 @@ const ChatMicInput = (props) => {
   if (loading) {
     return (
       <View style={styles.mic}>
-        <TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.8}>
           <View style={styles.micContainer}>
             <ActivityIndicator size="large" color="white" />
           </View>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, FlatList } from "react-native";
+import { AutoScrollFlatList } from "react-native-autoscroll-flatlist";
 
 // const Chat = (props) => {
 //   return <Text>THIS IS THE CHATBOT</Text>;
@@ -32,10 +33,9 @@ const ChatBubble = (props) => {
 // Receieve data key value object array {id: , text: }
 
 const ChatListView = (props) => {
-
   // console.log(props);
   return (
-    <FlatList
+    <AutoScrollFlatList
       data={props.chatArray}
       renderItem={({ item }) => (
         <ChatBubble sent={item.sent} text={item.text} />
@@ -43,7 +43,7 @@ const ChatListView = (props) => {
       keyExtractor={(item, index) => index.toString()}
       // onContentSizeChange={onContentSizeChange}
       // ref={refHandler}
-    ></FlatList>
+    ></AutoScrollFlatList>
   );
 };
 
