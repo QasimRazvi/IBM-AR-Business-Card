@@ -10,8 +10,6 @@ import { StatusBar } from "expo-status-bar";
 import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
 import UnityView from "@asmadsen/react-native-unity-view";
-// import MaskedView from "@react-native-masked-view/masked-view";
-// import {MaskedView} from '@react-native-masked-view/masked-view';
 import MaskedView from "@react-native-community/masked-view";
 
 import ChatBotScreen from "./chatbot";
@@ -59,20 +57,20 @@ const ARUnityScreen = ({ navigation }) => {
           backgroundColor: "transparent",
         }}
       >
+        {/* MaskedView to implement transparency gradient for Chatbot messages 
+        (fade out towards top of parnet View to aid seeing the AR avatar) */}
         <MaskedView
           style={StyleSheet.absoluteFill}
-          maskElement={<LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']} style={{ flex: 1 }} />}
+          maskElement={
+            <LinearGradient
+              colors={["rgba(0,0,0,0.05)", "rgba(0,0,0,1)"]}
+              style={{ flex: 1 }}
+            />
+          }
         >
           <ChatBotScreen />
         </MaskedView>
-        {/* <LinearGradient
-          colors={["rgba(0,0,0,0)", "rgba(0,0,0,1)"]}
-          style={{ flex: 1 }}
-        /> */}
-        {/* </LinearGradient> */}
       </View>
-
-      {/* <StatusBar style="dark" /> */}
     </View>
   );
 };
