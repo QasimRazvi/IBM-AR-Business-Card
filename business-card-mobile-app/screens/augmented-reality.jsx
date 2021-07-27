@@ -10,6 +10,9 @@ import { StatusBar } from "expo-status-bar";
 import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
 import UnityView from "@asmadsen/react-native-unity-view";
+// import MaskedView from "@react-native-masked-view/masked-view";
+// import {MaskedView} from '@react-native-masked-view/masked-view';
+import MaskedView from "@react-native-community/masked-view";
 
 import ChatBotScreen from "./chatbot";
 
@@ -49,18 +52,23 @@ const ARUnityScreen = ({ navigation }) => {
       <UnityView
         style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
       />
-      <View style={{ height: "45%", marginTop: "auto" }}>
+      <View
+        style={{
+          height: "45%",
+          marginTop: "auto",
+          backgroundColor: "transparent",
+        }}
+      >
+        <MaskedView
+          style={StyleSheet.absoluteFill}
+          maskElement={<LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']} style={{ flex: 1 }} />}
+        >
+          <ChatBotScreen />
+        </MaskedView>
         {/* <LinearGradient
-          colors={["#FFFFFF00", "#FFFFFF"]}
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 0,
-            height: "100%",
-          }}
-        > */}
-        <ChatBotScreen />
+          colors={["rgba(0,0,0,0)", "rgba(0,0,0,1)"]}
+          style={{ flex: 1 }}
+        /> */}
         {/* </LinearGradient> */}
       </View>
 
