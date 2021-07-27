@@ -29,6 +29,7 @@ const ChatBotScreen = ({ navigation }) => {
       const recording = new Audio.Recording();
       await recording.prepareToRecordAsync(
         // need to configure custom formats as android default m4a not compatible with watson API
+        // Audio codec will be checked/converted server side to be compatible with Watson
         {
           android: {
             extension: ".wav",
@@ -127,7 +128,12 @@ const ChatBotScreen = ({ navigation }) => {
 
     const playSpeech = async (audioUriArray) => {
       for (let i = 0; i < audioUriArray.length; i++) {
-        playSound(audioUriArray[i]);
+        // handle no Watson speech response
+        if (audioUriArray[i] != null) {
+          playSound(audioUriArray[i]);
+        } else {
+          console.log("No audio returned from Watson Text to Speech.");
+        }
       }
     };
 
@@ -191,7 +197,7 @@ const styles = StyleSheet.create({
     right: 10,
     zIndex: 2,
   },
-  container: { flex: 1}//, backgroundColor: "white" },
+  container: { flex: 1 }, //, backgroundColor: "white" },
   // augReality: { flex: 1, },
 });
 

@@ -33,7 +33,7 @@ export const speechToText = async (fileuri) => {
 };
 
 export const getTextToSpeechUri = (audioUri) => {
-  return watsonConfig.baseUrl + audioUri;
+  return audioUri !== null ? watsonConfig.baseUrl + audioUri : null;
 };
 
 // Send Transcibed audio message recorded from mic to backed for Watson Assistant
