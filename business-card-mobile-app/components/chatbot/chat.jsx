@@ -41,6 +41,7 @@ const ChatListView = (props) => {
         <ChatBubble sent={item.sent} text={item.text} />
       )}
       keyExtractor={(item, index) => index.toString()}
+      contentContainerStyle={styles.listContent}
       // onContentSizeChange={onContentSizeChange}
       // ref={refHandler}
     ></AutoScrollFlatList>
@@ -102,5 +103,8 @@ const styles = StyleSheet.create({
     color: "white",
     alignSelf: "flex-end",
     marginRight: "2%",
+  },
+  listContent: {
+    paddingBottom: "35%",
   },
 });

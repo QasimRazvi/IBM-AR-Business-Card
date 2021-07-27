@@ -49,7 +49,7 @@ const ARUnityScreen = ({ navigation }) => {
       <UnityView
         style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
       />
-      <View style={{ height: "30%", marginTop: "auto" }}>
+      <View style={{ height: "45%", marginTop: "auto" }}>
         {/* <LinearGradient
           colors={["#FFFFFF00", "#FFFFFF"]}
           style={{

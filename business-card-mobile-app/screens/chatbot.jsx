@@ -142,15 +142,7 @@ const ChatBotScreen = ({ navigation }) => {
     };
 
     playSpeech(audio);
-
-    // console.log(chatHistory);
   }
-
-  // _onPlaybackStatusUpdate = (playback) => {
-  //   if (playback.didJustFinish) {
-  //     console.log("I FINISHED");
-  //   }
-  // };
 
   const [sound, setSound] = React.useState();
 
@@ -160,8 +152,6 @@ const ChatBotScreen = ({ navigation }) => {
       uri: uri,
     });
     setSound(sound);
-
-    // playbackObject.setOnPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
 
     console.log("Playing Sound");
     await sound.playAsync();
@@ -181,14 +171,12 @@ const ChatBotScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ChatListView chatArray={chatHistory} />
-
       <View style={styles.micView}>
         <ChatMicInput
           onPress={!recording ? startRecording : stopRecording}
           recording={recording}
           loading={playLoading}
         />
-        {/* <Chat /> */}
       </View>
     </View>
   );
@@ -202,8 +190,7 @@ const styles = StyleSheet.create({
     right: 10,
     zIndex: 2,
   },
-  container: { flex: 1 }, //, backgroundColor: "white" },
-  // augReality: { flex: 1, },
+  container: { flex: 1 },
 });
 
 export default ChatBotScreen;
