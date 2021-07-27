@@ -14,6 +14,7 @@ import {
 const ChatBotScreen = ({ navigation }) => {
   const [recording, setRecording] = React.useState();
   const [chatHistory, setChatHistory] = React.useState([]);
+  const [playLoading, setPlayLoading] = React.useState(false);
 
   // Watson assistant session state tracking - initially empty string
   const [watsonSessionId, setWatsonSessionId] = React.useState("");
@@ -63,6 +64,7 @@ const ChatBotScreen = ({ navigation }) => {
 
   async function stopRecording(speech = true) {
     console.log("Stopping recording..");
+    setPlayLoading(true);
     setRecording(undefined);
     await recording.stopAndUnloadAsync();
     const uri = recording.getURI();
@@ -94,6 +96,8 @@ const ChatBotScreen = ({ navigation }) => {
     setChatHistory((prevState) => {
       return [...prevState, ...chatResponse];
     });
+
+    setPlayLoading(false);
 
     // console.log(WatsonResult);
     // console.log("SESION ID = ", watsonSessionId);
@@ -182,6 +186,7 @@ const ChatBotScreen = ({ navigation }) => {
         <ChatMicInput
           onPress={!recording ? startRecording : stopRecording}
           recording={recording}
+          loading={playLoading}
         />
         {/* <Chat /> */}
       </View>
@@ -192,7 +197,7 @@ const ChatBotScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   micView: {
     position: "absolute",
-    bottom: 20,
+    bottom: 30,
     left: 10,
     right: 10,
     zIndex: 2,

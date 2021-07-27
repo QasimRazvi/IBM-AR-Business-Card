@@ -6,13 +6,16 @@ import {
   Button,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 
 const ChatMicInput = (props) => {
   const recording = props.recording;
   const [recordPermission, setRecordPermission] = useState(null);
+  const loading = props.loading;
 
   // Request audio permission on component mount
   useEffect(() => {
@@ -35,12 +38,34 @@ const ChatMicInput = (props) => {
     );
   }
 
+  if (loading) {
+    return (
+      <View style={styles.mic}>
+        <TouchableOpacity>
+          <View style={styles.micContainer}>
+            <ActivityIndicator size="large" color="white" />
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.mic}>
-      <Button
+      <TouchableOpacity onPress={props.onPress}>
+        <View style={styles.micContainer}>
+          {!recording ? (
+            <FontAwesome5 name="microphone" size={33} color="white" />
+          ) : (
+            <FontAwesome5 name="stop" size={33} color="white" />
+          )}
+        </View>
+      </TouchableOpacity>
+
+      {/* <Button
         onPress={props.onPress}
-        title={recording ? "STOP RECORDING" : "RECORD"}
-      />
+        title={"HI"} //{recording ? "STOP RECORDING" : "RECORD"}
+      /> */}
     </View>
   );
 };
@@ -48,10 +73,18 @@ const ChatMicInput = (props) => {
 const styles = StyleSheet.create({
   mic: {
     justifyContent: "center",
-    padding: 15,
+    padding: 3,
     alignSelf: "center",
+    // borderWidth: 4,
+    // borderRadius: 40,
   },
   button: { alignItems: "center", backgroundColor: "#DDDDDD", padding: 10 },
+  micContainer: {
+    alignItems: "center",
+    backgroundColor: "black",
+    padding: 20,
+    borderRadius: 50,
+  },
 });
 
 export default ChatMicInput;
