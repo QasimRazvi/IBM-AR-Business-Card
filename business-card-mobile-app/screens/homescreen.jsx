@@ -3,10 +3,12 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import CustomButton from "../components/customButton";
 import WatermarkLogo from "../components/watermarkLogo";
+import BackgroundVideo from "../components/home/backgroundVideo";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <BackgroundVideo videoSource={require("../assets/background-video-vectors.mp4")} />
       <Text style={{ padding: 20, color: "white", fontSize: 20 }}>
         Choose your experience
       </Text>

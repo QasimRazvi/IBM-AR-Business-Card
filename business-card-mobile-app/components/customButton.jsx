@@ -19,6 +19,7 @@ const CustomButton = (props) => {
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#0043CE", // IBM blue 70%
+    borderWidth: 3,
     borderRadius: 20,
     padding:10,
     width:"45%"
