@@ -53,7 +53,7 @@ const ARUnityScreen = ({ navigation }) => {
       />
       <View
         style={{
-          height: "45%",
+          height: "50%",
           marginTop: "auto",
           backgroundColor: "transparent",
         }}
@@ -64,7 +64,7 @@ const ARUnityScreen = ({ navigation }) => {
           style={StyleSheet.absoluteFill}
           maskElement={
             <LinearGradient
-              colors={["rgba(0,0,0,0.05)", "rgba(0,0,0,1)"]}
+              colors={["rgba(0,0,0,0)", "rgba(0,0,0,1)"]}
               style={{ flex: 1 }}
             />
           }

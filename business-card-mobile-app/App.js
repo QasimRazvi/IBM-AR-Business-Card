@@ -41,7 +41,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "ULTIMATE AR BUSINESS CARD",
+            title: "IBM - AR BUSINESS CARD",
           }}
         />
         <Stack.Screen

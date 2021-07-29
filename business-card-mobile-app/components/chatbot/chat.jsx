@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
   },
   messageTextSent: {
     fontSize: 16,
-    color: "#fff",
+    color: "white",
   },
   messageTextReceived: {
     fontSize: 16,
-    color: "#000",
+    color: "white",
     justifyContent: "center",
   },
   messageTextDetails: {
