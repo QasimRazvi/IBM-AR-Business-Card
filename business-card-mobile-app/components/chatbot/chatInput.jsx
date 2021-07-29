@@ -43,7 +43,7 @@ const ChatMicInput = (props) => {
       <View style={styles.mic}>
         <TouchableOpacity activeOpacity={0.8}>
           <View style={styles.micContainer}>
-            <ActivityIndicator size="large" color="white" />
+            <ActivityIndicator size="large" color="black" />
           </View>
         </TouchableOpacity>
       </View>
@@ -55,9 +55,9 @@ const ChatMicInput = (props) => {
       <TouchableOpacity onPress={props.onPress}>
         <View style={styles.micContainer}>
           {!recording ? (
-            <FontAwesome5 name="microphone" size={33} color="white" />
+            <FontAwesome5 name="microphone" size={33} color="black" />
           ) : (
-            <FontAwesome5 name="stop" size={33} color="white" />
+            <FontAwesome5 name="stop" size={33} color="black" />
           )}
         </View>
       </TouchableOpacity>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   button: { alignItems: "center", backgroundColor: "#DDDDDD", padding: 10 },
   micContainer: {
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "white",
     padding: 20,
     borderRadius: 50,
   },

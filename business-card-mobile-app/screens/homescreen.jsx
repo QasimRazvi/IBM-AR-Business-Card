@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import CustomButton from "../components/customButton";
+import WatermarkLogo from "../components/watermarkLogo";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={{ padding: 20 }}>Choose your experience</Text>
+      <Text style={{ padding: 20, color: "white", fontSize: 20 }}>
+        Choose your experience
+      </Text>
       <View style={styles.buttonContainer}>
-        <Button
-          title="CHATBOT"
+        <CustomButton
+          title="Chatbot"
           onPress={() => navigation.navigate("Chatbot")}
         />
-        <Button
-          title="FULL AR EXPERIENCE"
-          onPress={() =>
-            navigation.navigate("ARUnity", {
-            })
-          }
+        <CustomButton
+          title="AR Experience"
+          onPress={() => navigation.navigate("ARUnity", {})}
         />
       </View>
       <StatusBar style="dark" />
+      <WatermarkLogo />
     </View>
   );
 };
@@ -27,14 +29,14 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#000000",
     alignItems: "center",
     justifyContent: "center",
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "90%",
+    width: "95%",
     padding: 20,
   },
 });

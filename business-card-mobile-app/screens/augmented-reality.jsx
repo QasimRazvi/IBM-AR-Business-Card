@@ -11,6 +11,7 @@ import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
 import UnityView from "@asmadsen/react-native-unity-view";
 import MaskedView from "@react-native-community/masked-view";
+import WatermarkLogo from "../components/watermarkLogo";
 
 import ChatBotScreen from "./chatbot";
 
@@ -71,6 +72,7 @@ const ARUnityScreen = ({ navigation }) => {
           <ChatBotScreen />
         </MaskedView>
       </View>
+      <WatermarkLogo />
     </View>
   );
 };

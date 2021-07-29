@@ -13,9 +13,30 @@ import ARUnityScreen from "./screens/augmented-reality";
 const Stack = createStackNavigator();
 
 export default function App() {
+  const headerStyles = {
+    headerStyle: {
+      backgroundColor: "black",
+    },
+    headerTintColor: "white",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  };
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          // configure header accross application (where shown)
+          headerStyle: {
+            backgroundColor: "black",
+          },
+          headerTintColor: "white",
+          // headerTitleStyle: {
+          //   fontWeight: "bold",
+          // },
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={HomeScreen}

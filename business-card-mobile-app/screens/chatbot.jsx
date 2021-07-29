@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import ChatListView from "../components/chatbot/chat";
 import ChatMicInput from "../components/chatbot/chatInput";
 import { Audio } from "expo-av";
+import WatermarkLogo from "../components/watermarkLogo";
 
 import {
   speechToText,
@@ -178,6 +179,7 @@ const ChatBotScreen = ({ navigation }) => {
           loading={playLoading}
         />
       </View>
+      <WatermarkLogo />
     </View>
   );
 };
@@ -190,7 +192,7 @@ const styles = StyleSheet.create({
     right: 10,
     zIndex: 2,
   },
-  container: { flex: 1 },
+  container: { flex: 1, backgroundColor: "black" },
 });
 
 export default ChatBotScreen;

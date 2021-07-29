@@ -52,7 +52,7 @@ export default ChatListView;
 
 const styles = StyleSheet.create({
   bubbleSent: {
-    backgroundColor: "#0078fb",
+    backgroundColor: "#0043CE", // IBM blue 70
     alignSelf: "flex-end",
     borderRadius: 7,
     marginRight: "3%",
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     elevation: 13,
   },
   bubbleReceived: {
-    backgroundColor: "#dedede",
+    backgroundColor: "#525252", // IBM grey 70
     alignSelf: "flex-start",
     borderRadius: 3,
     marginLeft: "3%",
