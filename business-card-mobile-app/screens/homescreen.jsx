@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("ARUnity", {})}
         />
       </View>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <WatermarkLogo />
     </View>
   );
