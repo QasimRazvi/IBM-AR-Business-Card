@@ -3,12 +3,16 @@ import React from "react";
 
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  HeaderBackButton,
+} from "@react-navigation/stack";
 
 // Screens
 import HomeScreen from "./screens/homescreen";
 import ChatBotScreen from "./screens/chatbot";
 import ARUnityScreen from "./screens/augmented-reality";
+import TutorialScreen from "./screens/tutorial";
 
 const Stack = createStackNavigator();
 
@@ -41,7 +45,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "IBM - AR BUSINESS CARD",
+            title: "IBM - AR AI BUSINESS CARD",
           }}
         />
         <Stack.Screen
@@ -59,6 +63,7 @@ export default function App() {
             headerShown: false,
           }}
         />
+        <Stack.Screen name="Tutorial" component={TutorialScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

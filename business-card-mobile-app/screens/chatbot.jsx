@@ -11,8 +11,19 @@ import {
   textToAssistant,
   getTextToSpeechUri,
 } from "../utils/server/watson.utils";
+import { HeaderBackButton } from "@react-navigation/stack";
 
 const ChatBotScreen = ({ navigation }) => {
+// navigation - once here, if back user should pop nav stack fully (bypass tutorial) 
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: (props) => (
+        <HeaderBackButton {...props} onPress={() => navigation.popToTop()} />
+      ),
+    });
+  });
+
+// State
   const [recording, setRecording] = React.useState();
   const [chatHistory, setChatHistory] = React.useState([]);
   const [playLoading, setPlayLoading] = React.useState(false);
@@ -30,7 +41,7 @@ const ChatBotScreen = ({ navigation }) => {
       console.log("Starting recording..");
       const recording = new Audio.Recording();
       await recording.prepareToRecordAsync(
-        // need to configure custom formats as android default m4a not compatible with watson API
+        // configuring custom formats as android default m4a not compatible with watson API
         // Audio codec will be checked/converted server side to be compatible with Watson
         {
           android: {

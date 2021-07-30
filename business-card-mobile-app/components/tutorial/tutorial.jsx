@@ -16,6 +16,8 @@ import CustomButton from "../customButton";
 // ];
 
 const Tutorial = (props) => {
+  // passed `data`, `onContinue` function
+
   const [currItemIdx, setCurrItemIdx] = useState(0);
   const carouselRef = React.useRef(null);
 
@@ -86,12 +88,12 @@ const Tutorial = (props) => {
         }}
       >
         {/* <CustomButton title={"Skip"} /> */}
-        <TouchableOpacity>
-            {currItemIdx !== props.data.length - 1 ? (
-              <Text style={{ color: "white" }}>Skip</Text>
-            ) : (
-              <Text style={{ color: "white" }}>Continue</Text>
-            )}
+        <TouchableOpacity onPress={props.onContinue}>
+          {currItemIdx !== props.data.length - 1 ? (
+            <Text style={{ color: "white" }}>Skip</Text>
+          ) : (
+            <Text style={{ color: "white" }}>Continue</Text>
+          )}
         </TouchableOpacity>
         {/* <TouchableOpacity onPress={()=> this.Carousel.snap}>
           <Text style={{ color: "white" }}>Next</Text>

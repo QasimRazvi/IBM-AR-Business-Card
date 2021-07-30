@@ -16,6 +16,16 @@ import WatermarkLogo from "../components/watermarkLogo";
 import ChatBotScreen from "./chatbot";
 
 const ARUnityScreen = ({ navigation }) => {
+  // navigation - once here, if back user should pop nav stack fully (bypass tutorial)
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: (props) => (
+        <HeaderBackButton {...props} onPress={() => navigation.popToTop()} />
+      ),
+    });
+  });
+
+  // State
   const [camPermission, setCamPermission] = useState(null);
 
   // On component mount ensure camera permission are allowed

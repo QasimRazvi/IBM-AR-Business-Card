@@ -8,18 +8,22 @@ import BackgroundVideo from "../components/home/backgroundVideo";
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <BackgroundVideo videoSource={require("../assets/background-video-vectors.mp4")} />
+      <BackgroundVideo
+        videoSource={require("../assets/background-video-vectors.mp4")}
+      />
       <Text style={{ padding: 20, color: "white", fontSize: 20 }}>
         Choose your experience
       </Text>
       <View style={styles.buttonContainer}>
         <CustomButton
           title="Chatbot"
-          onPress={() => navigation.navigate("Chatbot")}
+          // onPress={() => navigation.navigate("Chatbot")}
+          onPress={() => navigation.navigate("Tutorial", { target: "chatbot" })}
         />
         <CustomButton
           title="AR Experience"
-          onPress={() => navigation.navigate("ARUnity", {})}
+          // onPress={() => navigation.navigate("ARUnity", {})}
+          onPress={() => navigation.navigate("Tutorial", { target: "ar" })}
         />
       </View>
       <StatusBar style="light" />
