@@ -7,7 +7,6 @@ import { tutorialData } from "../components/tutorial/tutorialData";
 const TutorialScreen = ({ route, navigation }) => {
   // Pull target tutorial from route.params enum("ar", "chatbot")
   const { target } = route.params;
-  console.log(tutorialData[target]);
   const data = tutorialData[target];
   const nextScreen = () => {
     navigation.navigate(target == "ar" ? "ARUnity" : "Chatbot");

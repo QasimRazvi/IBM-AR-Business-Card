@@ -1,12 +1,31 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import CustomButton from "../components/customButton";
 import BackgroundVideo from "../components/home/backgroundVideo";
 import SettingsIcon from "../components/settingsIcon";
 import WatermarkLogo from "../components/watermarkLogo";
+import DefaultPreference from "react-native-default-preference";
+import { useFocusEffect } from "@react-navigation/native";
 
 const HomeScreen = ({ navigation }) => {
+  const [tutorialOn, setTutorialOn] = React.useState(true);
+
+  // re-retrieve settings on Focus (in case settings have just been updated)
+  useFocusEffect(() => {
+    //   need processing on string
+    DefaultPreference.get("tutorial").then((enabled) => {
+      if (enabled == "true") {
+        setTutorialOn(true);
+      } else if (enabled == "false") {
+        setTutorialOn(false);
+      } else {
+        // if null or undefined - default should be true
+        setTutorialOn(true);
+      }
+    });
+  });
+
   return (
     <View style={styles.container}>
       <BackgroundVideo
@@ -19,17 +38,30 @@ const HomeScreen = ({ navigation }) => {
         <CustomButton
           title="Chatbot"
           // onPress={() => navigation.navigate("Chatbot")}
-          onPress={() => navigation.navigate("Tutorial", { target: "chatbot" })}
+          onPress={
+            tutorialOn
+              ? () => navigation.navigate("Tutorial", { target: "chatbot" })
+              : () => navigation.navigate("Chatbot")
+          }
+          // onPress={() => navigation.navigate("Tutorial", { target: "chatbot" })}
         />
         <CustomButton
           title="AR Experience"
           // onPress={() => navigation.navigate("ARUnity", {})}
-          onPress={() => navigation.navigate("Tutorial", { target: "ar" })}
+          // onPress={() => navigation.navigate("Tutorial", { target: "ar" })}
+          onPress={
+            tutorialOn
+              ? () => navigation.navigate("Tutorial", { target: "ar" })
+              : () => navigation.navigate("ARUnity")
+          }
         />
       </View>
       <StatusBar style="light" />
       <WatermarkLogo />
-      <SettingsIcon onPress={() => navigation.navigate("Settings")} />
+      <SettingsIcon
+        onPress={() => navigation.navigate("Settings")}
+        color={"white"}
+      />
     </View>
   );
 };

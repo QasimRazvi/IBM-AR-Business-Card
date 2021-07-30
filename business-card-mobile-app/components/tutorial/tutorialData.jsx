@@ -24,7 +24,7 @@ export const tutorialData = {
       ),
     },
     {
-      text: "Push the microphone to start recording a question.",
+      text: "Press the microphone to start recording a question.",
       component: (
         <Image
           source={require("../../assets/AR_Experience_mic_zoom.png")}
@@ -56,7 +56,7 @@ export const tutorialData = {
   ],
   chatbot: [
     {
-      text: "Push the microphone to start recording a message.",
+      text: "Press the microphone to start recording a message.",
       component: (
         <Image
           source={require("../../assets/chatbot-mic.png")}
