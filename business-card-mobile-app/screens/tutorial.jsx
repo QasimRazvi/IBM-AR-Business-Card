@@ -11,7 +11,7 @@ import Tutorial from "../components/tutorial/tutorial";
 
 const TutorialScreen = (props) => {
   const data = {
-    AR: [
+    ar: [
       {
         text: "Flip over the business card to find the IBM AR logo.",
         component: (
@@ -43,7 +43,7 @@ const TutorialScreen = (props) => {
         ),
       },
       {
-        text: "When you've finished, hit stop to wait for IBM Watson to process your question and respond.",
+        text: "When you've finished, hit stop to wait for the AI to process your question and respond. Make sure your volume is on!",
         component: (
           <Image
             source={require("../assets/AR_Experience_mic_zoom_recording.png")}
@@ -63,13 +63,44 @@ const TutorialScreen = (props) => {
         ),
       },
     ],
-    CHATBOT: [],
+    chatbot: [
+      {
+        text: "Push the microphone to start recording a message.",
+        component: (
+          <Image
+            source={require("../assets/chatbot-mic.png")}
+            style={{ width: "80%", height: "80%" }}
+            resizeMode={"contain"}
+          />
+        ),
+      },
+      {
+        text: "When you've finished, hit stop to wait for the AI to process your question and respond. Make sure your volume is on!",
+        component: (
+          <Image
+            source={require("../assets/chatbot-recording.png")}
+            style={{ width: "90%", height: "80%" }}
+            resizeMode={"contain"}
+          />
+        ),
+      },
+      {
+        text: "See the transcript of the your conversation update in real-time on the screen.\n\nClick 'Continue' to proceed.",
+        component: (
+          <Image
+            source={require("../assets/chatbot-chathistory-min.png")}
+            style={{ width: "90%", height: "80%" }}
+            resizeMode={"contain"}
+          />
+        ),
+      },
+    ],
   };
   const tutorial = data[props.type];
 
   return (
     <View style={{ flex: 1 }}>
-      <Tutorial data={data.AR} />
+      <Tutorial data={data.chatbot} />
     </View>
   );
 };

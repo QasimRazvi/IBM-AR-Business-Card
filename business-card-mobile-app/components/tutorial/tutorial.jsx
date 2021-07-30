@@ -27,7 +27,7 @@ const Tutorial = (props) => {
           flexDirection: "column",
           justifyContent: "space-evenly",
           backgroundColor: "white",
-        //   alignSelf: "center",
+          //   alignSelf: "center",
           alignItems: "center",
           //   marginTop: "50%",
           width: "100%",
@@ -37,10 +37,10 @@ const Tutorial = (props) => {
         }}
       >
         {/* <View style={{ position: "absolute" }}> */}
-            {item.component}
-            {/* </View> */}
+        {item.component}
+        {/* </View> */}
         {/* <View> */}
-          <Text style={{color: "black"}}>{item.text}</Text>
+        <Text style={{ color: "black" }}>{item.text}</Text>
         {/* </View> */}
       </View>
     ),
@@ -71,7 +71,7 @@ const Tutorial = (props) => {
             backgroundColor: "white",
           }}
           carouselRef={carouselRef}
-          inactiveDotOpacity={0.4}
+          inactiveDotOpacity={0.5}
           inactiveDotScale={0.8}
           tappableDots={true}
         />
@@ -87,11 +87,11 @@ const Tutorial = (props) => {
       >
         {/* <CustomButton title={"Skip"} /> */}
         <TouchableOpacity>
-          {currItemIdx !== props.data.length - 1 ? (
-            <Text style={{ color: "white" }}>Skip</Text>
-          ) : (
-            <Text style={{ color: "white" }}>Continue</Text>
-          )}
+            {currItemIdx !== props.data.length - 1 ? (
+              <Text style={{ color: "white" }}>Skip</Text>
+            ) : (
+              <Text style={{ color: "white" }}>Continue</Text>
+            )}
         </TouchableOpacity>
         {/* <TouchableOpacity onPress={()=> this.Carousel.snap}>
           <Text style={{ color: "white" }}>Next</Text>
