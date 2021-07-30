@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import CustomButton from "../components/customButton";
 import BackgroundVideo from "../components/home/backgroundVideo";
+import SettingsIcon from "../components/settingsIcon";
 import WatermarkLogo from "../components/watermarkLogo";
 
 const HomeScreen = ({ navigation }) => {
@@ -28,6 +29,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <StatusBar style="light" />
       <WatermarkLogo />
+      <SettingsIcon onPress={() => navigation.navigate("Settings")} />
     </View>
   );
 };

@@ -1,8 +1,6 @@
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  createStackNavigator
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import "react-native-gesture-handler";
 import ARUnityScreen from "./screens/augmented-reality";
@@ -10,8 +8,7 @@ import ChatBotScreen from "./screens/chatbot";
 // Screens
 import HomeScreen from "./screens/homescreen";
 import TutorialScreen from "./screens/tutorial";
-
-
+import SettingsScreen from "./screens/settings";
 
 const Stack = createStackNavigator();
 
@@ -63,6 +60,7 @@ export default function App() {
           }}
         />
         <Stack.Screen name="Tutorial" component={TutorialScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

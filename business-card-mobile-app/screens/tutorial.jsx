@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  View
-} from "react-native";
+import { View } from "react-native";
 import Tutorial from "../components/tutorial/tutorial";
 // data file with tutorial text + components
 import { tutorialData } from "../components/tutorial/tutorialData";
