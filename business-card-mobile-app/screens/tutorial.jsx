@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  ActivityIndicator,
-  Image,
+  View
 } from "react-native";
 import Tutorial from "../components/tutorial/tutorial";
 // data file with tutorial text + components

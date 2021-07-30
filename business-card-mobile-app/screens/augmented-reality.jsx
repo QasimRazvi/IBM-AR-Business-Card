@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import UnityView from "@asmadsen/react-native-unity-view";
+import MaskedView from "@react-native-community/masked-view";
+import { useFocusEffect } from "@react-navigation/native";
+import { Camera } from "expo-camera";
+import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
+  BackHandler,
   StyleSheet,
   Text,
   View,
-  Button,
-  ActivityIndicator,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Camera } from "expo-camera";
-import { LinearGradient } from "expo-linear-gradient";
-import UnityView from "@asmadsen/react-native-unity-view";
-import MaskedView from "@react-native-community/masked-view";
 import WatermarkLogo from "../components/watermarkLogo";
-
 import ChatBotScreen from "./chatbot";
 
 const ARUnityScreen = ({ navigation }) => {
@@ -24,6 +24,18 @@ const ARUnityScreen = ({ navigation }) => {
       ),
     });
   });
+  // hardware back button pressed - popToTop - override Android default
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        navigation.popToTop();
+        return true;
+      };
+      BackHandler.addEventListener("hardwareBackPress", onBackPress);
+      return () =>
+        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
+    }, [])
+  );
 
   // State
   const [camPermission, setCamPermission] = useState(null);

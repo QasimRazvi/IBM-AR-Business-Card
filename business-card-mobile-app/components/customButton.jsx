@@ -1,7 +1,7 @@
 // Custom IBM Blue styled button
 
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CustomButton = (props) => {
   // props.onPress

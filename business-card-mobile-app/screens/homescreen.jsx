@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import CustomButton from "../components/customButton";
-import WatermarkLogo from "../components/watermarkLogo";
 import BackgroundVideo from "../components/home/backgroundVideo";
+import WatermarkLogo from "../components/watermarkLogo";
 
 const HomeScreen = ({ navigation }) => {
   return (

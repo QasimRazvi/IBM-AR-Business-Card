@@ -1,6 +1,6 @@
-import Video from "react-native-video";
 import React from "react";
 import { StyleSheet } from "react-native";
+import Video from "react-native-video";
 
 const BackgroundVideo = (props) => {
   return (

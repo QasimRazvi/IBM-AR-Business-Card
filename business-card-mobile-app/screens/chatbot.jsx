@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { useFocusEffect } from "@react-navigation/native";
+import { HeaderBackButton } from "@react-navigation/stack";
+import { Audio } from "expo-av";
+import React from "react";
+import { BackHandler, StyleSheet, View } from "react-native";
 import ChatListView from "../components/chatbot/chat";
 import ChatMicInput from "../components/chatbot/chatInput";
-import { Audio } from "expo-av";
 import WatermarkLogo from "../components/watermarkLogo";
-
 import {
-  speechToText,
-  textToAssistant,
-  getTextToSpeechUri,
+  getTextToSpeechUri, speechToText,
+  textToAssistant
 } from "../utils/server/watson.utils";
-import { HeaderBackButton } from "@react-navigation/stack";
+
 
 const ChatBotScreen = ({ navigation }) => {
-// navigation - once here, if back user should pop nav stack fully (bypass tutorial) 
+  // navigation - once here, if back pressed user should pop nav stack fully (bypass tutorial)
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: (props) => (
@@ -22,8 +21,20 @@ const ChatBotScreen = ({ navigation }) => {
       ),
     });
   });
+  // hardware back button pressed - popToTop - override Android default
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        navigation.popToTop();
+        return true;
+      };
+      BackHandler.addEventListener("hardwareBackPress", onBackPress);
+      return () =>
+        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
+    }, [])
+  );
 
-// State
+  // State
   const [recording, setRecording] = React.useState();
   const [chatHistory, setChatHistory] = React.useState([]);
   const [playLoading, setPlayLoading] = React.useState(false);

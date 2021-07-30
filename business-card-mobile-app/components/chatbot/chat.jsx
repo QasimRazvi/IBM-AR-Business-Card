@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, FlatList } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { AutoScrollFlatList } from "react-native-autoscroll-flatlist";
 
 // const Chat = (props) => {

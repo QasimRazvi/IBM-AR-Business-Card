@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-
-import CustomButton from "../customButton";
 
 // Data should be provided in this format:
 // const data = [{
@@ -38,12 +36,8 @@ const Tutorial = (props) => {
           borderRadius: 15,
         }}
       >
-        {/* <View style={{ position: "absolute" }}> */}
         {item.component}
-        {/* </View> */}
-        {/* <View> */}
         <Text style={{ color: "black" }}>{item.text}</Text>
-        {/* </View> */}
       </View>
     ),
     []

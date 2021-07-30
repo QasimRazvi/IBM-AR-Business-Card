@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Audio } from "expo-av";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const ChatMicInput = (props) => {
   const recording = props.recording;
@@ -61,11 +58,6 @@ const ChatMicInput = (props) => {
           )}
         </View>
       </TouchableOpacity>
-
-      {/* <Button
-        onPress={props.onPress}
-        title={"HI"} //{recording ? "STOP RECORDING" : "RECORD"}
-      /> */}
     </View>
   );
 };
