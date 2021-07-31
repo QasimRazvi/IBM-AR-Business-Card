@@ -7,13 +7,13 @@ import ChatListView from "../components/chatbot/chat";
 import ChatMicInput from "../components/chatbot/chatInput";
 import WatermarkLogo from "../components/watermarkLogo";
 import {
-  getTextToSpeechUri, speechToText,
-  textToAssistant
+  getTextToSpeechUri,
+  speechToText,
+  textToAssistant,
 } from "../utils/server/watson.utils";
 
-
 const ChatBotScreen = ({ navigation }) => {
-  // navigation - once here, if back pressed user should pop nav stack fully (bypass tutorial)
+  // navigation - once here, if back pressed user should pop nav stack fully (bypass tutorial if enabled)
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: (props) => (

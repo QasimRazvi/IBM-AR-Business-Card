@@ -9,6 +9,7 @@ import DefaultPreference from "react-native-default-preference";
 import { useFocusEffect } from "@react-navigation/native";
 
 const HomeScreen = ({ navigation }) => {
+  // tutorial state (if enabled, triggered on click for chatbot or AR)
   const [tutorialOn, setTutorialOn] = React.useState(true);
 
   // re-retrieve settings on Focus (in case settings have just been updated)
@@ -37,18 +38,14 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.buttonContainer}>
         <CustomButton
           title="Chatbot"
-          // onPress={() => navigation.navigate("Chatbot")}
           onPress={
             tutorialOn
               ? () => navigation.navigate("Tutorial", { target: "chatbot" })
               : () => navigation.navigate("Chatbot")
           }
-          // onPress={() => navigation.navigate("Tutorial", { target: "chatbot" })}
         />
         <CustomButton
           title="AR Experience"
-          // onPress={() => navigation.navigate("ARUnity", {})}
-          // onPress={() => navigation.navigate("Tutorial", { target: "ar" })}
           onPress={
             tutorialOn
               ? () => navigation.navigate("Tutorial", { target: "ar" })

@@ -8,7 +8,7 @@ const SettingsScreen = () => {
   useEffect(() => {
     //   need processing since we are storing key, value as strings
     DefaultPreference.get("tutorial").then((enabled) => {
-      console.log("enabled = ", enabled);
+      //   console.log("enabled = ", enabled);
       if (enabled == "true") {
         setTutorialEnabled(true);
       } else if (enabled == "false") {
@@ -17,7 +17,7 @@ const SettingsScreen = () => {
         setTutorialEnabled(true);
       }
     });
-    console.log("effect run");
+    // console.log("effect run");
   }, []);
 
   const toggleSwitch = () => {

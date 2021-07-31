@@ -58,8 +58,17 @@ const ARUnityScreen = ({ navigation }) => {
   }
   if (camPermission == false) {
     return (
-      <View>
-        <Text>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "black",
+          padding: 20,
+          paddingTop: "40%",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "white" }}>
           Camera permissions not granted. Please enable this app to use the
           camera in your settings to access the Augmented Reality Experience.{" "}
         </Text>
