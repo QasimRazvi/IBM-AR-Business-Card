@@ -13,21 +13,10 @@ import {
   Text,
   View,
 } from "react-native";
+import ChatBot from "../components/chatbot/chatbot";
 import WatermarkLogo from "../components/watermarkLogo";
-import ChatBotScreen from "./chatbot";
 
 const ARUnityScreen = ({ navigation }) => {
-  // State
-  const [camPermission, setCamPermission] = useState(null);
-
-  // On component mount ensure camera permission are allowed
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setCamPermission(status === "granted");
-    })();
-  }, []);
-
   // navigation - once here, if back pressed user should pop nav stack fully (bypass tutorial if enabled)
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -41,7 +30,7 @@ const ARUnityScreen = ({ navigation }) => {
   });
 
   // hardware back button pressed - popToTop - override Android default
-  // No software nv back button as this coomponent renders full screen
+  // No software na back button as this coomponent renders full screen
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
@@ -53,6 +42,17 @@ const ARUnityScreen = ({ navigation }) => {
         BackHandler.removeEventListener("hardwareBackPress", onBackPress);
     }, [])
   );
+
+  // State
+  const [camPermission, setCamPermission] = useState(null);
+
+  // On component mount ensure camera permission are allowed
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setCamPermission(status === "granted");
+    })();
+  }, []);
 
   if (camPermission == null) {
     return (
@@ -106,7 +106,7 @@ const ARUnityScreen = ({ navigation }) => {
             />
           }
         >
-          <ChatBotScreen />
+          <ChatBot />
         </MaskedView>
       </View>
       <WatermarkLogo />
