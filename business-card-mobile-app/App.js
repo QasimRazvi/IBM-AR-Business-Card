@@ -55,8 +55,8 @@ export default function App() {
           name="ARUnity"
           component={ARUnityScreen}
           options={{
-            // title: "AR Business Card"
-            headerShown: false,
+            title: "AR Experience",
+            headerShown: true,
           }}
         />
         <Stack.Screen name="Tutorial" component={TutorialScreen} />

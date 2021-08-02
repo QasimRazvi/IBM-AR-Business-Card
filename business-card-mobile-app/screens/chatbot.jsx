@@ -17,7 +17,10 @@ const ChatBotScreen = ({ navigation }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: (props) => (
-        <HeaderBackButton {...props} onPress={() => navigation.popToTop()} />
+        <HeaderBackButton
+          {...props}
+          onPress={() => navigation.navigate("Home")}
+        />
       ),
     });
   });
@@ -25,7 +28,7 @@ const ChatBotScreen = ({ navigation }) => {
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
-        navigation.popToTop();
+        navigation.navigate("Home");
         return true;
       };
       BackHandler.addEventListener("hardwareBackPress", onBackPress);

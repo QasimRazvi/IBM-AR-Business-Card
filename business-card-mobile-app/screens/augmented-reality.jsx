@@ -1,6 +1,7 @@
 import UnityView from "@asmadsen/react-native-unity-view";
 import MaskedView from "@react-native-community/masked-view";
 import { useFocusEffect } from "@react-navigation/native";
+import { HeaderBackButton } from "@react-navigation/stack";
 import { Camera } from "expo-camera";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
@@ -16,27 +17,6 @@ import WatermarkLogo from "../components/watermarkLogo";
 import ChatBotScreen from "./chatbot";
 
 const ARUnityScreen = ({ navigation }) => {
-  // navigation - once here, if back user should pop nav stack fully (bypass tutorial)
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: (props) => (
-        <HeaderBackButton {...props} onPress={() => navigation.popToTop()} />
-      ),
-    });
-  });
-  // hardware back button pressed - popToTop - override Android default
-  useFocusEffect(
-    React.useCallback(() => {
-      const onBackPress = () => {
-        navigation.popToTop();
-        return true;
-      };
-      BackHandler.addEventListener("hardwareBackPress", onBackPress);
-      return () =>
-        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
-    }, [])
-  );
-
   // State
   const [camPermission, setCamPermission] = useState(null);
 
@@ -47,6 +27,32 @@ const ARUnityScreen = ({ navigation }) => {
       setCamPermission(status === "granted");
     })();
   }, []);
+
+  // navigation - once here, if back pressed user should pop nav stack fully (bypass tutorial if enabled)
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: (props) => (
+        <HeaderBackButton
+          {...props}
+          onPress={() => navigation.navigate("Home")}
+        />
+      ),
+    });
+  });
+
+  // hardware back button pressed - popToTop - override Android default
+  // No software nv back button as this coomponent renders full screen
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate("Home");
+        return true;
+      };
+      BackHandler.addEventListener("hardwareBackPress", onBackPress);
+      return () =>
+        BackHandler.removeEventListener("hardwareBackPress", onBackPress);
+    }, [])
+  );
 
   if (camPermission == null) {
     return (

@@ -8,6 +8,7 @@ const TutorialScreen = ({ route, navigation }) => {
   // Pull target tutorial from route.params enum("ar", "chatbot")
   const { target } = route.params;
   const data = tutorialData[target];
+  console.log(target);
   const nextScreen = () => {
     navigation.navigate(target == "ar" ? "ARUnity" : "Chatbot");
   };
