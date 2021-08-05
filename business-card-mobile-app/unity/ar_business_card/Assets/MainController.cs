@@ -32,9 +32,11 @@ public class MainController : MonoBehaviour
 
     }
 
-  void onMessage(MessageHandler message ) {
-    var receievedData = message.getData<string>();
+// receives messages from RN
+  void onMessage(string message ) {
+    // var receievedData = message.getData<string>();
     Debug.Log("React message receieved");
+    var receievedData = message;
     Debug.Log(receievedData);
 
     // check valid animation

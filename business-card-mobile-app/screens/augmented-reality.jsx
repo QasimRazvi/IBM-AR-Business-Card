@@ -1,4 +1,4 @@
-import UnityView from "@asmadsen/react-native-unity-view";
+import UnityView, { UnityModule } from "@asmadsen/react-native-unity-view";
 import MaskedView from "@react-native-community/masked-view";
 import { useFocusEffect } from "@react-navigation/native";
 import { HeaderBackButton } from "@react-navigation/stack";
@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   BackHandler,
+  Button,
   StyleSheet,
   Text,
   View,
@@ -81,6 +82,17 @@ const ARUnityScreen = ({ navigation }) => {
       </View>
     );
   }
+
+  // TESTING
+  // TODO - change to update state to correct value based on user/app state
+  const changeAnimation = () => {
+    const anims = ["idle", "talking", "thinking", "dancing"];
+    const rnd = Math.floor(Math.random() * anims.length);
+    const rndAnim = anims[rnd];
+    UnityModule.postMessage("Main", "onMessage", rndAnim);
+    console.log(rndAnim);
+  };
+
   // If permissions granted return experience
   return (
     <View style={styles.container}>
@@ -108,6 +120,9 @@ const ARUnityScreen = ({ navigation }) => {
         >
           <ChatBot />
         </MaskedView>
+        <View style={{ position: "absolute", right: 10, top: 10, zIndex: 100 }}>
+          <Button title={"CHANGE ANIMATION"} onPress={changeAnimation} />
+        </View>
       </View>
       <WatermarkLogo />
     </View>
