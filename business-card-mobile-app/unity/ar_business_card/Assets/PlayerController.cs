@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
   private static string[] idleAnimations = {"Cocky Head Turn", "Breathing Idle", "Happy Hand Gesture", "Looking", "Weight Shift", "Looking Down", "Laughing", "Idle", "Head Gesture", "Happy Idle", "Waving"};
   private static string[] talkingAnimations = {"Talking", "Talking-2", "Talking-3", "Pointing Forward"};
   private static string[] thinkingAnimations = {"Agreeing", "Thinking"};
-  private static string[] dancingAnimations = {"Run To Flip", "Slide Hip Hop Dance", "Macarena Dance", "Looking Hip Hop Dance"};
+  private static string[] dancingAnimations = {"Run To Flip", "Slide Hip Hop Dance", "Macarena Dance", "Locking Hip Hop Dance"};
   private static IDictionary<string, string[]> animStates = new Dictionary<string, string[]>(){
     {"idle", idleAnimations},
     {"talking", talkingAnimations},
