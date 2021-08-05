@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     {"thinking", thinkingAnimations},
     {"dancing", dancingAnimations}
   };
-  protected AnimatorOverrideController animatorOverrideController;
   float timer = 0;
   int randIndex = 0;
   // string[] currAnimList = animStates[animationState];
@@ -47,12 +46,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      // if (animator != null){
-      //   return;
-      // }
       var currAnimList = animStates[animationState];
       // if prev anim state != curr anim state -> set index to 0, set currAnimList, call play anim loop
       if (prevAnimationState != animationState) {
+        // Animation state has changed since previous frame
+        // update prev for next frame conditional evaluation
         prevAnimationState = animationState;
         randIndex = 0;
         PlayAnimationLoop(currAnimList);
@@ -72,30 +70,28 @@ public class PlayerController : MonoBehaviour
 
     void PlayAnimationLoop(string[] currAnimList)
     {
-      // randomise
 
       if (randIndex == currAnimList.Length) {
-        // resent index to trigger reshuffle if reached zero
+        // resent index to trigger reshuffle if reached zero (end of shuffled array)
         randIndex = 0;
       }
       if (randIndex == 0 ) {
-        // reshuffle currAnimList
+        // reshuffle currAnimList (random)
         ShuffleAnimOrder(currAnimList);
       }
 
-      Debug.Log("NEXT ANIMATION CALLED");
-      Debug.Log(currAnimList[randIndex]);
+      // Debug.Log("NEXT ANIMATION CALLED");
+      // Debug.Log(currAnimList[randIndex]);
       animator.Play(currAnimList[randIndex]);
       randIndex++;
-      Debug.Log("INDEX updated");
-      Debug.Log(randIndex);
+      // Debug.Log("INDEX updated");
+      // Debug.Log(randIndex);
       m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
      //  //Access the current length of the clip
       m_CurrentClipLength = m_CurrentClipInfo[0].clip.length;
       // Debug.Log(m_CurrentClipInfo[0]);
-      // set timer
+      // set timer to clip length
       timer = m_CurrentClipLength;
-      // yield return new WaitForSeconds(timer);
     }
 
     void ShuffleAnimOrder(string[] currAnimList) {
@@ -111,11 +107,8 @@ public class PlayerController : MonoBehaviour
           currAnimList[n] = currAnimList[k];
           currAnimList[k] = temp;
       }
-      foreach (var anim in currAnimList){
-        Debug.Log(anim);
-      }
+      // foreach (var anim in currAnimList){
+      //   Debug.Log(anim);
+      // }
     }
-
-
-    // Function to shuffle and play animation group - called in update function
 }

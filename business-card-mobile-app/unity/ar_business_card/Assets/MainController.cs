@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MainController : MonoBehaviour
 {
   public PlayerController Avatar;
+  private static string[] validAnimOptions = {"idle","talking", "thinking", "dancing"};
     // Start is called before the first frame update
     void Start()
     {
@@ -29,4 +31,22 @@ public class MainController : MonoBehaviour
       }
 
     }
+
+  void onMessage(MessageHandler message ) {
+    var receievedData = message.getData<string>();
+    Debug.Log("React message receieved");
+    Debug.Log(receievedData);
+
+    // check valid animation
+    if (validAnimOptions.Contains(receievedData)) {
+      Avatar.animationState = receievedData;
+    }
+    else {
+      Debug.Log("Invalid animation state provided");
+      Avatar.animationState = "idle";
+    }
+
+
+
+  }
 }
