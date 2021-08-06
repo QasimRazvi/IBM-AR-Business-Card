@@ -27,7 +27,7 @@ const ChatMicInput = (props) => {
   if (recordPermission == false) {
     return (
       <View style={styles.mic}>
-        <Text>
+        <Text style={{ color: "white", padding: "20%" }}>
           Audio/Recording permissions are needed to be able to interact with the
           chatbot. Please enable these in your settings.
         </Text>

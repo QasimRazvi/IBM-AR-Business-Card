@@ -1,4 +1,4 @@
-import UnityView, { UnityModule } from "@asmadsen/react-native-unity-view";
+import UnityView from "@asmadsen/react-native-unity-view";
 import MaskedView from "@react-native-community/masked-view";
 import { useFocusEffect } from "@react-navigation/native";
 import { HeaderBackButton } from "@react-navigation/stack";
@@ -9,13 +9,13 @@ import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   BackHandler,
-  Button,
   StyleSheet,
   Text,
   View,
 } from "react-native";
 import ChatBot from "../components/chatbot/chatbot";
 import WatermarkLogo from "../components/watermarkLogo";
+import { updateUnityAnimationState } from "../utils/unity/unity.utils";
 
 const ARUnityScreen = ({ navigation }) => {
   // navigation - once here, if back pressed user should pop nav stack fully (bypass tutorial if enabled)
@@ -83,16 +83,26 @@ const ARUnityScreen = ({ navigation }) => {
     );
   }
 
-  // TESTING
-  // TODO - change to update state to correct value based on user/app state
-  const changeAnimation = () => {
-    const anims = ["idle", "talking", "thinking", "dancing"];
-    const rnd = Math.floor(Math.random() * anims.length);
-    const rndAnim = anims[rnd];
-    UnityModule.postMessage("Main", "onMessage", rndAnim);
-    console.log(rndAnim);
+  // Update state to correct value based on chatbot state
+  const onRecording = () => {
+    updateUnityAnimationState("idle");
+    console.log("Idle");
   };
-
+  const onSpeechProcessing = () => {
+    updateUnityAnimationState("thinking");
+    console.log("thinking");
+  };
+  const onFinishResponse = () => {
+    updateUnityAnimationState("idle");
+    console.log("Idle");
+  };
+  const onResponse = () => {
+    updateUnityAnimationState("talking");
+    console.log("talking");
+  };
+  const onDance = () => {
+    updateUnityAnimationState("dancing");
+  };
   // If permissions granted return experience
   return (
     <View style={styles.container}>
@@ -108,7 +118,7 @@ const ARUnityScreen = ({ navigation }) => {
         }}
       >
         {/* MaskedView to implement transparency gradient for Chatbot messages 
-        (fade out towards top of parnet View to aid seeing the AR avatar) */}
+        (fade out towards top of parent View to aid seeing the AR avatar) */}
         <MaskedView
           style={StyleSheet.absoluteFill}
           maskElement={
@@ -118,11 +128,14 @@ const ARUnityScreen = ({ navigation }) => {
             />
           }
         >
-          <ChatBot />
+          <ChatBot
+            onRecording={onRecording}
+            onSpeechProcessing={onSpeechProcessing}
+            onResponse={onResponse}
+            onFinishResponse={onFinishResponse}
+            onDance={onDance}
+          />
         </MaskedView>
-        <View style={{ position: "absolute", right: 10, top: 10, zIndex: 100 }}>
-          <Button title={"CHANGE ANIMATION"} onPress={changeAnimation} />
-        </View>
       </View>
       <WatermarkLogo />
     </View>

@@ -9,8 +9,9 @@ import {
 import WatermarkLogo from "../watermarkLogo";
 import ChatListView from "./chat";
 import ChatMicInput from "./chatInput";
+import PropTypes from "prop-types";
 
-const ChatBot = () => {
+const ChatBot = (props) => {
   // State
   const [recording, setRecording] = React.useState();
   const [chatHistory, setChatHistory] = React.useState([]);
@@ -19,6 +20,13 @@ const ChatBot = () => {
   // Watson assistant session state tracking - initially empty string
   const [watsonSessionId, setWatsonSessionId] = React.useState("");
 
+  // props
+  // props.onRecording - while the user is recordinga message
+  // props.onSpeechProcessing - while STT and TTS is processing, awaiting responses from IBM Cloud
+  // props.onResponse - Chatbot response (text + audio have arrived)
+  // props.onFinishResponse - Chatbot response audio has finished playing
+  // props.onDance - (Easter Egg - Dance mode activated)
+
   async function startRecording() {
     try {
       // await Audio.requestPermissionsAsync();
@@ -26,7 +34,7 @@ const ChatBot = () => {
         allowsRecordingIOS: true,
         playsInSilentModeIOS: true,
       });
-      console.log("Starting recording..");
+      // console.log("Starting recording..");
       const recording = new Audio.Recording();
       await recording.prepareToRecordAsync(
         // configuring custom formats as android default m4a not compatible with watson API
@@ -56,21 +64,23 @@ const ChatBot = () => {
       );
       await recording.startAsync();
       setRecording(recording);
-      console.log("Recording started");
+      // console.log("Recording started");
+      if (props.onRecording) props.onRecording(); // run prop function passed from parent
     } catch (err) {
       console.error("Failed to start recording", err);
     }
   }
 
   async function stopRecording(speech = true) {
-    console.log("Stopping recording..");
+    // console.log("Stopping recording..");
     setPlayLoading(true);
+    if (props.onSpeechProcessing) props.onSpeechProcessing(); // run prop function passed from parent
     setRecording(undefined);
     await recording.stopAndUnloadAsync();
     const uri = recording.getURI();
-    console.log("Recording stopped and stored at", uri);
-    // Send recording to watson, trigger STT
+    // console.log("Recording stopped and stored at", uri);
 
+    // Send recording to watson, trigger STT
     const sentText = await speechToText(uri);
     // console.log(sentText);
     // TODO - change into handler to handle if results[0] - empty array
@@ -98,6 +108,7 @@ const ChatBot = () => {
     });
 
     setPlayLoading(false);
+    if (props.onResponse) props.onResponse(); // run prop function passed from parent
 
     // console.log(WatsonResult);
     // console.log("SESION ID = ", watsonSessionId);
@@ -108,6 +119,8 @@ const ChatBot = () => {
     function watsonTextResponseHandler(res) {
       // console.log("res = ", res);
       // console.log("RES OUT GEN = ", res.output.generic[0].text);
+
+      // TODO - handler for specific text responses (onDance, open phone, open email)
       let watsonReply = [];
       for (let i = 0; i < res.output.generic.length; i++) {
         watsonReply.push({
@@ -136,7 +149,9 @@ const ChatBot = () => {
         if (audioUriArray[i] != null) {
           playSound(audioUriArray[i]);
         } else {
-          console.log("No audio returned from Watson Text to Speech.");
+          // console.log("No audio returned from Watson Text to Speech.");
+          if (props.onFinishResponse)
+            setTimeout(props.onFinishResponse(), 4000); // run prop function passed from parent and auto timeout
         }
       }
     };
@@ -155,12 +170,18 @@ const ChatBot = () => {
 
     console.log("Playing Sound");
     await sound.playAsync();
+    sound.setOnPlaybackStatusUpdate((playbackStatus) => {
+      // once audio finished playing
+      if (props.onFinishResponse && playbackStatus.didJustFinish) {
+        props.onFinishResponse(); // run prop function passed from parent
+      }
+    });
   }
 
   React.useEffect(() => {
     return sound
       ? () => {
-          console.log("Unloading Sound");
+          // unload sound
           sound.unloadAsync();
         }
       : undefined;
@@ -181,6 +202,15 @@ const ChatBot = () => {
       <WatermarkLogo />
     </View>
   );
+};
+
+// Type checking for props
+ChatBot.propTypes = {
+  onRecording: PropTypes.func,
+  onSpeechProcessing: PropTypes.func,
+  onResponse: PropTypes.func,
+  onFinishResponse: PropTypes.func,
+  onDance: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
