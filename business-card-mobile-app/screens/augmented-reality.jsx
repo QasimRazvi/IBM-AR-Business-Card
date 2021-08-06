@@ -84,6 +84,7 @@ const ARUnityScreen = ({ navigation }) => {
   }
 
   // Update state to correct value based on chatbot state
+  // Any states that need to be triggered based on a phrase returned by Watson should be defined in phraseTriggers.js
   const onRecording = () => {
     updateUnityAnimationState("idle");
     console.log("Idle");
@@ -100,9 +101,7 @@ const ARUnityScreen = ({ navigation }) => {
     updateUnityAnimationState("talking");
     console.log("talking");
   };
-  const onDance = () => {
-    updateUnityAnimationState("dancing");
-  };
+
   // If permissions granted return experience
   return (
     <View style={styles.container}>
@@ -133,7 +132,6 @@ const ARUnityScreen = ({ navigation }) => {
             onSpeechProcessing={onSpeechProcessing}
             onResponse={onResponse}
             onFinishResponse={onFinishResponse}
-            onDance={onDance}
           />
         </MaskedView>
       </View>

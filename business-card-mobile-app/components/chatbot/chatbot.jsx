@@ -10,6 +10,7 @@ import WatermarkLogo from "../watermarkLogo";
 import ChatListView from "./chat";
 import ChatMicInput from "./chatInput";
 import PropTypes from "prop-types";
+import { checkAndExecuteTrigger } from "./phraseTriggers";
 
 const ChatBot = (props) => {
   // State
@@ -25,7 +26,6 @@ const ChatBot = (props) => {
   // props.onSpeechProcessing - while STT and TTS is processing, awaiting responses from IBM Cloud
   // props.onResponse - Chatbot response (text + audio have arrived)
   // props.onFinishResponse - Chatbot response audio has finished playing
-  // props.onDance - (Easter Egg - Dance mode activated)
 
   async function startRecording() {
     try {
@@ -101,25 +101,22 @@ const ChatBot = (props) => {
       speech
     );
 
-    const chatResponse = watsonTextResponseHandler(watsonResult);
+    // needs to be accessed outside block scope for phrase triggers;
+    var chatResponse = watsonTextResponseHandler(watsonResult);
 
-    setChatHistory((prevState) => {
-      return [...prevState, ...chatResponse];
-    });
+    setChatHistory(
+      (prevState) => {
+        return [...prevState, ...chatResponse];
+      } //, checkAndExecuteTrigger(chatResponse[chatResponse.length - 1])
+    );
 
     setPlayLoading(false);
     if (props.onResponse) props.onResponse(); // run prop function passed from parent
-
-    // console.log(WatsonResult);
-    // console.log("SESION ID = ", watsonSessionId);
 
     // some check for return values, errors?
     // check if session needs updating
     // for each itme in array, get value for text and add to new chat object
     function watsonTextResponseHandler(res) {
-      // console.log("res = ", res);
-      // console.log("RES OUT GEN = ", res.output.generic[0].text);
-
       // TODO - handler for specific text responses (onDance, open phone, open email)
       let watsonReply = [];
       for (let i = 0; i < res.output.generic.length; i++) {
@@ -147,11 +144,21 @@ const ChatBot = (props) => {
       for (let i = 0; i < audioUriArray.length; i++) {
         // handle no Watson speech response
         if (audioUriArray[i] != null) {
-          playSound(audioUriArray[i]);
+          playSound(
+            audioUriArray[i],
+            // once played check for custom phrase triggers from most recent response defined in phraseTriggers.js & execute corresponding function if found
+            () => checkAndExecuteTrigger(chatResponse[chatResponse.length - 1])
+          );
         } else {
           // console.log("No audio returned from Watson Text to Speech.");
-          if (props.onFinishResponse)
-            setTimeout(props.onFinishResponse(), 4000); // run prop function passed from parent and auto timeout
+          if (props.onFinishResponse) {
+            setTimeout(props.onFinishResponse(), 4000); // run prop function passed from parent after timeout
+          }
+          // phrase trigger function
+          setTimeout(
+            checkAndExecuteTrigger(chatResponse[chatResponse.length - 1]),
+            4000
+          );
         }
       }
     };
@@ -161,7 +168,7 @@ const ChatBot = (props) => {
 
   const [sound, setSound] = React.useState();
 
-  async function playSound(uri, playbackUpdate = null) {
+  async function playSound(uri, onFinishTrigger) {
     console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync({
       uri: uri,
@@ -172,8 +179,11 @@ const ChatBot = (props) => {
     await sound.playAsync();
     sound.setOnPlaybackStatusUpdate((playbackStatus) => {
       // once audio finished playing
-      if (props.onFinishResponse && playbackStatus.didJustFinish) {
-        props.onFinishResponse(); // run prop function passed from parent
+      if (playbackStatus.didJustFinish) {
+        if (props.onFinishResponse) {
+          props.onFinishResponse(); // run prop function passed from parent
+        }
+        onFinishTrigger(); // run phrase trigger function
       }
     });
   }
@@ -210,7 +220,6 @@ ChatBot.propTypes = {
   onSpeechProcessing: PropTypes.func,
   onResponse: PropTypes.func,
   onFinishResponse: PropTypes.func,
-  onDance: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
