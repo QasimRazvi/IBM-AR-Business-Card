@@ -33,7 +33,7 @@ const ChatBubble = (props) => {
 // Receieve data key value object array {id: , text: }
 
 const ChatListView = (props) => {
-  // console.log(props);
+  // props.ar - whether to render more top padding for AR MAskedView version of component
   return (
     <AutoScrollFlatList
       data={props.chatArray}
@@ -41,7 +41,9 @@ const ChatListView = (props) => {
         <ChatBubble sent={item.sent} text={item.text} />
       )}
       keyExtractor={(item, index) => index.toString()}
-      contentContainerStyle={styles.listContent}
+      contentContainerStyle={
+        props.ar ? styles.listContentAR : styles.listContent
+      }
       // onContentSizeChange={onContentSizeChange}
       // ref={refHandler}
     ></AutoScrollFlatList>
@@ -106,5 +108,9 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingBottom: "35%",
+  },
+  listContentAR: {
+    paddingBottom: "35%",
+    paddingTop: "35%",
   },
 });

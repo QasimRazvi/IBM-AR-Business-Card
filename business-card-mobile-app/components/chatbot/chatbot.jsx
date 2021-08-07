@@ -26,6 +26,7 @@ const ChatBot = (props) => {
   // props.onSpeechProcessing - while STT and TTS is processing, awaiting responses from IBM Cloud
   // props.onResponse - Chatbot response (text + audio have arrived)
   // props.onFinishResponse - Chatbot response audio has finished playing
+  // props.ar - to pass to chathistory to render items with more top padding i.e. higher opacity in MAskedView
 
   async function startRecording() {
     try {
@@ -201,7 +202,7 @@ const ChatBot = (props) => {
 
   return (
     <View style={styles.container}>
-      <ChatListView chatArray={chatHistory} />
+      <ChatListView chatArray={chatHistory} ar={props.ar} />
       <View style={styles.micView}>
         <ChatMicInput
           onPress={!recording ? startRecording : stopRecording}
@@ -220,6 +221,7 @@ ChatBot.propTypes = {
   onSpeechProcessing: PropTypes.func,
   onResponse: PropTypes.func,
   onFinishResponse: PropTypes.func,
+  ar: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({

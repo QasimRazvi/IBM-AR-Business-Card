@@ -132,6 +132,7 @@ const ARUnityScreen = ({ navigation }) => {
             onSpeechProcessing={onSpeechProcessing}
             onResponse={onResponse}
             onFinishResponse={onFinishResponse}
+            ar={true}
           />
         </MaskedView>
       </View>
