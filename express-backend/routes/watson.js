@@ -105,31 +105,53 @@ const textToSpeech = new TextToSpeechV1({
 });
 
 function tts(inputText, voice = "en-US_MichaelV3Voice") {
-  let params = { text: inputText, voice: voice, accept: "audio/wav" };
-  return textToSpeech
-    .synthesize(params)
-    .then((response) => {
-      const audio = response.result;
-      // console.log(audio);
-      return textToSpeech.repairWavHeaderStream(audio);
-    })
-    .then((repairedFile) => {
-      // set storage location filename - removing spaces + commas etc
-      const filename = inputText
-        .substring(0, 15)
-        .replace(/[\s,']/g, "_")
-        .toLowerCase();
-      const uri = "speech_responses/" + filename + "_" + voice + ".wav";
-      const storageLocation = "public/" + uri;
-      fs.writeFileSync(storageLocation, repairedFile); // write file
-      console.log("audio.wav written with a corrected wav header");
-      // return saved file location
+  // Chatbot has standard set of phrases, although some can be modified with users name etc.
+  // We do not need to request tts for text that we have previously processed.
+  //Filenames can be saved with filename of hash function applied to text. Then this can be checked on any new input and only sent to Watson if necessary.
+  // improve performance speed + cost
+
+  function stringToHash(string) {
+    // unique string hashing function  - source: https://www.geeksforgeeks.org/how-to-create-hash-from-string-in-javascript/
+    var hash = 0;
+
+    if (string.length == 0) return hash;
+
+    for (i = 0; i < string.length; i++) {
+      char = string.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash;
+    }
+
+    return hash;
+  }
+  const hashedText = stringToHash(inputText);
+  const uri = "speech_responses/" + hashedText + "_" + voice + ".wav";
+  const storageLocation = "public/" + uri;
+  try {
+    if (fs.existsSync(storageLocation)) {
       return uri;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  // TODO - using websockets may allow for streaming in future?
+    } else {
+      // does not exists -> retrieve speech from watson API
+      let params = { text: inputText, voice: voice, accept: "audio/wav" };
+      return textToSpeech
+        .synthesize(params)
+        .then((response) => {
+          const audio = response.result;
+          return textToSpeech.repairWavHeaderStream(audio);
+        })
+        .then((repairedFile) => {
+          fs.writeFileSync(storageLocation, repairedFile); // write file
+          console.log("audio.wav written with a corrected wav header");
+          // return saved file location
+          return uri;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 // Speech to Text processor (STT)
@@ -214,7 +236,7 @@ router.post("/message-text-tts-response", async function (req, res, next) {
     }
     // Join sentences - add full stops + regex to reformat if necessary (remove extra full stops)
     // More efficient TTS since only one text/audio file sent/recieved
-    var speech = [tts((speech.join(". ").replace(/\.+\s\.+\s|\.\.\s/g, ". ")))];
+    var speech = [tts(speech.join(". ").replace(/\.+\s\.+\s|\.\.\s/g, ". "))];
     console.log(speech);
     // wait for all speech array promises to be fulfilled before return (if multiple)
     return { ...watsonResponse, speech_urls: await Promise.all(speech) };
