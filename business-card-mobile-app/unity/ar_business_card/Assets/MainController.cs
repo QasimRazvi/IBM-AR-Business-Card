@@ -6,7 +6,7 @@ using System.Linq;
 public class MainController : MonoBehaviour
 {
   public PlayerController Avatar;
-  private static string[] validAnimOptions = {"idle","talking", "thinking", "dancing"};
+  private static string[] validAnimOptions = {"idle","talking", "thinking", "dancing", "magic"};
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +17,7 @@ public class MainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      // Testing state changes + transitions within Unity
       if (Input.GetKeyDown("i"))
       {
           Avatar.animationState = "idle";
@@ -25,9 +26,17 @@ public class MainController : MonoBehaviour
       {
           Avatar.animationState = "talking";
       }
+      else if (Input.GetKeyDown("h"))
+      {
+          Avatar.animationState = "thinking";
+      }
       else if (Input.GetKeyDown("d"))
       {
           Avatar.animationState = "dancing";
+      }
+      else if (Input.GetKeyDown("m"))
+      {
+          Avatar.animationState = "magic";
       }
 
     }

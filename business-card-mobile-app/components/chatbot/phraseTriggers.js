@@ -12,6 +12,7 @@ const triggers = {
   "Opening up your default email client now...": "email",
   "Opening the dial screen now...": "phone",
   "Opening my profile now...": "linkedin",
+  "I do have some magic tricks up my sleeve, especially levitation.": "magic",
 };
 
 // Function to register specific watson response + trigger actions
@@ -54,6 +55,11 @@ export const checkAndExecuteTrigger = (chatObject) => {
       case "linkedin":
         // https://uk.linkedin.com/in/jonmcnamara
         Linking.openURL("https://uk.linkedin.com/in/jonmcnamara");
+        break;
+
+      case "magic":
+        // only affects AR - chatbot will continue as normal.
+        updateUnityAnimationState("magic");
         break;
 
       default:

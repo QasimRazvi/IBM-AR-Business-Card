@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour
   private static string[] talkingAnimations = {"Talking", "Talking-2", "Talking-3", "Pointing Forward"};
   private static string[] thinkingAnimations = {"Agreeing", "Thinking"};
   private static string[] dancingAnimations = {"Run To Flip", "Slide Hip Hop Dance", "Macarena Dance", "Locking Hip Hop Dance"};
+  private static string[] magicAnimations = {"Gravity-defy1", "Gravity-defy2"};
   private static IDictionary<string, string[]> animStates = new Dictionary<string, string[]>(){
     {"idle", idleAnimations},
     {"talking", talkingAnimations},
     {"thinking", thinkingAnimations},
-    {"dancing", dancingAnimations}
+    {"dancing", dancingAnimations},
+    {"magic", magicAnimations}
   };
   float timer = 0;
   int randIndex = 0;
@@ -82,7 +84,10 @@ public class PlayerController : MonoBehaviour
 
       // Debug.Log("NEXT ANIMATION CALLED");
       // Debug.Log(currAnimList[randIndex]);
-      animator.Play(currAnimList[randIndex]);
+      // animator.Play(currAnimList[randIndex]);
+      // Fade in next animation over 0.1f normalised time for fluid tranistions between animationStates
+      animator.CrossFade("Base Layer." + currAnimList[randIndex], 0.1f);
+      // Debug.Log("Base Layer." + currAnimList[randIndex]);
       randIndex++;
       // Debug.Log("INDEX updated");
       // Debug.Log(randIndex);
