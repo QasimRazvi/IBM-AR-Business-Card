@@ -7090,8 +7090,17 @@ public:
 struct  PropertyAttribute_t25BFFC093C9C96E3CCF4EAB36F5DC6F937B1FA54  : public Attribute_tF048C13FB3C8CFCC53F82290E4A3F621089F9A74
 {
 public:
+	// System.Int32 UnityEngine.PropertyAttribute::<order>k__BackingField
+	int32_t ___U3CorderU3Ek__BackingField_0;
 
 public:
+	inline static int32_t get_offset_of_U3CorderU3Ek__BackingField_0() { return static_cast<int32_t>(offsetof(PropertyAttribute_t25BFFC093C9C96E3CCF4EAB36F5DC6F937B1FA54, ___U3CorderU3Ek__BackingField_0)); }
+	inline int32_t get_U3CorderU3Ek__BackingField_0() const { return ___U3CorderU3Ek__BackingField_0; }
+	inline int32_t* get_address_of_U3CorderU3Ek__BackingField_0() { return &___U3CorderU3Ek__BackingField_0; }
+	inline void set_U3CorderU3Ek__BackingField_0(int32_t value)
+	{
+		___U3CorderU3Ek__BackingField_0 = value;
+	}
 };
 
 
@@ -10570,16 +10579,16 @@ struct  CustomNameAttribute_t6C87E15EFF245A30058E8AE04973CC9E34ED05A5  : public 
 {
 public:
 	// System.String Vuforia.CustomNameAttribute::<mVisibleName>k__BackingField
-	String_t* ___U3CmVisibleNameU3Ek__BackingField_0;
+	String_t* ___U3CmVisibleNameU3Ek__BackingField_1;
 
 public:
-	inline static int32_t get_offset_of_U3CmVisibleNameU3Ek__BackingField_0() { return static_cast<int32_t>(offsetof(CustomNameAttribute_t6C87E15EFF245A30058E8AE04973CC9E34ED05A5, ___U3CmVisibleNameU3Ek__BackingField_0)); }
-	inline String_t* get_U3CmVisibleNameU3Ek__BackingField_0() const { return ___U3CmVisibleNameU3Ek__BackingField_0; }
-	inline String_t** get_address_of_U3CmVisibleNameU3Ek__BackingField_0() { return &___U3CmVisibleNameU3Ek__BackingField_0; }
-	inline void set_U3CmVisibleNameU3Ek__BackingField_0(String_t* value)
+	inline static int32_t get_offset_of_U3CmVisibleNameU3Ek__BackingField_1() { return static_cast<int32_t>(offsetof(CustomNameAttribute_t6C87E15EFF245A30058E8AE04973CC9E34ED05A5, ___U3CmVisibleNameU3Ek__BackingField_1)); }
+	inline String_t* get_U3CmVisibleNameU3Ek__BackingField_1() const { return ___U3CmVisibleNameU3Ek__BackingField_1; }
+	inline String_t** get_address_of_U3CmVisibleNameU3Ek__BackingField_1() { return &___U3CmVisibleNameU3Ek__BackingField_1; }
+	inline void set_U3CmVisibleNameU3Ek__BackingField_1(String_t* value)
 	{
-		___U3CmVisibleNameU3Ek__BackingField_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___U3CmVisibleNameU3Ek__BackingField_0), (void*)value);
+		___U3CmVisibleNameU3Ek__BackingField_1 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___U3CmVisibleNameU3Ek__BackingField_1), (void*)value);
 	}
 };
 
@@ -33330,7 +33339,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CustomDataSetTargetSize_SetCachedSize_m1
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* CustomNameAttribute_get_mVisibleName_mB130AB4A2767F808F64F990CC3DCDA7E8FED96C2 (CustomNameAttribute_t6C87E15EFF245A30058E8AE04973CC9E34ED05A5 * __this, const RuntimeMethod* method)
 {
 	{
-		String_t* L_0 = __this->get_U3CmVisibleNameU3Ek__BackingField_0();
+		String_t* L_0 = __this->get_U3CmVisibleNameU3Ek__BackingField_1();
 		return L_0;
 	}
 }
@@ -33339,7 +33348,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CustomNameAttribute_set_mVisibleName_mFC
 {
 	{
 		String_t* L_0 = ___value0;
-		__this->set_U3CmVisibleNameU3Ek__BackingField_0(L_0);
+		__this->set_U3CmVisibleNameU3Ek__BackingField_1(L_0);
 		return;
 	}
 }
@@ -39014,7 +39023,7 @@ IL2CPP_EXTERN_C inline  IL2CPP_METHOD_ATTR void CustomNameAttribute_set_mVisible
 {
 	{
 		String_t* L_0 = ___value0;
-		__this->set_U3CmVisibleNameU3Ek__BackingField_0(L_0);
+		__this->set_U3CmVisibleNameU3Ek__BackingField_1(L_0);
 		return;
 	}
 }

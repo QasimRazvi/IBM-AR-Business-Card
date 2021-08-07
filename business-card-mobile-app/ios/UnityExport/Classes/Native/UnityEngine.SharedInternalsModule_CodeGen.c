@@ -86,57 +86,59 @@ extern void NativePropertyAttribute__ctor_mC9AA5DB9519961A6AA76C71968B7E4F964923
 extern void NativePropertyAttribute__ctor_m92618E6DC14A2AD87A9CB3A2BB3DFCDA1A431164 ();
 // 0x00000021 System.Void UnityEngine.Bindings.NativePropertyAttribute::.ctor(System.String,System.Boolean,UnityEngine.Bindings.TargetType)
 extern void NativePropertyAttribute__ctor_m2584E9D08E56EFB31AE671E6488046168A3911D3 ();
-// 0x00000022 System.Void UnityEngine.Bindings.NativeTypeAttribute::set_Header(System.String)
+// 0x00000022 System.Void UnityEngine.Bindings.NativeAsStructAttribute::.ctor()
+extern void NativeAsStructAttribute__ctor_m9886B079ED1A2BC42C0133A3C726ED96D4DEFA34 ();
+// 0x00000023 System.Void UnityEngine.Bindings.NativeTypeAttribute::set_Header(System.String)
 extern void NativeTypeAttribute_set_Header_m1CC3A47E66E54E5E7A87C5C5911B8EE9D0E8657B ();
-// 0x00000023 System.Void UnityEngine.Bindings.NativeTypeAttribute::set_IntermediateScriptingStructName(System.String)
+// 0x00000024 System.Void UnityEngine.Bindings.NativeTypeAttribute::set_IntermediateScriptingStructName(System.String)
 extern void NativeTypeAttribute_set_IntermediateScriptingStructName_m6409CEAAEE1D910DE284325904215DAE9104DDFE ();
-// 0x00000024 System.Void UnityEngine.Bindings.NativeTypeAttribute::set_CodegenOptions(UnityEngine.Bindings.CodegenOptions)
+// 0x00000025 System.Void UnityEngine.Bindings.NativeTypeAttribute::set_CodegenOptions(UnityEngine.Bindings.CodegenOptions)
 extern void NativeTypeAttribute_set_CodegenOptions_m25EC23287090E27AA2344F376BABD52DE4D4A23D ();
-// 0x00000025 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor()
+// 0x00000026 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor()
 extern void NativeTypeAttribute__ctor_mC6578F8A8AD3F4778CCC17248E32746D9BCD7C1F ();
-// 0x00000026 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor(UnityEngine.Bindings.CodegenOptions)
+// 0x00000027 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor(UnityEngine.Bindings.CodegenOptions)
 extern void NativeTypeAttribute__ctor_m51D3D691AF2587E97E54787810199664922210DE ();
-// 0x00000027 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor(System.String)
+// 0x00000028 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor(System.String)
 extern void NativeTypeAttribute__ctor_m7ACA25C054E933120D16DC7BBDE17734194454B6 ();
-// 0x00000028 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor(UnityEngine.Bindings.CodegenOptions,System.String)
+// 0x00000029 System.Void UnityEngine.Bindings.NativeTypeAttribute::.ctor(UnityEngine.Bindings.CodegenOptions,System.String)
 extern void NativeTypeAttribute__ctor_mF0E347C64A5AAF78A6FDB8EF2FDC39C0753B0211 ();
-// 0x00000029 System.Void UnityEngine.Bindings.NotNullAttribute::.ctor()
+// 0x0000002A System.Void UnityEngine.Bindings.NotNullAttribute::.ctor()
 extern void NotNullAttribute__ctor_m8F88B3030D52285AA10334E4E117151630BEC045 ();
-// 0x0000002A System.Void UnityEngine.Bindings.FreeFunctionAttribute::.ctor()
+// 0x0000002B System.Void UnityEngine.Bindings.FreeFunctionAttribute::.ctor()
 extern void FreeFunctionAttribute__ctor_m69E4EBDD649729C9473BA68585097AF48D06B83D ();
-// 0x0000002B System.Void UnityEngine.Bindings.FreeFunctionAttribute::.ctor(System.String)
+// 0x0000002C System.Void UnityEngine.Bindings.FreeFunctionAttribute::.ctor(System.String)
 extern void FreeFunctionAttribute__ctor_m18D7DE98494E55663EB23287EE6DB00E6649241F ();
-// 0x0000002C System.Void UnityEngine.Bindings.FreeFunctionAttribute::.ctor(System.String,System.Boolean)
+// 0x0000002D System.Void UnityEngine.Bindings.FreeFunctionAttribute::.ctor(System.String,System.Boolean)
 extern void FreeFunctionAttribute__ctor_m54898E27CB62607552A0612FA26165A18CB3F444 ();
-// 0x0000002D System.Void UnityEngine.Bindings.ThreadSafeAttribute::.ctor()
+// 0x0000002E System.Void UnityEngine.Bindings.ThreadSafeAttribute::.ctor()
 extern void ThreadSafeAttribute__ctor_mC3058002BD52E2EB8475B8115A1AC5FFCA53E1DD ();
-// 0x0000002E System.Void UnityEngine.Bindings.StaticAccessorAttribute::set_Name(System.String)
+// 0x0000002F System.Void UnityEngine.Bindings.StaticAccessorAttribute::set_Name(System.String)
 extern void StaticAccessorAttribute_set_Name_mBFD8EFC09BA63B0CE005B306037E564B530377D0 ();
-// 0x0000002F System.Void UnityEngine.Bindings.StaticAccessorAttribute::set_Type(UnityEngine.Bindings.StaticAccessorType)
+// 0x00000030 System.Void UnityEngine.Bindings.StaticAccessorAttribute::set_Type(UnityEngine.Bindings.StaticAccessorType)
 extern void StaticAccessorAttribute_set_Type_m85233B66B145700BD66145EB0AA31D0960896AE2 ();
-// 0x00000030 System.Void UnityEngine.Bindings.StaticAccessorAttribute::.ctor(System.String)
+// 0x00000031 System.Void UnityEngine.Bindings.StaticAccessorAttribute::.ctor(System.String)
 extern void StaticAccessorAttribute__ctor_m6698A0204830E258A0D9881AFA7368196C179782 ();
-// 0x00000031 System.Void UnityEngine.Bindings.StaticAccessorAttribute::.ctor(System.String,UnityEngine.Bindings.StaticAccessorType)
+// 0x00000032 System.Void UnityEngine.Bindings.StaticAccessorAttribute::.ctor(System.String,UnityEngine.Bindings.StaticAccessorType)
 extern void StaticAccessorAttribute__ctor_m8F492CF3D710FAE0D63BB8C2640D271264C84448 ();
-// 0x00000032 System.Void UnityEngine.Bindings.NativeThrowsAttribute::set_ThrowsException(System.Boolean)
+// 0x00000033 System.Void UnityEngine.Bindings.NativeThrowsAttribute::set_ThrowsException(System.Boolean)
 extern void NativeThrowsAttribute_set_ThrowsException_m563468CF2C9D8B2D745373285B67150C734F363F ();
-// 0x00000033 System.Void UnityEngine.Bindings.NativeThrowsAttribute::.ctor()
+// 0x00000034 System.Void UnityEngine.Bindings.NativeThrowsAttribute::.ctor()
 extern void NativeThrowsAttribute__ctor_m4EBDA91A1EBCABBD08DF5A91E216578B8CD76EDB ();
-// 0x00000034 System.Void UnityEngine.Bindings.IgnoreAttribute::set_DoesNotContributeToSize(System.Boolean)
+// 0x00000035 System.Void UnityEngine.Bindings.IgnoreAttribute::set_DoesNotContributeToSize(System.Boolean)
 extern void IgnoreAttribute_set_DoesNotContributeToSize_mF507E8A0ADF588062014330B44B9BD674D7A75AA ();
-// 0x00000035 System.Void UnityEngine.Bindings.IgnoreAttribute::.ctor()
+// 0x00000036 System.Void UnityEngine.Bindings.IgnoreAttribute::.ctor()
 extern void IgnoreAttribute__ctor_m4B78BE44704DA9040A683AC928187E1DAE6BC885 ();
-// 0x00000036 System.Void UnityEngine.Scripting.UsedByNativeCodeAttribute::.ctor()
+// 0x00000037 System.Void UnityEngine.Scripting.UsedByNativeCodeAttribute::.ctor()
 extern void UsedByNativeCodeAttribute__ctor_m599B42E9BBC333CDA57CD8154C902AB7594B80AD ();
-// 0x00000037 System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::.ctor()
+// 0x00000038 System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::.ctor()
 extern void RequiredByNativeCodeAttribute__ctor_mD8B976753773E00BB7E1E63DF6C23A1EB3054422 ();
-// 0x00000038 System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::set_Optional(System.Boolean)
+// 0x00000039 System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::set_Optional(System.Boolean)
 extern void RequiredByNativeCodeAttribute_set_Optional_m995DE99A803BC2D6FE66CCB370AEBE5ACF706955 ();
-// 0x00000039 System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::set_GenerateProxy(System.Boolean)
+// 0x0000003A System.Void UnityEngine.Scripting.RequiredByNativeCodeAttribute::set_GenerateProxy(System.Boolean)
 extern void RequiredByNativeCodeAttribute_set_GenerateProxy_m8B647BCD03460AD81F920CEF4CC51B499B5AFE55 ();
-// 0x0000003A System.Void UnityEngine.Scripting.GeneratedByOldBindingsGeneratorAttribute::.ctor()
+// 0x0000003B System.Void UnityEngine.Scripting.GeneratedByOldBindingsGeneratorAttribute::.ctor()
 extern void GeneratedByOldBindingsGeneratorAttribute__ctor_m16915B4C437B4BE69681DD9A0A368FCD6155EB81 ();
-static Il2CppMethodPointer s_methodPointers[58] = 
+static Il2CppMethodPointer s_methodPointers[59] = 
 {
 	AssetFileNameExtensionAttribute__ctor_m49EB0E6BB7D29A0AC5131A6EC007AFBC1DE60390,
 	ThreadAndSerializationSafeAttribute__ctor_mCB8D8FEED836D6472A4FB90C69969F0D99C39619,
@@ -171,6 +173,7 @@ static Il2CppMethodPointer s_methodPointers[58] =
 	NativePropertyAttribute__ctor_mC9AA5DB9519961A6AA76C71968B7E4F9649235FF,
 	NativePropertyAttribute__ctor_m92618E6DC14A2AD87A9CB3A2BB3DFCDA1A431164,
 	NativePropertyAttribute__ctor_m2584E9D08E56EFB31AE671E6488046168A3911D3,
+	NativeAsStructAttribute__ctor_m9886B079ED1A2BC42C0133A3C726ED96D4DEFA34,
 	NativeTypeAttribute_set_Header_m1CC3A47E66E54E5E7A87C5C5911B8EE9D0E8657B,
 	NativeTypeAttribute_set_IntermediateScriptingStructName_m6409CEAAEE1D910DE284325904215DAE9104DDFE,
 	NativeTypeAttribute_set_CodegenOptions_m25EC23287090E27AA2344F376BABD52DE4D4A23D,
@@ -197,7 +200,7 @@ static Il2CppMethodPointer s_methodPointers[58] =
 	RequiredByNativeCodeAttribute_set_GenerateProxy_m8B647BCD03460AD81F920CEF4CC51B499B5AFE55,
 	GeneratedByOldBindingsGeneratorAttribute__ctor_m16915B4C437B4BE69681DD9A0A368FCD6155EB81,
 };
-static const int32_t s_InvokerIndices[58] = 
+static const int32_t s_InvokerIndices[59] = 
 {
 	27,
 	23,
@@ -226,12 +229,13 @@ static const int32_t s_InvokerIndices[58] =
 	31,
 	23,
 	26,
-	434,
-	790,
+	435,
+	791,
 	32,
 	23,
 	26,
-	1071,
+	1074,
+	23,
 	26,
 	26,
 	32,
@@ -242,7 +246,7 @@ static const int32_t s_InvokerIndices[58] =
 	23,
 	23,
 	26,
-	434,
+	435,
 	23,
 	26,
 	32,
@@ -262,7 +266,7 @@ extern const Il2CppCodeGenModule g_UnityEngine_SharedInternalsModuleCodeGenModul
 const Il2CppCodeGenModule g_UnityEngine_SharedInternalsModuleCodeGenModule = 
 {
 	"UnityEngine.SharedInternalsModule.dll",
-	58,
+	59,
 	s_methodPointers,
 	s_InvokerIndices,
 	0,

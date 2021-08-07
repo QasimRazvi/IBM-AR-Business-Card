@@ -94,14 +94,6 @@ extern bool _supportsMSAA;
     int requestedWideColor = UnityGetWideColorRequested();
     int requestedMemorylessDepth = UnityMetalMemorylessDepth();
 
-// Added by https://github.com/asmadsen/react-native-unity-view
-        if (requestedW == 0) {
-            requestedW = _surfaceSize.width;
-        }
-        if (requestedH == 0) {
-            requestedH = _surfaceSize.height;
-        }
-
     UnityDisplaySurfaceBase* surf = GetMainDisplaySurface();
 
     if (_shouldRecreateView == YES
@@ -123,14 +115,6 @@ extern bool _supportsMSAA;
     {
         unsigned requestedW, requestedH;
         UnityGetRenderingResolution(&requestedW, &requestedH);
-
-// Added by https://github.com/asmadsen/react-native-unity-view
-        if (requestedW == 0) {
-            requestedW = _surfaceSize.width;
-        }
-        if (requestedH == 0) {
-            requestedH = _surfaceSize.height;
-        }
 
         RenderingSurfaceParams params =
         {

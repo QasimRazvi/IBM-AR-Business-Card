@@ -4,11 +4,6 @@
 
 #include "RenderPluginDelegate.h"
 
-// Added by https://github.com/asmadsen/react-native-unity-view
-@protocol UnityEventListener <NSObject>
-- (void)onMessage:(NSString *)message;
-@end
-
 @class UnityView;
 @class UnityViewControllerBase;
 @class DisplayConnection;
@@ -55,9 +50,6 @@ __attribute__ ((visibility("default")))
 // this is done to make sure that activity indicator animation starts before blocking loading
 - (void)startUnity:(UIApplication*)application;
 
-// Added by https://github.com/asmadsen/react-native-unity-view
-+ (UnityAppController*)GetAppController;
-
 // this is a part of UIApplicationDelegate protocol starting with ios5
 // setter will be generated empty
 @property (retain, nonatomic) UIWindow* window;
@@ -75,7 +67,7 @@ __attribute__ ((visibility("default")))
 
 @property (nonatomic, retain) id                            renderDelegate;
 @property (nonatomic, copy)                                 void(^quitHandler)();
-@property (nonatomic, copy)                                 void(^unityMessageHandler)(const char* message);
+
 @end
 
 // accessing app controller
@@ -84,14 +76,7 @@ extern "C" {
 #endif
 
 extern UnityAppController* _UnityAppController;
-// extern UnityAppController* GetAppController();
-// }
-
-// Added by https://github.com/asmadsen/react-native-unity-view
-static inline UnityAppController* GetAppController()
-{
-    return [UnityAppController GetAppController];
-}
+extern UnityAppController* GetAppController();
 
 #ifdef __cplusplus
 } // extern "C"

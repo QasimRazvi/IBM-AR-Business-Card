@@ -1635,6 +1635,7 @@ IL2CPP_EXTERN_C const uint32_t WaitHandle_WaitOne_m6283DC18BCD374B579549B156DD30
 IL2CPP_EXTERN_C const uint32_t WaitHandle__cctor_m007CFC1D3AC126BF18F2000C962A2C73EB73D671_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t WaitHandle_get_SafeWaitHandle_m9BA6EA0D8DBD059147DE77EE1E36181EEB5A8AB1_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t WaitHandle_set_Handle_m174F142FBE3A6EBEF358B389AE825BF2569C2389_MetadataUsageId;
+IL2CPP_EXTERN_C const uint32_t WaitHandle_set_SafeWaitHandle_m79F648641723174F50E517BA350953B45F09952E_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t WaitHandle_tFD46B5B45A6BB296EA3A104C91DF2A7C03C10AC6_com_FromNativeMethodDefinition_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t WaitHandle_tFD46B5B45A6BB296EA3A104C91DF2A7C03C10AC6_pinvoke_FromNativeMethodDefinition_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t WaitOrTimerCallback_BeginInvoke_m86C8EC9E231C1076272729D07B6331A3253150CF_MetadataUsageId;
@@ -12796,6 +12797,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WaitHandle_Init_m63320FFB796EB59BF621778
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SafeHandle_SetHandleAsInvalid_mAFA4A01F6FB566AB67312B96E5024088BDF255F6 (SafeHandle_t1E326D75E23FD5BB6D40BA322298FDC6526CC383 * __this, const RuntimeMethod* method);
 // System.Void Microsoft.Win32.SafeHandles.SafeWaitHandle::.ctor(System.IntPtr,System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SafeWaitHandle__ctor_m7A02720A5A03917CCA8DD68406A124C4AB76191A (SafeWaitHandle_t51DB35FF382E636FF3B868D87816733894D46CF2 * __this, intptr_t ___existingHandle0, bool ___ownsHandle1, const RuntimeMethod* method);
+// System.Void System.Runtime.CompilerServices.RuntimeHelpers::PrepareConstrainedRegions()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RuntimeHelpers_PrepareConstrainedRegions_m108F0650C70D15D3CC657AFEBA8E69770EDB9027 (const RuntimeMethod* method);
 // System.IntPtr System.Runtime.InteropServices.SafeHandle::DangerousGetHandle()
 IL2CPP_EXTERN_C inline  IL2CPP_METHOD_ATTR intptr_t SafeHandle_DangerousGetHandle_m9014DC4C279F2EF9F9331915135F0AF5AF8A4368_inline (SafeHandle_t1E326D75E23FD5BB6D40BA322298FDC6526CC383 * __this, const RuntimeMethod* method);
 // System.Boolean System.Threading.WaitHandle::WaitOne(System.Int64,System.Boolean)
@@ -22950,6 +22953,85 @@ IL_001d:
 		SafeWaitHandle_t51DB35FF382E636FF3B868D87816733894D46CF2 * L_3 = __this->get_safeWaitHandle_4();
 		il2cpp_codegen_memory_barrier();
 		return L_3;
+	}
+}
+// System.Void System.Threading.WaitHandle::set_SafeWaitHandle(Microsoft.Win32.SafeHandles.SafeWaitHandle)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WaitHandle_set_SafeWaitHandle_m79F648641723174F50E517BA350953B45F09952E (WaitHandle_tFD46B5B45A6BB296EA3A104C91DF2A7C03C10AC6 * __this, SafeWaitHandle_t51DB35FF382E636FF3B868D87816733894D46CF2 * ___value0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_method (WaitHandle_set_SafeWaitHandle_m79F648641723174F50E517BA350953B45F09952E_MetadataUsageId);
+		s_Il2CppMethodInitialized = true;
+	}
+	Exception_t * __last_unhandled_exception = 0;
+	NO_UNUSED_WARNING (__last_unhandled_exception);
+	Exception_t * __exception_local = 0;
+	NO_UNUSED_WARNING (__exception_local);
+	void* __leave_targets_storage = alloca(sizeof(int32_t) * 1);
+	il2cpp::utils::LeaveTargetStack __leave_targets(__leave_targets_storage);
+	NO_UNUSED_WARNING (__leave_targets);
+	{
+		RuntimeHelpers_PrepareConstrainedRegions_m108F0650C70D15D3CC657AFEBA8E69770EDB9027(/*hidden argument*/NULL);
+	}
+
+IL_0005:
+	try
+	{ // begin try (depth: 1)
+		IL2CPP_LEAVE(0x3D, FINALLY_0007);
+	} // end try (depth: 1)
+	catch(Il2CppExceptionWrapper& e)
+	{
+		__last_unhandled_exception = (Exception_t *)e.ex;
+		goto FINALLY_0007;
+	}
+
+FINALLY_0007:
+	{ // begin finally (depth: 1)
+		{
+			SafeWaitHandle_t51DB35FF382E636FF3B868D87816733894D46CF2 * L_0 = ___value0;
+			if (L_0)
+			{
+				goto IL_0020;
+			}
+		}
+
+IL_000a:
+		{
+			il2cpp_codegen_memory_barrier();
+			__this->set_safeWaitHandle_4((SafeWaitHandle_t51DB35FF382E636FF3B868D87816733894D46CF2 *)NULL);
+			IL2CPP_RUNTIME_CLASS_INIT(WaitHandle_tFD46B5B45A6BB296EA3A104C91DF2A7C03C10AC6_il2cpp_TypeInfo_var);
+			intptr_t L_1 = ((WaitHandle_tFD46B5B45A6BB296EA3A104C91DF2A7C03C10AC6_StaticFields*)il2cpp_codegen_static_fields_for(WaitHandle_tFD46B5B45A6BB296EA3A104C91DF2A7C03C10AC6_il2cpp_TypeInfo_var))->get_InvalidHandle_10();
+			__this->set_waitHandle_3((intptr_t)L_1);
+			goto IL_003c;
+		}
+
+IL_0020:
+		{
+			SafeWaitHandle_t51DB35FF382E636FF3B868D87816733894D46CF2 * L_2 = ___value0;
+			il2cpp_codegen_memory_barrier();
+			__this->set_safeWaitHandle_4(L_2);
+			SafeWaitHandle_t51DB35FF382E636FF3B868D87816733894D46CF2 * L_3 = __this->get_safeWaitHandle_4();
+			il2cpp_codegen_memory_barrier();
+			NullCheck(L_3);
+			intptr_t L_4 = SafeHandle_DangerousGetHandle_m9014DC4C279F2EF9F9331915135F0AF5AF8A4368_inline(L_3, /*hidden argument*/NULL);
+			__this->set_waitHandle_3((intptr_t)L_4);
+		}
+
+IL_003c:
+		{
+			IL2CPP_END_FINALLY(7)
+		}
+	} // end finally (depth: 1)
+	IL2CPP_CLEANUP(7)
+	{
+		IL2CPP_JUMP_TBL(0x3D, IL_003d)
+		IL2CPP_RETHROW_IF_UNHANDLED(Exception_t *)
+	}
+
+IL_003d:
+	{
+		return;
 	}
 }
 // System.Void System.Threading.WaitHandle::SetHandleInternal(Microsoft.Win32.SafeHandles.SafeWaitHandle)

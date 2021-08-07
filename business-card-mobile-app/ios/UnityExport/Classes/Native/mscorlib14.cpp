@@ -960,6 +960,7 @@ IL2CPP_EXTERN_C const uint32_t String_ToLowerInvariant_m197BD65B6582DC546FF1BC39
 IL2CPP_EXTERN_C const uint32_t String_ToLower_m5287204D93C9DDC4DF84581ADD756D0FDE2BA5A8_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t String_ToLower_m91732DBE4AE31B77EA3BB2C185E66513919968A5_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t String_ToUpperInvariant_m0AA42416F4CACA4D0E3B89D97E534D88AB136338_MetadataUsageId;
+IL2CPP_EXTERN_C const uint32_t String_ToUpper_m23D019B7C5EF2C5C01F524EB8137A424B33EEFE2_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t String_ToUpper_m8C69D974350ABA8BA0BC3A66996004CCEFD64293_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t String_TrimHelper_mFF43B4D2958E901A84AE0885BC308A61E88339A5_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t String_get_Chars_m14308AC3B95F8C1D9F1D1055B116B37D595F1D96_MetadataUsageId;
@@ -25280,6 +25281,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_ToLowerInvariant_m197BD65B65
 		IL2CPP_RUNTIME_CLASS_INIT(CultureInfo_t345AC6924134F039ED9A11F3E03F8E91B6A3225F_il2cpp_TypeInfo_var);
 		CultureInfo_t345AC6924134F039ED9A11F3E03F8E91B6A3225F * L_0 = CultureInfo_get_InvariantCulture_mF13B47F8A763CE6A9C8A8BB2EED33FF8F7A63A72(/*hidden argument*/NULL);
 		String_t* L_1 = String_ToLower_m91732DBE4AE31B77EA3BB2C185E66513919968A5(__this, L_0, /*hidden argument*/NULL);
+		return L_1;
+	}
+}
+// System.String System.String::ToUpper()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_ToUpper_m23D019B7C5EF2C5C01F524EB8137A424B33EEFE2 (String_t* __this, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_method (String_ToUpper_m23D019B7C5EF2C5C01F524EB8137A424B33EEFE2_MetadataUsageId);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(CultureInfo_t345AC6924134F039ED9A11F3E03F8E91B6A3225F_il2cpp_TypeInfo_var);
+		CultureInfo_t345AC6924134F039ED9A11F3E03F8E91B6A3225F * L_0 = CultureInfo_get_CurrentCulture_mD86F3D8E5D332FB304F80D9B9CA4DE849C2A6831(/*hidden argument*/NULL);
+		String_t* L_1 = String_ToUpper_m8C69D974350ABA8BA0BC3A66996004CCEFD64293(__this, L_0, /*hidden argument*/NULL);
 		return L_1;
 	}
 }

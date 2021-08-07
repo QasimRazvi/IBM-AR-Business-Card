@@ -1229,6 +1229,7 @@ IL2CPP_EXTERN_C const uint32_t Number_TryParseDouble_m42120E69C4182E443BDD9BC6DA
 IL2CPP_EXTERN_C const uint32_t Number_TryParseInt32_mF9FA8AD887CFF429B3C9DCAED08CBF7746DB250D_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t Number_TryParseInt64_m62C1C9F9BAC32770297859436DE8E68DF0E1E598_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t Number_TryParseSingle_m8BFCEBAF689D19500FA014CAC081D1614BD4A4C0_MetadataUsageId;
+IL2CPP_EXTERN_C const uint32_t Number_TryParseUInt32_m5D5F513C1F31174E132E2646CC964C32E55F9436_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t PathInternal_HasIllegalCharacters_mDE3FB11E02AC6CD38B2DCAC0B1A737F37CB341A7_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t PathTooLongException__ctor_m43D8612C5F39D3F8EB07946DADD9B43DB585995F_MetadataUsageId;
 IL2CPP_EXTERN_C const uint32_t PinnedBufferMemoryStream__ctor_m79A845DB8C49B20AD09F2AF704123771A8AEC9D4_MetadataUsageId;
@@ -29998,6 +29999,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR double Math_Acos_mA015FB00E4C265D5FAD2D17E52C
 {
 	return acos(___d0);
 }
+// System.Double System.Math::Asin(System.Double)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR double Math_Asin_mA845DF9FFC82CF7284C09A4D6A598F714219D792 (double ___d0)
+{
+	return asin(___d0);
+}
 // System.Double System.Math::Atan(System.Double)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR double Math_Atan_m95D036588EE2D13FA24FC14AEEF873AABA7B5463 (double ___d0)
 {
@@ -38293,6 +38299,79 @@ IL_0050:
 		float* L_13 = ___result3;
 		float L_14 = V_3;
 		*((float*)L_13) = (float)L_14;
+		return (bool)1;
+	}
+}
+// System.Boolean System.Number::TryParseUInt32(System.String,System.Globalization.NumberStyles,System.Globalization.NumberFormatInfo,System.UInt32&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Number_TryParseUInt32_m5D5F513C1F31174E132E2646CC964C32E55F9436 (String_t* ___s0, int32_t ___style1, NumberFormatInfo_tFDF57037EBC5BC833D0A53EF0327B805994860A8 * ___info2, uint32_t* ___result3, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_method (Number_TryParseUInt32_m5D5F513C1F31174E132E2646CC964C32E55F9436_MetadataUsageId);
+		s_Il2CppMethodInitialized = true;
+	}
+	uint8_t* V_0 = NULL;
+	NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075  V_1;
+	memset((&V_1), 0, sizeof(V_1));
+	{
+		IL2CPP_RUNTIME_CLASS_INIT(NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075_il2cpp_TypeInfo_var);
+		int32_t L_0 = ((NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075_StaticFields*)il2cpp_codegen_static_fields_for(NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075_il2cpp_TypeInfo_var))->get_NumberBufferBytes_0();
+		int8_t* L_1 = (int8_t*) alloca((((uintptr_t)L_0)));
+		memset(L_1, 0, (((uintptr_t)L_0)));
+		V_0 = (uint8_t*)(L_1);
+		uint8_t* L_2 = V_0;
+		NumberBuffer__ctor_m3CC10B06A100FC612C5BD24BBC5A20C2BCDCD68E((NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075 *)(&V_1), (uint8_t*)(uint8_t*)L_2, /*hidden argument*/NULL);
+		uint32_t* L_3 = ___result3;
+		*((int32_t*)L_3) = (int32_t)0;
+		String_t* L_4 = ___s0;
+		int32_t L_5 = ___style1;
+		NumberFormatInfo_tFDF57037EBC5BC833D0A53EF0327B805994860A8 * L_6 = ___info2;
+		bool L_7 = Number_TryStringToNumber_mDA7F326F742680FF01ACA545ED511EE80A3248D7(L_4, L_5, (NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075 *)(&V_1), L_6, (bool)0, /*hidden argument*/NULL);
+		if (L_7)
+		{
+			goto IL_0023;
+		}
+	}
+	{
+		return (bool)0;
+	}
+
+IL_0023:
+	{
+		int32_t L_8 = ___style1;
+		if (!((int32_t)((int32_t)L_8&(int32_t)((int32_t)512))))
+		{
+			goto IL_0038;
+		}
+	}
+	{
+		uint32_t* L_9 = ___result3;
+		bool L_10 = Number_HexNumberToUInt32_mCF1D424CBE49EEA9B5D2546B705C79519A41195F((NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075 *)(&V_1), (uint32_t*)L_9, /*hidden argument*/NULL);
+		if (L_10)
+		{
+			goto IL_0044;
+		}
+	}
+	{
+		return (bool)0;
+	}
+
+IL_0038:
+	{
+		uint32_t* L_11 = ___result3;
+		bool L_12 = Number_NumberToUInt32_m60BDF4513A1673F8F993CAA12CA865FD4294308F((NumberBuffer_tBD2266C521F098915F124D7A62AFF8DB05918075 *)(&V_1), (uint32_t*)L_11, /*hidden argument*/NULL);
+		if (L_12)
+		{
+			goto IL_0044;
+		}
+	}
+	{
+		return (bool)0;
+	}
+
+IL_0044:
+	{
 		return (bool)1;
 	}
 }

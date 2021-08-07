@@ -1387,6 +1387,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyInt_mD9867F6FBC8BDCA7D7C82E5
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyUpInt_m8BEA98822582BABA67D68571EB63B030868EA9FE (int32_t ___key0, const RuntimeMethod* method);
 // System.Boolean UnityEngine.Input::GetKeyDownInt(UnityEngine.KeyCode)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyDownInt_m6781CCFA51D64CA3DF11EF1A9825EF03AB220B96 (int32_t ___key0, const RuntimeMethod* method);
+// System.Boolean UnityEngine.Input::GetKeyDownString(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyDownString_mF7BF2274466FB4AC33C227C0E6B31BF7D0E29E53 (String_t* ___name0, const RuntimeMethod* method);
 // System.Void UnityEngine.Input::get_mousePosition_Injected(UnityEngine.Vector3&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Input_get_mousePosition_Injected_m16BF01CA8D64169CE48F8EA804A3F25832316B63 (Vector3_tDCF05E21F632FE2BA260C06E0D10CA81513E6720 * ___ret0, const RuntimeMethod* method);
 // System.Void UnityEngine.Input::get_mouseScrollDelta_Injected(UnityEngine.Vector2&)
@@ -1572,6 +1574,26 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyDownInt_m6781CCFA51D64CA3DF1
 	bool retVal = _il2cpp_icall_func(___key0);
 	return retVal;
 }
+// System.Boolean UnityEngine.Input::GetKeyDownString(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyDownString_mF7BF2274466FB4AC33C227C0E6B31BF7D0E29E53 (String_t* ___name0, const RuntimeMethod* method)
+{
+	typedef bool (*Input_GetKeyDownString_mF7BF2274466FB4AC33C227C0E6B31BF7D0E29E53_ftn) (String_t*);
+	static Input_GetKeyDownString_mF7BF2274466FB4AC33C227C0E6B31BF7D0E29E53_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Input_GetKeyDownString_mF7BF2274466FB4AC33C227C0E6B31BF7D0E29E53_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Input::GetKeyDownString(System.String)");
+	bool retVal = _il2cpp_icall_func(___name0);
+	return retVal;
+}
+// System.Single UnityEngine.Input::GetAxis(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Input_GetAxis_m6454498C755B9A2C964875927FB557CA9E75D387 (String_t* ___axisName0, const RuntimeMethod* method)
+{
+	typedef float (*Input_GetAxis_m6454498C755B9A2C964875927FB557CA9E75D387_ftn) (String_t*);
+	static Input_GetAxis_m6454498C755B9A2C964875927FB557CA9E75D387_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Input_GetAxis_m6454498C755B9A2C964875927FB557CA9E75D387_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Input::GetAxis(System.String)");
+	float retVal = _il2cpp_icall_func(___axisName0);
+	return retVal;
+}
 // System.Single UnityEngine.Input::GetAxisRaw(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Input_GetAxisRaw_mC68301A9D93702F0C393E45C6337348062EACE21 (String_t* ___axisName0, const RuntimeMethod* method)
 {
@@ -1580,6 +1602,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Input_GetAxisRaw_mC68301A9D93702F0C393E
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (Input_GetAxisRaw_mC68301A9D93702F0C393E45C6337348062EACE21_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Input::GetAxisRaw(System.String)");
 	float retVal = _il2cpp_icall_func(___axisName0);
+	return retVal;
+}
+// System.Boolean UnityEngine.Input::GetButton(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetButton_m19CFAF3A6E1A65EE44FB197020F11AA502DF468D (String_t* ___buttonName0, const RuntimeMethod* method)
+{
+	typedef bool (*Input_GetButton_m19CFAF3A6E1A65EE44FB197020F11AA502DF468D_ftn) (String_t*);
+	static Input_GetButton_m19CFAF3A6E1A65EE44FB197020F11AA502DF468D_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Input_GetButton_m19CFAF3A6E1A65EE44FB197020F11AA502DF468D_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Input::GetButton(System.String)");
+	bool retVal = _il2cpp_icall_func(___buttonName0);
 	return retVal;
 }
 // System.Boolean UnityEngine.Input::GetButtonDown(System.String)
@@ -1675,6 +1707,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyDown_mEA57896808B6F484B12CD0
 	{
 		int32_t L_0 = ___key0;
 		bool L_1 = Input_GetKeyDownInt_m6781CCFA51D64CA3DF11EF1A9825EF03AB220B96(L_0, /*hidden argument*/NULL);
+		V_0 = L_1;
+		goto IL_000a;
+	}
+
+IL_000a:
+	{
+		bool L_2 = V_0;
+		return L_2;
+	}
+}
+// System.Boolean UnityEngine.Input::GetKeyDown(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Input_GetKeyDown_mD95998D19E698E66D5396829BC6865C8E87E1E4B (String_t* ___name0, const RuntimeMethod* method)
+{
+	bool V_0 = false;
+	{
+		String_t* L_0 = ___name0;
+		bool L_1 = Input_GetKeyDownString_mF7BF2274466FB4AC33C227C0E6B31BF7D0E29E53(L_0, /*hidden argument*/NULL);
 		V_0 = L_1;
 		goto IL_000a;
 	}

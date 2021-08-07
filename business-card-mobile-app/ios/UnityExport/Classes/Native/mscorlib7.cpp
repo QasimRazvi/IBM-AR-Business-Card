@@ -35525,6 +35525,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t MonoIO_get_ConsoleError_mBF62E29F146
 	using namespace il2cpp::icalls;
 	return  ((MonoIO_get_ConsoleError_mBF62E29F14657C9B5982694B3901F6AD7EEB6EFD_ftn)mscorlib::System::IO::MonoIO::get_ConsoleError) ();
 }
+// System.Boolean System.IO.MonoIO::DuplicateHandle(System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr&,System.Int32,System.Int32,System.Int32,System.IO.MonoIOError&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool MonoIO_DuplicateHandle_mFFC9D034DAF683A309373DDA4098261892ABB84B (intptr_t ___source_process_handle0, intptr_t ___source_handle1, intptr_t ___target_process_handle2, intptr_t* ___target_handle3, int32_t ___access4, int32_t ___inherit5, int32_t ___options6, int32_t* ___error7, const RuntimeMethod* method)
+{
+	typedef bool (*MonoIO_DuplicateHandle_mFFC9D034DAF683A309373DDA4098261892ABB84B_ftn) (intptr_t, intptr_t, intptr_t, intptr_t*, int32_t, int32_t, int32_t, int32_t*);
+	using namespace il2cpp::icalls;
+	return  ((MonoIO_DuplicateHandle_mFFC9D034DAF683A309373DDA4098261892ABB84B_ftn)mscorlib::System::IO::MonoIO::DuplicateHandle40) (___source_process_handle0, ___source_handle1, ___target_process_handle2, ___target_handle3, ___access4, ___inherit5, ___options6, ___error7);
+}
 // System.Char System.IO.MonoIO::get_VolumeSeparatorChar()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Il2CppChar MonoIO_get_VolumeSeparatorChar_m25D71971ED489BDD76AB8E59B2E0DDAB4457DFA5 (const RuntimeMethod* method)
 {

@@ -41,6 +41,12 @@
 		<type fullname="UnityEngine.Mesh" preserve="nothing"/>
 		<type fullname="UnityEngine.MeshFilter" preserve="nothing"/>
 	</assembly>
+	<assembly fullname="Assembly-CSharp">
+		<type fullname="CameraFocusController" preserve="nothing"/>
+		<type fullname="FIMSpace.FLook.FLookAnimator" preserve="nothing"/>
+		<type fullname="MainController" preserve="nothing"/>
+		<type fullname="PlayerController" preserve="nothing"/>
+	</assembly>
 	<assembly fullname="Vuforia.UnityExtensions">
 		<type fullname="Vuforia.ImageTargetBehaviour" preserve="nothing"/>
 		<type fullname="Vuforia.TurnOffBehaviour" preserve="nothing"/>
