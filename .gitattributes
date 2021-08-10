@@ -1,9 +1,9 @@
 
-# Unity Native Export Files
-business-card-mobile-app/android/UnityExport/Libraries/** filter=lfs diff=lfs merge=lfs -text
-business-card-mobile-app/android/UnityExport/Frameworks/** filter=lfs diff=lfs merge=lfs -text
-business-card-mobile-app/ios/UnityExport/Libraries/** filter=lfs diff=lfs merge=lfs -text
-business-card-mobile-app/ios/UnityExport/Frameworks/** filter=lfs diff=lfs merge=lfs -text
+# # Unity Native Export Files
+# business-card-mobile-app/android/UnityExport/Libraries/** filter=lfs diff=lfs merge=lfs -text
+# business-card-mobile-app/android/UnityExport/Frameworks/** filter=lfs diff=lfs merge=lfs -text
+# business-card-mobile-app/ios/UnityExport/Libraries/** filter=lfs diff=lfs merge=lfs -text
+# business-card-mobile-app/ios/UnityExport/Frameworks/** filter=lfs diff=lfs merge=lfs -text
 # Unity models
 *.3dm filter=lfs diff=lfs merge=lfs -text
 *.3ds filter=lfs diff=lfs merge=lfs -text
