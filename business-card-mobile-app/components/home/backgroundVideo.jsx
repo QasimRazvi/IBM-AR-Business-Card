@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import Video from "react-native-video";
 
 const BackgroundVideo = (props) => {

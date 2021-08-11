@@ -4,7 +4,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "node_modules/.bin/jest"
   },
   "dependencies": {
     "@asmadsen/react-native-unity-view": "^0.0.7",
@@ -38,7 +39,37 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "jest-expo": "^42.1.0"
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-native": "^4.0.2",
+    "@testing-library/react-native": "^7.2.0",
+    "babel-jest": "^27.0.6",
+    "jest-expo": "^42.1.0",
+    "jest-transform-stub": "^2.0.0",
+    "react-test-renderer": "16.14.0"
+  },
+  "jest": {
+    "preset": "jest-expo/android",
+    "verbose": true,
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+    ],
+    "transform": {
+      "^.+\\.(js|ts|tsx|jsx)$": "babel-jest"
+    },
+    "testPathIgnorePatterns": [
+      "./__tests__/setup.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ]
   },
   "private": true,
   "name": "business-card-mobile-app",

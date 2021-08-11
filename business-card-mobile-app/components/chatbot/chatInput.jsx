@@ -17,7 +17,7 @@ const ChatMicInput = (props) => {
   // Request audio permission on component mount
   useEffect(() => {
     (async () => {
-      console.log("Requesting permissions..");
+      // console.log("Requesting permissions..");
       const { status } = await Audio.requestPermissionsAsync();
       setRecordPermission(status == "granted");
     })();

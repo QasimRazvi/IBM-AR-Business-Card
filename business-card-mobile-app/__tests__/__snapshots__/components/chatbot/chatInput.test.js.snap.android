@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatMicInput loading={true}/> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "center",
+      "justifyContent": "center",
+      "padding": 3,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 50,
+          "padding": 20,
+        }
+      }
+    >
+      <ActivityIndicator
+        animating={true}
+        color="black"
+        hidesWhenStopped={true}
+        size="large"
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ChatMicInput recording={false}/> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "center",
+      "justifyContent": "center",
+      "padding": 3,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 50,
+          "padding": 20,
+        }
+      }
+    >
+      <Text />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<ChatMicInput recording={true}/> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "center",
+      "justifyContent": "center",
+      "padding": 3,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "borderRadius": 50,
+          "padding": 20,
+        }
+      }
+    >
+      <Text />
+    </View>
+  </View>
+</View>
+`;
