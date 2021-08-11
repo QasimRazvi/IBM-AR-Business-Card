@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Homescreen /> renders correctly  1`] = `
+exports[`<SettingsScreen /> renders correctly 1`] = `
 <GestureHandlerRootView
   style={
     Object {
@@ -166,160 +166,44 @@ exports[`<Homescreen /> renders correctly  1`] = `
                     <View
                       style={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "#000000",
+                          "backgroundColor": "black",
                           "flex": 1,
-                          "justifyContent": "center",
                         }
                       }
                     >
-                      <Video
-                        repeat={true}
-                        resizeMode="cover"
-                        source={1}
-                        style={
-                          Object {
-                            "bottom": 0,
-                            "left": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                          }
-                        }
-                      />
-                      <Text
-                        style={
-                          Object {
-                            "color": "white",
-                            "fontSize": 20,
-                            "padding": 20,
-                          }
-                        }
-                      >
-                        Choose your experience
-                      </Text>
                       <View
                         style={
                           Object {
                             "flexDirection": "row",
                             "justifyContent": "space-between",
-                            "padding": 20,
-                            "width": "95%",
+                            "marginTop": 5,
+                            "padding": 5,
                           }
                         }
                       >
-                        <View
-                          accessible={true}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
+                        <Text
                           style={
                             Object {
-                              "backgroundColor": "#0043CE",
-                              "borderRadius": 20,
-                              "borderWidth": 2,
-                              "opacity": 1,
-                              "padding": 10,
-                              "width": "48%",
+                              "color": "white",
+                              "fontSize": 20,
                             }
                           }
                         >
-                          <View>
-                            <Text
-                              style={
-                                Object {
-                                  "alignSelf": "center",
-                                  "color": "white",
-                                  "fontSize": 16,
-                                }
-                              }
-                            >
-                              Chatbot
-                            </Text>
-                          </View>
-                        </View>
-                        <View
-                          accessible={true}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
+                          Tutorials 
+                          (on)
+                        </Text>
+                        <AndroidSwitch
+                          accessibilityRole="switch"
+                          enabled={true}
+                          on={true}
+                          onChange={[Function]}
                           onResponderTerminationRequest={[Function]}
                           onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "backgroundColor": "#0043CE",
-                              "borderRadius": 20,
-                              "borderWidth": 2,
-                              "opacity": 1,
-                              "padding": 10,
-                              "width": "48%",
-                            }
-                          }
-                        >
-                          <View>
-                            <Text
-                              style={
-                                Object {
-                                  "alignSelf": "center",
-                                  "color": "white",
-                                  "fontSize": 16,
-                                }
-                              }
-                            >
-                              AR Experience
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "bottom": 5,
-                            "height": 100,
-                            "left": 15,
-                            "position": "absolute",
-                            "width": 100,
-                            "zIndex": 1,
-                          }
-                        }
-                      />
-                      <View
-                        style={
-                          Object {
-                            "bottom": "5%",
-                            "opacity": 0.6,
-                            "position": "absolute",
-                            "right": "5%",
-                          }
-                        }
-                      >
-                        <View
-                          accessible={true}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "opacity": 1,
-                            }
-                          }
-                        >
-                          <Text />
-                        </View>
+                          thumbTintColor="white"
+                          trackColorForFalse="white"
+                          trackColorForTrue="#0043CE"
+                          trackTintColor="#0043CE"
+                        />
                       </View>
                     </View>
                   </View>
@@ -413,7 +297,7 @@ exports[`<Homescreen /> renders correctly  1`] = `
                                 }
                               }
                             >
-                              Home
+                              Settings
                             </Text>
                           </View>
                         </View>

@@ -67,6 +67,10 @@
       "!**/babel.config.js",
       "!**/jest.setup.js"
     ],
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./__tests__/setup.js"
+    ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
     ]
