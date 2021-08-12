@@ -198,8 +198,6 @@ const ChatBot = (props) => {
       : undefined;
   }, [sound]);
 
-  // TODO - ON component mount should initialise session with Watson!
-
   return (
     <View style={styles.container}>
       <ChatListView chatArray={chatHistory} ar={props.ar} />

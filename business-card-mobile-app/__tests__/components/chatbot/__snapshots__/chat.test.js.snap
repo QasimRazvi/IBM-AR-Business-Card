@@ -1,0 +1,534 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatListView /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "overflow": "hidden",
+    }
+  }
+>
+  <RCTScrollView
+    autoScrollDisabled={false}
+    contentContainerStyle={
+      Object {
+        "paddingBottom": "35%",
+      }
+    }
+    data={
+      Array [
+        Object {
+          "sent": 0,
+          "text": "Hi my name is John",
+        },
+        Object {
+          "sent": 1,
+          "text": "What can you do?",
+        },
+        Object {
+          "sent": 0,
+          "text": "Ask me about my education or top skills",
+        },
+        Object {
+          "sent": 1,
+          "text": "When did you graduate?",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+              "backgroundColor": "#525252",
+              "borderRadius": 3,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "3%",
+              "marginRight": "15%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "justifyContent": "center",
+              }
+            }
+          >
+            Hi my name is John
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            Watson
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-end",
+              "backgroundColor": "#0043CE",
+              "borderRadius": 7,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "15%",
+              "marginRight": "3%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+              }
+            }
+          >
+            What can you do?
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            You
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+              "backgroundColor": "#525252",
+              "borderRadius": 3,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "3%",
+              "marginRight": "15%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "justifyContent": "center",
+              }
+            }
+          >
+            Ask me about my education or top skills
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            Watson
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-end",
+              "backgroundColor": "#0043CE",
+              "borderRadius": 7,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "15%",
+              "marginRight": "3%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+              }
+            }
+          >
+            When did you graduate?
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            You
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`<ChatListView ar={true}/> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "overflow": "hidden",
+    }
+  }
+>
+  <RCTScrollView
+    autoScrollDisabled={false}
+    contentContainerStyle={
+      Object {
+        "paddingBottom": "35%",
+        "paddingTop": "35%",
+      }
+    }
+    data={
+      Array [
+        Object {
+          "sent": 0,
+          "text": "Hi my name is John",
+        },
+        Object {
+          "sent": 1,
+          "text": "What can you do?",
+        },
+        Object {
+          "sent": 0,
+          "text": "Ask me about my education or top skills",
+        },
+        Object {
+          "sent": 1,
+          "text": "When did you graduate?",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+              "backgroundColor": "#525252",
+              "borderRadius": 3,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "3%",
+              "marginRight": "15%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "justifyContent": "center",
+              }
+            }
+          >
+            Hi my name is John
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            Watson
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-end",
+              "backgroundColor": "#0043CE",
+              "borderRadius": 7,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "15%",
+              "marginRight": "3%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+              }
+            }
+          >
+            What can you do?
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            You
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+              "backgroundColor": "#525252",
+              "borderRadius": 3,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "3%",
+              "marginRight": "15%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+                "justifyContent": "center",
+              }
+            }
+          >
+            Ask me about my education or top skills
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            Watson
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-end",
+              "backgroundColor": "#0043CE",
+              "borderRadius": 7,
+              "elevation": 13,
+              "marginBottom": 3,
+              "marginLeft": "15%",
+              "marginRight": "3%",
+              "marginTop": 5,
+              "padding": 8,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 6,
+                "width": 0,
+              },
+              "shadowOpacity": 0.39,
+              "shadowRadius": 8.3,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 16,
+              }
+            }
+          >
+            When did you graduate?
+          </Text>
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 8,
+                "marginRight": "2%",
+              }
+            }
+          >
+            You
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

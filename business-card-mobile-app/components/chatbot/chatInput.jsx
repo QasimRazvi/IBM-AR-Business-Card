@@ -49,7 +49,7 @@ const ChatMicInput = (props) => {
 
   return (
     <View style={styles.mic}>
-      <TouchableOpacity onPress={props.onPress}>
+      <TouchableOpacity onPress={props.onPress} testID="mic-button">
         <View style={styles.micContainer}>
           {!recording ? (
             <FontAwesome5 name="microphone" size={33} color="black" />

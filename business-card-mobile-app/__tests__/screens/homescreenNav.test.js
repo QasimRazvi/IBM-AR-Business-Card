@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render, act } from "@testing-library/react-native";
 import * as React from "react";
 import App from "../../App";
 import HomeScreen from "../../screens/homescreen";
@@ -42,7 +42,9 @@ describe("Testing react navigation from home", () => {
     const { findByText } = render(component);
     const toClick = await findByText("Chatbot");
 
-    fireEvent(toClick, "press");
+    act(() => {
+      fireEvent(toClick, "press");
+    });
     const newHeader = await findByText("Chatbot");
 
     expect(newHeader).toBeTruthy();
@@ -54,7 +56,9 @@ describe("Testing react navigation from home", () => {
     const { findByText } = render(component);
     const toClick = await findByText("AR Experience");
 
-    fireEvent(toClick, "press");
+    act(() => {
+      fireEvent(toClick, "press");
+    });
     const newHeader = await findByText("AR Experience");
 
     expect(newHeader).toBeTruthy();

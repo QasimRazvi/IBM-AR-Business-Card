@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import * as React from "react";
 import renderer from "react-test-renderer";
 import SettingsScreen from "../../screens/settings";
@@ -36,5 +36,14 @@ describe("<SettingsScreen />", () => {
 
     const tree = renderer.create(component).toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  test("preference switch rendered", async () => {
+    const component = <SettingsScreen />;
+
+    const { getByTestId } = render(component);
+
+    const switchComponent = getByTestId("tutorial-switch");
+    expect(switchComponent).toBeTruthy();
   });
 });

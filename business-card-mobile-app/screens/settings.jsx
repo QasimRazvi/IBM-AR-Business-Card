@@ -32,6 +32,7 @@ const SettingsScreen = () => {
           Tutorials {tutorialEnabled ? "(on)" : "(off)"}
         </Text>
         <Switch
+          testID="tutorial-switch"
           onValueChange={toggleSwitch}
           value={tutorialEnabled}
           trackColor={{ false: "white", true: "#0043CE" }}
