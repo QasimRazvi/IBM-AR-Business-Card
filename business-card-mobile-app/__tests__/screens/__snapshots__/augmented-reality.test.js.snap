@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Homescreen /> renders correctly  1`] = `
+exports[`<ARUnityScreen /> renders correctly 1`] = `
 <View
   style={
     Object {
@@ -100,7 +100,104 @@ exports[`<Homescreen /> renders correctly  1`] = `
               pointerEvents="box-none"
               style={
                 Object {
-                  "marginHorizontal": 16,
+                  "alignItems": "flex-start",
+                  "bottom": 0,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "opacity": 1,
+                  "position": "absolute",
+                  "top": 0,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                accessibilityComponentType="button"
+                accessibilityLabel="Go back"
+                accessibilityRole="button"
+                accessibilityTraits="button"
+                accessible={true}
+                borderless={true}
+                collapsable={false}
+                delayPressIn={0}
+                onActiveStateChange={[Function]}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                onPress={[Function]}
+                pressColor="rgba(0, 0, 0, .32)"
+                pressOpacity={0.3}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "opacity": 1,
+                  }
+                }
+                testID="header-back"
+              >
+                <Image
+                  fadeDuration={0}
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 21,
+                        "marginLeft": 8,
+                        "marginRight": 22,
+                        "marginVertical": 12,
+                        "resizeMode": "contain",
+                        "transform": Array [
+                          Object {
+                            "scaleX": 1,
+                          },
+                        ],
+                        "width": 13,
+                      },
+                      Object {
+                        "marginRight": 6,
+                      },
+                      Object {
+                        "tintColor": "rgb(0, 122, 255)",
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-start",
+                        "flexDirection": "row",
+                      },
+                      Object {
+                        "minWidth": 348,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={false}
+                    allowFontScaling={false}
+                    numberOfLines={1}
+                    style={
+                      Object {
+                        "color": "rgb(0, 122, 255)",
+                        "fontSize": 17,
+                        "letterSpacing": 0.35,
+                      }
+                    }
+                  >
+                    Back
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
+            <View
+              pointerEvents="box-none"
+              style={
+                Object {
+                  "marginHorizontal": 72,
                   "opacity": 1,
                 }
               }
@@ -118,7 +215,7 @@ exports[`<Homescreen /> renders correctly  1`] = `
                   }
                 }
               >
-                Home
+                AR Experience
               </Text>
             </View>
           </View>
@@ -290,162 +387,18 @@ exports[`<Homescreen /> renders correctly  1`] = `
                     <View
                       style={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "#000000",
                           "flex": 1,
+                          "flexDirection": "column",
                           "justifyContent": "center",
                         }
                       }
                     >
-                      <Video
-                        repeat={true}
-                        resizeMode="cover"
-                        source={1}
-                        style={
-                          Object {
-                            "bottom": 0,
-                            "left": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                          }
-                        }
+                      <ActivityIndicator
+                        animating={true}
+                        color="#001d6c"
+                        hidesWhenStopped={true}
+                        size="large"
                       />
-                      <Text
-                        style={
-                          Object {
-                            "color": "white",
-                            "fontSize": 20,
-                            "padding": 20,
-                          }
-                        }
-                      >
-                        Choose your experience
-                      </Text>
-                      <View
-                        style={
-                          Object {
-                            "flexDirection": "row",
-                            "justifyContent": "space-between",
-                            "padding": 20,
-                            "width": "95%",
-                          }
-                        }
-                      >
-                        <View
-                          accessible={true}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "backgroundColor": "#0043CE",
-                              "borderRadius": 20,
-                              "borderWidth": 2,
-                              "opacity": 1,
-                              "padding": 10,
-                              "width": "48%",
-                            }
-                          }
-                        >
-                          <View>
-                            <Text
-                              style={
-                                Object {
-                                  "alignSelf": "center",
-                                  "color": "white",
-                                  "fontSize": 16,
-                                }
-                              }
-                            >
-                              Chatbot
-                            </Text>
-                          </View>
-                        </View>
-                        <View
-                          accessible={true}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "backgroundColor": "#0043CE",
-                              "borderRadius": 20,
-                              "borderWidth": 2,
-                              "opacity": 1,
-                              "padding": 10,
-                              "width": "48%",
-                            }
-                          }
-                        >
-                          <View>
-                            <Text
-                              style={
-                                Object {
-                                  "alignSelf": "center",
-                                  "color": "white",
-                                  "fontSize": 16,
-                                }
-                              }
-                            >
-                              AR Experience
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                      <Image
-                        source={1}
-                        style={
-                          Object {
-                            "bottom": 5,
-                            "height": 100,
-                            "left": 15,
-                            "position": "absolute",
-                            "width": 100,
-                            "zIndex": 1,
-                          }
-                        }
-                      />
-                      <View
-                        style={
-                          Object {
-                            "bottom": "5%",
-                            "opacity": 0.6,
-                            "position": "absolute",
-                            "right": "5%",
-                          }
-                        }
-                      >
-                        <View
-                          accessible={true}
-                          focusable={true}
-                          onClick={[Function]}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "opacity": 1,
-                            }
-                          }
-                          testID="settings-icon"
-                        >
-                          <Text />
-                        </View>
-                      </View>
                     </View>
                   </View>
                 </View>

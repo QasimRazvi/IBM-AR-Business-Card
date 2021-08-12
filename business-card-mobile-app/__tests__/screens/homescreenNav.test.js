@@ -10,7 +10,13 @@ jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
 jest.mock("react-native-video", () => "Video");
 jest.mock("react-native-default-preference", () => {
   return {
-    get: jest.fn().mockImplementation(() => Promise.resolve(true)),
+    get: jest.fn().mockImplementation(
+      () =>
+        new Promise((resolve, reject) => {
+          "true";
+          resolve();
+        })
+    ),
 
     // jest.fn(() => {}).mockReturnValueOnce("true"),
   };
@@ -60,6 +66,20 @@ describe("Testing react navigation from home", () => {
       fireEvent(toClick, "press");
     });
     const newHeader = await findByText("AR Experience");
+
+    expect(newHeader).toBeTruthy();
+  });
+
+  test("Settings navigation successful", async () => {
+    const component = <App />;
+
+    const { getByTestId, findByText } = render(component);
+    const toClick = getByTestId("settings-icon");
+
+    act(() => {
+      fireEvent(toClick, "press");
+    });
+    const newHeader = await findByText("Settings");
 
     expect(newHeader).toBeTruthy();
   });

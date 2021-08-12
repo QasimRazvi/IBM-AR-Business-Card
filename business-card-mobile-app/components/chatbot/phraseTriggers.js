@@ -7,7 +7,7 @@ import { Linking, Platform } from "react-native";
 // values like phone number. email etc are currently hardcoded but could be retrieved from context passed to Watson if more than one card in supported in future app versions.
 
 // trigger dictionary - O(1)
-const triggers = {
+export const triggers = {
   "Watch this!": "dance",
   "Opening up your default email client now...": "email",
   "Opening the dial screen now...": "phone",

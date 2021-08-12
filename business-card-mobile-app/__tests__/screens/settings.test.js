@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { fireEvent, render } from "@testing-library/react-native";
+import { act, fireEvent, render } from "@testing-library/react-native";
 import * as React from "react";
 import renderer from "react-test-renderer";
 import SettingsScreen from "../../screens/settings";
@@ -9,6 +9,7 @@ import SettingsScreen from "../../screens/settings";
 jest.mock("react-native-default-preference", () => {
   return {
     get: jest.fn().mockImplementation(() => Promise.resolve(true)),
+    set: jest.fn().mockImplementation(() => Promise.resolve(true)),
   };
 });
 
@@ -38,12 +39,16 @@ describe("<SettingsScreen />", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test("preference switch rendered", async () => {
+  test("preference switch rendered + toggling working", async () => {
     const component = <SettingsScreen />;
 
     const { getByTestId } = render(component);
 
     const switchComponent = getByTestId("tutorial-switch");
     expect(switchComponent).toBeTruthy();
+    act(() => {
+      fireEvent(switchComponent, "valueChange");
+    });
+    expect(switchComponent.props.value).toBe(false);
   });
 });

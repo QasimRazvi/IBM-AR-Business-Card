@@ -87,19 +87,19 @@ const ARUnityScreen = ({ navigation }) => {
   // Any states that need to be triggered based on a phrase returned by Watson should be defined in phraseTriggers.js
   const onRecording = () => {
     updateUnityAnimationState("idle");
-    console.log("Idle");
+    // console.log("Idle");
   };
   const onSpeechProcessing = () => {
     updateUnityAnimationState("thinking");
-    console.log("thinking");
+    // console.log("thinking");
   };
   const onFinishResponse = () => {
     updateUnityAnimationState("idle");
-    console.log("Idle");
+    // console.log("Idle");
   };
   const onResponse = () => {
     updateUnityAnimationState("talking");
-    console.log("talking");
+    // console.log("talking");
   };
 
   // If permissions granted return experience

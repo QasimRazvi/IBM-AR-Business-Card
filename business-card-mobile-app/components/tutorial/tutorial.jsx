@@ -81,7 +81,6 @@ const Tutorial = (props) => {
           marginLeft: 20,
         }}
       >
-        {/* <CustomButton title={"Skip"} /> */}
         <TouchableOpacity onPress={props.onContinue}>
           {currItemIdx !== props.data.length - 1 ? (
             <Text style={{ color: "white" }}>Skip</Text>
@@ -89,9 +88,6 @@ const Tutorial = (props) => {
             <Text style={{ color: "white" }}>Continue</Text>
           )}
         </TouchableOpacity>
-        {/* <TouchableOpacity onPress={()=> this.Carousel.snap}>
-          <Text style={{ color: "white" }}>Next</Text>
-        </TouchableOpacity> */}
       </View>
     </View>
   );

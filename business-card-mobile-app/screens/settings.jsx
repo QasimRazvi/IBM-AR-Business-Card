@@ -17,7 +17,6 @@ const SettingsScreen = () => {
         setTutorialEnabled(true);
       }
     });
-    // console.log("effect run");
   }, []);
 
   const toggleSwitch = () => {

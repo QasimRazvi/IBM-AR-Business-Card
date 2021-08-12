@@ -1,7 +1,4 @@
-// imports
-// const SpeechToTextV1 = require("ibm-watson/speech-to-text/v1");
-// const { BearerTokenAuthenticator } = require("ibm-watson/auth");
-// // const fs = require("fs");
+// Watson helper functions to handle API calls to server
 
 // configure params for the express server
 const watsonConfig = {
@@ -67,10 +64,4 @@ export const textToAssistant = async (
   });
   return await res.json();
   // .then((data) => console.log(data));
-};
-
-// if bearer token are necessary to communicate with Watson from client directly.
-export const getSttToken = () => {
-  let url = watsonConfig.watsonUrl + "stt-token";
-  return fetch(url).then((res) => res.json());
 };

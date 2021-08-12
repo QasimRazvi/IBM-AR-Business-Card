@@ -7,7 +7,7 @@ const SettingsIcon = (props) => {
     <View
       style={{ bottom: "5%", right: "5%", position: "absolute", opacity: 0.6 }}
     >
-      <TouchableOpacity onPress={props.onPress}>
+      <TouchableOpacity onPress={props.onPress} testID="settings-icon">
         <Ionicons name="md-settings-outline" size={33} color={props.color} />
       </TouchableOpacity>
     </View>
