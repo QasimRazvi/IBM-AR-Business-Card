@@ -167,8 +167,7 @@ function stt(audiofile) {
   let params = {
     audio: fs.createReadStream(audiofile),
     contentType: "audio/wav",
-  }; // TODO - file location + contenttype (may need to be calculated)
-  // console.log(params.audio);
+  };
   return speechToText
     .recognize(params)
     .then((response) => {
@@ -178,28 +177,8 @@ function stt(audiofile) {
     .catch((err) => {
       console.log(err);
     });
-  // TODO - using websockets may allow for streaming
+  // FUTURE - using websockets may allow for streaming
 }
-
-// Speech to Text v2
-// Should stream from the client, backend to provide bearerToken to authorise access and protect API secrets
-console.log(speechToText.tokenManager);
-const { IamTokenManager } = require("ibm-watson/auth");
-
-const SpeechTextAuthenticator = new IamTokenManager({
-  apikey: process.env.WATSON_STT_API_KEY,
-});
-
-router.get("/stt-token", function (req, res) {
-  return SpeechTextAuthenticator.requestToken()
-    .then(({ result }) => {
-      res.json({
-        accessToken: result.access_token,
-        url: process.env.WATSON_STT_URL,
-      });
-    })
-    .catch(console.error);
-});
 
 // base url get snew session
 router.get("/", async function (req, res, next) {
@@ -211,8 +190,8 @@ router.post("/message", async function (req, res, next) {
   console.log(req.body);
   // if session null, assume first contact - initialise session + pass it back
   var session = req.body.session_id == null ? await newSession() : req.body;
-  var botResponse = await msgHandler(session.session_id, req.body.message); //await messageStateful(req.body.sessionId, req.body.message);
-  res.json(await botResponse); //.result.output);
+  var botResponse = await msgHandler(session.session_id, req.body.message);
+  res.json(await botResponse);
 });
 
 // takes message, returns response text + speech url
@@ -228,15 +207,16 @@ router.post("/message-text-tts-response", async function (req, res, next) {
   async function getSpeechFromWatsonResponse(watsonResponse) {
     var speech = [];
     for (let i = 0; i < watsonResponse.output.generic.length; i++) {
-      // console.log(watsonResponse.output.generic[i].text);
-      // let tmpSpeech = tts(watsonResponse.output.generic[i].text);
-      // speech.push(tmpSpeech);
       let tmpSpeech = watsonResponse.output.generic[i].text;
       speech.push(tmpSpeech);
     }
-    // Join sentences - add full stops + regex to reformat if necessary (remove extra full stops)
+    // Join sentences - add full stops + regex to reformat if necessary
     // More efficient TTS since only one text/audio file sent/recieved
-    var speech = [tts(speech.join(". ").replace(/\.+\s\.+\s|\.\.\s/g, ". "))];
+    speech.forEach((txt) => {
+      if (txt.trim()[txt.length - 1].match(/[!.?]/g) == null)
+        txt.trim().concat(".");
+    });
+    var speech = [tts(speech.join(" "))];
     console.log(speech);
     // wait for all speech array promises to be fulfilled before return (if multiple)
     return { ...watsonResponse, speech_urls: await Promise.all(speech) };
@@ -309,10 +289,6 @@ const ffmpeg = require("fluent-ffmpeg");
 const ffmpeg_static = require("ffmpeg-static");
 const mime = require("mime");
 
-// convert = function (fileIn, fileOut) {
-//   ffmpeg().setFfmpegPath(ffmpeg_static.path).input()
-// }
-
 async function linear16(filePathIn, filePathOut) {
   if ("object" === typeof filePathIn && !filePathOut) {
     const { inPath, outPath } = filePathIn;
@@ -321,7 +297,7 @@ async function linear16(filePathIn, filePathOut) {
   }
   console.log(filePathIn);
   if (!filePathIn || !filePathOut) {
-    throw new Error("You must specify a path for both input and output files.");
+    throw new Error("Path required for input + output files.");
   }
   if (!fs.existsSync(filePathIn)) {
     throw new Error("Input file must exist.");
@@ -335,18 +311,12 @@ async function linear16(filePathIn, filePathOut) {
       ffmpeg()
         .setFfmpegPath(ffmpeg_static.path)
         .input(filePathIn)
-        .outputOptions([
-          // '-f s16le',
-          "-acodec pcm_s16le",
-          // // '-vn',
-          // '-ac 1',
-          // '-ar 16k',
-          // '-map_metadata -1'
-        ])
+        // verify/convert codec to linear16
+        .outputOptions(["-acodec pcm_s16le"])
         .save(filePathOut)
         .on("end", () => resolve(filePathOut));
-    } catch (e) {
-      reject(e);
+    } catch (err) {
+      reject(err);
     }
   });
 }
