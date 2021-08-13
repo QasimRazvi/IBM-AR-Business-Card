@@ -10,21 +10,30 @@ import { AutoScrollFlatList } from "react-native-autoscroll-flatlist";
 // hold text, styling + sent, receieved
 const ChatBubble = (props) => {
   // console.log(props);
-  if (props.sent) {
+  if (props.sent == 1) {
+    // sent message
     return (
       <View style={styles.bubbleSent}>
         <Text style={styles.messageTextSent}>{props.text}</Text>
         <Text style={styles.messageTextDetails}>You</Text>
       </View>
     );
-  } else {
+  } else if (props.sent == 0) {
+    // received message
     return (
       <View style={styles.bubbleReceived}>
         <Text style={styles.messageTextReceived}>{props.text}</Text>
         <Text style={styles.messageTextDetails}>Watson</Text>
       </View>
     );
-    // received message
+  } else {
+    // info bubble
+    return (
+      <View style={styles.bubbleInfo}>
+        <Text style={styles.messageTextInfo}>{props.text}</Text>
+        {/* <Text style={styles.messageTextDetails}>Watson</Text> */}
+      </View>
+    );
   }
 };
 
@@ -91,6 +100,25 @@ const styles = StyleSheet.create({
 
     elevation: 13,
   },
+  bubbleInfo: {
+    backgroundColor: "#e0e0e0", // IBM blue 70
+    alignSelf: "center",
+    borderRadius: 2,
+    marginRight: "7%",
+    marginLeft: "7%",
+    marginTop: 5,
+    marginBottom: 3,
+    padding: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.3,
+
+    elevation: 10,
+  },
   messageTextSent: {
     fontSize: 16,
     color: "white",
@@ -99,6 +127,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white",
     justifyContent: "center",
+  },
+  messageTextInfo: {
+    fontSize: 14,
+    color: "black",
+    fontStyle: "italic",
   },
   messageTextDetails: {
     fontSize: 8,

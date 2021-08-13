@@ -17,16 +17,19 @@ const ChatBot = (props) => {
   const [recording, setRecording] = React.useState();
   const [chatHistory, setChatHistory] = React.useState([]);
   const [playLoading, setPlayLoading] = React.useState(false);
+  const [sound, setSound] = React.useState();
 
   // Watson assistant session state tracking - initially empty string
   const [watsonSessionId, setWatsonSessionId] = React.useState("");
 
-  // props
-  // props.onRecording - while the user is recordinga message
-  // props.onSpeechProcessing - while STT and TTS is processing, awaiting responses from IBM Cloud
-  // props.onResponse - Chatbot response (text + audio have arrived)
-  // props.onFinishResponse - Chatbot response audio has finished playing
-  // props.ar - to pass to chathistory to render items with more top padding i.e. higher opacity in MAskedView
+  /*
+  PROPS (type checking below component code)
+  props.onRecording - while the user is recordinga message
+  props.onSpeechProcessing - while STT and TTS is processing, awaiting responses from IBM Cloud
+  props.onResponse - Chatbot response (text + audio have arrived)
+  props.onFinishResponse - Chatbot response audio has finished playing
+  props.ar - to pass to chathistory to render items with more top padding i.e. higher opacity in MAskedView
+  */
 
   async function startRecording() {
     try {
@@ -83,8 +86,22 @@ const ChatBot = (props) => {
 
     // Send recording to watson, trigger STT
     const sentText = await speechToText(uri);
-    // console.log(sentText);
-    // TODO - change into handler to handle if results[0] - empty array
+
+    // handle if results - empty array - i.e. no speech/text recognised from audio
+    if (sentText.results == false) {
+      // console.log("No speech recognised");
+      setChatHistory([
+        ...chatHistory,
+        {
+          sent: -1,
+          text: "No speech recognised. Did you say something?",
+        },
+      ]);
+      setPlayLoading(false);
+      // no need to continue function and retrive/play any audio or get response
+      return;
+    }
+    // if speech recognised -> update chat history state with new text
     setChatHistory([
       ...chatHistory,
       {
@@ -95,7 +112,7 @@ const ChatBot = (props) => {
       },
     ]);
 
-    // send text to assistant and handle Watson response, update chat history
+    // send text to assistant and handle Watson response,
     const watsonResult = await textToAssistant(
       sentText.results[0].alternatives[0].transcript,
       watsonSessionId,
@@ -105,6 +122,7 @@ const ChatBot = (props) => {
     // needs to be accessed outside block scope for phrase triggers;
     var chatResponse = watsonTextResponseHandler(watsonResult);
 
+    // update chat history
     setChatHistory(
       (prevState) => {
         return [...prevState, ...chatResponse];
@@ -112,10 +130,9 @@ const ChatBot = (props) => {
     );
 
     setPlayLoading(false);
-    if (props.onResponse) props.onResponse(); // run prop function passed from parent
+    // Watson response recieved -> run prop function passed from parent
+    if (props.onResponse) props.onResponse();
 
-    // some check for return values, errors?
-    // check if session needs updating
     // for each itme in array, get value for text and add to new chat object
     function watsonTextResponseHandler(res) {
       // TODO - handler for specific text responses (onDance, open phone, open email)
@@ -127,10 +144,10 @@ const ChatBot = (props) => {
           text: res.output.generic[i].text,
         });
       }
-      // console.log("WATSON REPLY =", watsonReply);
       return watsonReply;
     }
 
+    // check if session needs updating
     if (watsonResult.output.session_id != watsonSessionId) {
       setWatsonSessionId(watsonResult.session_id);
     }
@@ -141,6 +158,7 @@ const ChatBot = (props) => {
       getTextToSpeechUri(uri)
     );
 
+    // Play recieved audio function
     const playSpeech = async (audioUriArray) => {
       for (let i = 0; i < audioUriArray.length; i++) {
         // handle no Watson speech response
@@ -164,13 +182,12 @@ const ChatBot = (props) => {
       }
     };
 
+    // Call play audio
     playSpeech(audio);
   }
 
-  const [sound, setSound] = React.useState();
-
   async function playSound(uri, onFinishTrigger) {
-    console.log("Loading Sound");
+    // console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync({
       uri: uri,
     });
