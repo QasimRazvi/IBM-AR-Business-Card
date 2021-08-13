@@ -1,10 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AutoScrollFlatList } from "react-native-autoscroll-flatlist";
-
-// const Chat = (props) => {
-//   return <Text>THIS IS THE CHATBOT</Text>;
-// };
+import PropTypes from "prop-types";
 
 // Chat bubble component
 // hold text, styling + sent, receieved
@@ -31,10 +28,14 @@ const ChatBubble = (props) => {
     return (
       <View style={styles.bubbleInfo}>
         <Text style={styles.messageTextInfo}>{props.text}</Text>
-        {/* <Text style={styles.messageTextDetails}>Watson</Text> */}
       </View>
     );
   }
+};
+
+ChatBubble.propTypes = {
+  sent: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 // List of chat bubbles component
@@ -57,6 +58,10 @@ const ChatListView = (props) => {
       // ref={refHandler}
     ></AutoScrollFlatList>
   );
+};
+
+ChatListView.propTypes = {
+  chatArray: PropTypes.array.isRequired,
 };
 
 export default ChatListView;

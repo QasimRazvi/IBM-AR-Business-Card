@@ -2,6 +2,7 @@
 
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import PropTypes from "prop-types";
 
 const CustomButton = (props) => {
   // props.onPress
@@ -16,13 +17,18 @@ const CustomButton = (props) => {
   );
 };
 
+CustomButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  onPress: PropTypes.func,
+};
+
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#0043CE", // IBM blue 70%
     borderWidth: 2,
     borderRadius: 20,
-    padding:10,
-    width:"48%"
+    padding: 10,
+    width: "48%",
   },
   buttonText: {
     color: "white",

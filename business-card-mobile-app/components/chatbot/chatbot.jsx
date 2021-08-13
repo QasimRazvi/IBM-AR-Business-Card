@@ -14,7 +14,7 @@ import { checkAndExecuteTrigger } from "./phraseTriggers";
 
 const ChatBot = (props) => {
   // State
-  const [recording, setRecording] = React.useState();
+  const [recording, setRecording] = React.useState(false);
   const [chatHistory, setChatHistory] = React.useState([]);
   const [playLoading, setPlayLoading] = React.useState(false);
   const [sound, setSound] = React.useState();
@@ -79,7 +79,7 @@ const ChatBot = (props) => {
     // console.log("Stopping recording..");
     setPlayLoading(true);
     if (props.onSpeechProcessing) props.onSpeechProcessing(); // run prop function passed from parent
-    setRecording(undefined);
+    setRecording(false);
     await recording.stopAndUnloadAsync();
     const uri = recording.getURI();
     // console.log("Recording stopped and stored at", uri);

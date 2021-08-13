@@ -1,6 +1,7 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
+import PropTypes from "prop-types";
 
 const SettingsIcon = (props) => {
   return (
@@ -12,6 +13,11 @@ const SettingsIcon = (props) => {
       </TouchableOpacity>
     </View>
   );
+};
+
+SettingsIcon.propTypes = {
+  onPress: PropTypes.func,
+  color: PropTypes.string,
 };
 
 export default SettingsIcon;

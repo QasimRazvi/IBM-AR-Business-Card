@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import PropTypes from "prop-types";
 
 const ChatMicInput = (props) => {
   const recording = props.recording;
@@ -60,6 +61,11 @@ const ChatMicInput = (props) => {
       </TouchableOpacity>
     </View>
   );
+};
+
+ChatMicInput.propTypes = {
+  loading: PropTypes.bool,
+  recording: PropTypes.any,
 };
 
 const styles = StyleSheet.create({
