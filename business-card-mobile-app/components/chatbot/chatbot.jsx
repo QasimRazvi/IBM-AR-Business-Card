@@ -85,7 +85,21 @@ const ChatBot = (props) => {
     // console.log("Recording stopped and stored at", uri);
 
     // Send recording to watson, trigger STT
-    const sentText = await speechToText(uri);
+    try {
+      var sentText = await speechToText(uri);
+    } catch (error) {
+      console.log(error);
+      // display error to user
+      setChatHistory([
+        ...chatHistory,
+        {
+          sent: -1,
+          text: error.toString(),
+        },
+      ]);
+      setPlayLoading(false);
+      return;
+    }
 
     // handle if results - empty array - i.e. no speech/text recognised from audio
     if (sentText.results == false) {
@@ -113,11 +127,24 @@ const ChatBot = (props) => {
     ]);
 
     // send text to assistant and handle Watson response,
-    const watsonResult = await textToAssistant(
-      sentText.results[0].alternatives[0].transcript,
-      watsonSessionId,
-      speech
-    );
+    try {
+      var watsonResult = await textToAssistant(
+        sentText.results[0].alternatives[0].transcript,
+        watsonSessionId,
+        speech
+      );
+    } catch (error) {
+      // display error in chat
+      setChatHistory([
+        ...chatHistory,
+        {
+          sent: -1,
+          text: error.toString(),
+        },
+      ]);
+      setPlayLoading(false);
+      return;
+    }
 
     // needs to be accessed outside block scope for phrase triggers;
     var chatResponse = watsonTextResponseHandler(watsonResult);
