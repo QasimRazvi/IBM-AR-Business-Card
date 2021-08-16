@@ -28,12 +28,8 @@ export const speechToText = async (fileuri) => {
     });
     return await res.json();
   } catch (error) {
-    // console.log(error);
-    // console.log(error.message);
     throw new Error(error.message);
   }
-
-  // .then((data) => console.log(data));
 };
 
 export const getTextToSpeechUri = (audioUri) => {
@@ -57,11 +53,9 @@ export const textToAssistant = async (
       session_id: sessionId,
     };
   }
-  // console.log("ASSISTANT CALLED");
-  // console.log("ASSISTANT PARAMS = ", params);
   let url = tts
     ? watsonConfig.watsonUrl + "message-text-tts-response" // if tts = true, we retrieve speech file urls.
-    : watsonConfig.watsonUrl + "message";
+    : watsonConfig.watsonUrl + "message"; // otherwise only text response
   try {
     const res = await fetch(url, {
       method: "POST",
@@ -71,7 +65,6 @@ export const textToAssistant = async (
       body: JSON.stringify(params),
     });
     return await res.json();
-    // .then((data) => console.log(data));
   } catch (error) {
     throw new Error(error.message);
   }

@@ -82,7 +82,6 @@ const ChatBot = (props) => {
     setRecording(false);
     await recording.stopAndUnloadAsync();
     const uri = recording.getURI();
-    // console.log("Recording stopped and stored at", uri);
 
     // Send recording to watson, trigger STT
     try {

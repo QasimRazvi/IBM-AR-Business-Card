@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatbotScreen /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "black",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <RCTScrollView
+      autoScrollDisabled={false}
+      contentContainerStyle={
+        Object {
+          "paddingBottom": "35%",
+        }
+      }
+      data={Array []}
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+  <View
+    style={
+      Object {
+        "bottom": 30,
+        "left": 10,
+        "position": "absolute",
+        "right": 10,
+        "zIndex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "justifyContent": "center",
+          "padding": 3,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="mic-button"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderRadius": 50,
+              "padding": 20,
+            }
+          }
+        >
+          <Text />
+        </View>
+      </View>
+    </View>
+  </View>
+  <Image
+    source={1}
+    style={
+      Object {
+        "bottom": 5,
+        "height": 100,
+        "left": 15,
+        "position": "absolute",
+        "width": 100,
+        "zIndex": 1,
+      }
+    }
+  />
+</View>
+`;

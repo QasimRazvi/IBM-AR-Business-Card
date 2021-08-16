@@ -137,6 +137,7 @@ function tts(inputText, voice = "en-US_MichaelV3Voice") {
   const uri = "speech_responses/" + hashedText + "_" + voice + ".wav";
   const storageLocation = "public/" + uri;
   try {
+    // check local storage for hashed text first
     if (fs.existsSync(storageLocation)) {
       return uri;
     } else {
