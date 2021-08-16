@@ -26,9 +26,14 @@ export const speechToText = async (fileuri) => {
       },
       body: formdata,
     });
-    return await res.json();
+    if (res.ok) {
+      return await res.json();
+    } else {
+      throw new Error("Server error occured. Please try again later.");
+    }
   } catch (error) {
-    throw new Error(error.message);
+    console.log(error);
+    throw new Error("An error occured. Please check your internet connection."); // network failed or similar
   }
 };
 
@@ -64,8 +69,13 @@ export const textToAssistant = async (
       },
       body: JSON.stringify(params),
     });
-    return await res.json();
+    if (res.ok) {
+      return await res.json();
+    } else {
+      throw new Error("Server error occured. Please try again later.");
+    }
   } catch (error) {
-    throw new Error(error.message);
+    console.log(error);
+    throw new Error("An error occured. Please check your internet connection."); // network failed or similar
   }
 };
