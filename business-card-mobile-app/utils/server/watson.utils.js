@@ -29,6 +29,7 @@ export const speechToText = async (fileuri) => {
     if (res.ok) {
       return await res.json();
     } else {
+      console.log(res);
       throw new Error("Server error occured. Please try again later.");
     }
   } catch (error) {
@@ -72,6 +73,7 @@ export const textToAssistant = async (
     if (res.ok) {
       return await res.json();
     } else {
+      console.log(res);
       throw new Error("Server error occured. Please try again later.");
     }
   } catch (error) {

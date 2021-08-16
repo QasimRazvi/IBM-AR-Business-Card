@@ -1,0 +1,367 @@
+{
+	"id": "34984a45-8988-4fec-bd1e-14d90d6df583",
+	"name": "Watson",
+	"timestamp": "2021-08-16T15:29:17.238Z",
+	"collection_id": "0-673c620a-c0f1-48eb-8ddd-dcdc25178119",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 29,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "feb4ab39-3dd1-4de3-ac8f-c9322941f242",
+			"name": "Get chatbot text response",
+			"url": "http://localhost:3001/watson/message",
+			"time": 1087,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"chatbot output returned successfully": true,
+				"Session id returns successfully": true,
+				"User id returns successfully": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"chatbot output returned successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Session id returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User id returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1087
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"chatbot output returned successfully": true,
+					"Session id returns successfully": true,
+					"User id returns successfully": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "976ffa25-66d1-4a1a-964a-39cc514a8dfd",
+			"name": "Get chatbot text response handles incorrect body",
+			"url": "http://localhost:3001/watson/message",
+			"time": 784,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"chatbot errors sent correctly": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"chatbot errors sent correctly": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				784
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"chatbot errors sent correctly": true
+				}
+			]
+		},
+		{
+			"id": "b8d8b130-8fe0-4b62-91cc-d81fc73023b4",
+			"name": "Audio upload",
+			"url": "http://192.168.0.61:3001/watson/upload",
+			"time": 968,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"audio uploaded + chatbot output returned successfully": true,
+				"Session id returns successfully": true,
+				"User id returns successfully": true,
+				"Speech uri returns successfully": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"audio uploaded + chatbot output returned successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Session id returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User id returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Speech uri returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				968
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"audio uploaded + chatbot output returned successfully": true,
+					"Session id returns successfully": true,
+					"User id returns successfully": true,
+					"Speech uri returns successfully": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "2ead9f04-ff6c-463d-afaa-798c2dac5a61",
+			"name": "Get chatbot speech + text response",
+			"url": "http://localhost:3001/watson/message-text-tts-response",
+			"time": 894,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"chatbot output returned successfully": true,
+				"Session id returns successfully": true,
+				"Speech uri returns successfully": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"chatbot output returned successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Session id returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Speech uri returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				894
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"chatbot output returned successfully": true,
+					"Session id returns successfully": true,
+					"Speech uri returns successfully": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "73ffb7cc-044a-4634-8230-d2f5e3eb8ae7",
+			"name": "Get chatbot speech + text response -Empty string input",
+			"url": "http://localhost:3001/watson/message-text-tts-response",
+			"time": 795,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"chatbot output returned successfully": true,
+				"Session id returns successfully": true,
+				"Speech uri returns successfully": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"chatbot output returned successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Session id returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Speech uri returns successfully": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				795
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"chatbot output returned successfully": true,
+					"Session id returns successfully": true,
+					"Speech uri returns successfully": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "514c423a-2812-42a2-9a40-2f0a69234052",
+			"name": "Get chatbot speech + text response - invalid message param",
+			"url": "http://localhost:3001/watson/message-text-tts-response",
+			"time": 690,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"chatbot errors sent correctly": true,
+				"Message to be string error correctly identified": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"chatbot errors sent correctly": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Message to be string error correctly identified": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				690
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"chatbot errors sent correctly": true,
+					"Message to be string error correctly identified": true
+				}
+			]
+		},
+		{
+			"id": "f5da3048-760a-4fa3-8e2b-8daa294d6b03",
+			"name": "Get chatbot speech + text response - invalid session param",
+			"url": "http://localhost:3001/watson/message-text-tts-response",
+			"time": 388,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"chatbot errors sent correctly": true,
+				"Session error correctly identified": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"chatbot errors sent correctly": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Session error correctly identified": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				388
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"chatbot errors sent correctly": true,
+					"Session error correctly identified": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 5606,
+	"collection": {
+		"requests": [
+			{
+				"id": "feb4ab39-3dd1-4de3-ac8f-c9322941f242",
+				"method": "POST"
+			},
+			{
+				"id": "976ffa25-66d1-4a1a-964a-39cc514a8dfd",
+				"method": "POST"
+			},
+			{
+				"id": "b8d8b130-8fe0-4b62-91cc-d81fc73023b4",
+				"method": "POST"
+			},
+			{
+				"id": "2ead9f04-ff6c-463d-afaa-798c2dac5a61",
+				"method": "POST"
+			},
+			{
+				"id": "73ffb7cc-044a-4634-8230-d2f5e3eb8ae7",
+				"method": "POST"
+			},
+			{
+				"id": "514c423a-2812-42a2-9a40-2f0a69234052",
+				"method": "POST"
+			},
+			{
+				"id": "f5da3048-760a-4fa3-8e2b-8daa294d6b03",
+				"method": "POST"
+			}
+		]
+	}
+}

@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "673c620a-c0f1-48eb-8ddd-dcdc25178119",
+		"name": "Watson",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get chatbot text response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"chatbot output returned successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.output);",
+							"    pm.expect(jsonData.output.generic.length > 0); // text response objects",
+							"});",
+							"",
+							"pm.test(\"Session id returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.session_id).to.be.a('string').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"User id returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user_id).to.be.a('string').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"message\": \"Hi there\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/watson/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"watson",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get chatbot text response handles incorrect body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"chatbot errors sent correctly\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.output);",
+							"    pm.expect(jsonData.error); // error message",
+							"    pm.expect(jsonData.code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"message\": 88\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/watson/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"watson",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Audio upload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"audio uploaded + chatbot output returned successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.output);",
+							"    pm.expect(jsonData.output.generic.length > 0); // text response objects",
+							"});",
+							"",
+							"pm.test(\"Session id returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.session_id).to.be.a('string').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"User id returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user_id).to.be.a('string').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Speech uri returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.speech_urls).to.be.an('array').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/Users/qr/OneDrive - University College London/IBM - COMP0073/Project code/express-backend/tests/hello_world.wav"
+					}
+				},
+				"url": {
+					"raw": "http://192.168.0.61:3001/watson/upload",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"61"
+					],
+					"port": "3001",
+					"path": [
+						"watson",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get chatbot speech + text response",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"chatbot output returned successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.output);",
+							"    pm.expect(jsonData.output.generic.length > 0); // text response objects",
+							"});",
+							"",
+							"pm.test(\"Session id returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.session_id).to.be.a('string').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Speech uri returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.speech_urls).to.be.an('array').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"message\": \"tell me more about yourself\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/watson/message-text-tts-response",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"watson",
+						"message-text-tts-response"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get chatbot speech + text response -Empty string input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"chatbot output returned successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.output);",
+							"    pm.expect(jsonData.output.generic.length > 0); // text response objects",
+							"});",
+							"",
+							"pm.test(\"Session id returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.session_id).to.be.a('string').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Speech uri returns successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.speech_urls).to.be.an('array').that.is.not.be.empty;",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"message\": \"tell me more about yourself\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/watson/message-text-tts-response",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"watson",
+						"message-text-tts-response"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get chatbot speech + text response - invalid message param",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"chatbot errors sent correctly\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error); // error message",
+							"    pm.expect(jsonData.code);",
+							"});",
+							"",
+							"pm.test(\"Message to be string error correctly identified\", function () {",
+							"    pm.expect(pm.response.json().error).to.include(\"Invalid Request Body\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"message\": 98\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/watson/message-text-tts-response",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"watson",
+						"message-text-tts-response"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get chatbot speech + text response - invalid session param",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"chatbot errors sent correctly\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error); // error message",
+							"    pm.expect(jsonData.code);",
+							"});",
+							"",
+							"pm.test(\"Session error correctly identified\", function () {",
+							"    pm.expect(pm.response.json().error).to.include(\"is not a valid GUID\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"message\": \"tell me more about yourself\",\n\"session_id\": \"sdkfjhsd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/watson/message-text-tts-response",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"watson",
+						"message-text-tts-response"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
