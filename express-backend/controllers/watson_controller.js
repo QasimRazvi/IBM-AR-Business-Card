@@ -62,8 +62,9 @@ const audioUpload = async (requestObj) => {
   const response = watsonServices
     .linear16(requestObj.file.path, saveLoc)
     .then((outPath) => watsonServices.stt(outPath));
+  await response;
   watsonServices.deleteFile([requestObj.file.path, saveLoc]); // remove files from storage async
-  return await response;
+  return response;
 };
 
 /**

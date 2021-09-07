@@ -54,7 +54,7 @@ router.post(
   watsonServices.upload.single("soundBlob"),
   async function (req, res, next) {
     try {
-      const textFromSpeech = watson.messageToSpeechAndTextController(req);
+      const textFromSpeech = watson.audioUpload(req);
       res.status(200).json(await textFromSpeech);
     } catch (err) {
       console.log(err);
