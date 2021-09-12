@@ -29,7 +29,6 @@ export const checkAndExecuteTrigger = (chatObject) => {
         break;
       case "email":
         // "\"j0nnymac@uk.ibm.com\"" hardcoded for this prototype version with support for only John (one card)
-        console.log("mail triggered");
         MailComposer.isAvailableAsync().then(() =>
           MailComposer.composeAsync({
             recipients: ["j0nnymac@uk.ibm.com"],
@@ -43,7 +42,6 @@ export const checkAndExecuteTrigger = (chatObject) => {
         // 07*********
         // open dial screen
         const phoneNum = "07*********";
-        console.log("opening dial screen");
         if (Platform.OS == "ios") {
           Linking.openURL("telprompt:" + phoneNum);
         } else {
