@@ -90,7 +90,7 @@ NSInteger _forceInterfaceOrientationMask = 0;
 @synthesize mainDisplay             = _mainDisplay;
 @synthesize renderDelegate          = _renderDelegate;
 @synthesize quitHandler             = _quitHandler;
-@synthesize unityMessageHandler     = _unityMessageHandler;
+
 #if UNITY_SUPPORT_ROTATION
 @synthesize interfaceOrientation    = _curOrientation;
 #endif

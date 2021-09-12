@@ -84,14 +84,7 @@ extern "C" {
 #endif
 
 extern UnityAppController* _UnityAppController;
-// extern UnityAppController* GetAppController();
-// }
-
-// Added by https://github.com/asmadsen/react-native-unity-view
-static inline UnityAppController* GetAppController()
-{
-    return [UnityAppController GetAppController];
-}
+extern UnityAppController* GetAppController();
 
 #ifdef __cplusplus
 } // extern "C"
