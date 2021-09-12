@@ -56,8 +56,5 @@ public class MainController : MonoBehaviour
       Debug.Log("Invalid animation state provided");
       Avatar.animationState = "idle";
     }
-
-
-
   }
 }

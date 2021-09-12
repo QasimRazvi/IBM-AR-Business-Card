@@ -34,15 +34,7 @@ public class PlayerController : MonoBehaviour
       Debug.Log("Avatar initialised");
       // Initialise animation
       animator = GetComponent<Animator>();
-      // var currAnimList = animStates[animationState];
-      // animator.SetTrigger("talking");
-
-      // clips = animator.runtimeAnimatorController.animationClips;
-      // Debug.Log(clips);
-      // animator.SetBool("idle", false);
       Debug.Log(animator.name);
-
-
     }
 
     // Update is called once per frame
@@ -65,16 +57,13 @@ public class PlayerController : MonoBehaviour
         // if timer finished -> call play anim loop to continue
         PlayAnimationLoop(currAnimList);
         }
-
       }
-
     }
 
     void PlayAnimationLoop(string[] currAnimList)
     {
-
       if (randIndex == currAnimList.Length) {
-        // resent index to trigger reshuffle if reached zero (end of shuffled array)
+        // reset index to trigger reshuffle if reached zero (end of shuffled array)
         randIndex = 0;
       }
       if (randIndex == 0 ) {
@@ -82,9 +71,6 @@ public class PlayerController : MonoBehaviour
         ShuffleAnimOrder(currAnimList);
       }
 
-      // Debug.Log("NEXT ANIMATION CALLED");
-      // Debug.Log(currAnimList[randIndex]);
-      // animator.Play(currAnimList[randIndex]);
       // Fade in next animation over 0.1f normalised time for fluid tranistions between animationStates
       animator.CrossFade("Base Layer." + currAnimList[randIndex], 0.1f);
       // Debug.Log("Base Layer." + currAnimList[randIndex]);
@@ -112,8 +98,5 @@ public class PlayerController : MonoBehaviour
           currAnimList[n] = currAnimList[k];
           currAnimList[k] = temp;
       }
-      // foreach (var anim in currAnimList){
-      //   Debug.Log(anim);
-      // }
     }
 }

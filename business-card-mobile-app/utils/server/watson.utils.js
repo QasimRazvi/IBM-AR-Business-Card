@@ -4,7 +4,6 @@
 const watsonConfig = {
   watsonUrl: "http://192.168.0.61:3001/watson/",
   baseUrl: "http://192.168.0.61:3001/",
-  //   exp://192.168.0.61:19000
 };
 
 // // Send recorded speech from phone mic to API for STT processing
