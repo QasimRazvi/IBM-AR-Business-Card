@@ -2,6 +2,11 @@
 IBM Augmented Reality AI Business Card - Proof of Concept project as part of UCL MSc Computer Science
 
 
+
+https://user-images.githubusercontent.com/71948903/133063199-96ab92d5-8850-4076-950f-cd33593f23d3.mp4
+
+
+
 ## File Structure
 
 The file structure is outlined below in a directory tree structure. Please note, all files and directories that exist are not mapped in the diagrams below - only core folders/modules/files are drawn. The root directory is as follows:
