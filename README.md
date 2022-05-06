@@ -6,6 +6,7 @@ IBM Augmented Reality AI Business Card - Proof of Concept project as part of UCL
 https://user-images.githubusercontent.com/71948903/133063199-96ab92d5-8850-4076-950f-cd33593f23d3.mp4
 
 Full video demo with voiceover commentary: https://mediacentral.ucl.ac.uk/Player/HFb9E1EF
+OR here: https://youtu.be/MuJBTieYWm8
 
 ## File Structure
 
